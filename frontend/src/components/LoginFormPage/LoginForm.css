@@ -1,0 +1,25 @@
+
+input {
+  margin: 15px;
+  padding: 0 5px;
+  width: 200px;
+  height: 25px;
+  color: #000000;
+  background: rgb(255, 255, 255);
+  border: 1px solid;
+  border-color: #c4c4c4 #d1d1d1 #d4d4d4;
+  outline: 2px solid #eff4f7;
+}
+
+form {
+    user-select: none;
+	overflow-y: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: hsl(218deg 50% 91%);
+	height: 100vh;
+}
+
+button { cursor: pointer; }
+
