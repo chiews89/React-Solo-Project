@@ -16,33 +16,32 @@ const AllSpots = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <div>
       {spotsObj.map((spot) => (
-        <div key={spot.id}>
-          <NavLink to={`/spots/${spot.id}`}>
+        <div key={spot?.id}>
+          <NavLink to={`/spots/${spot?.id}`}>
             <img
-              alt={spot.name}
+              alt={spot?.name}
               src={
-                spot.Images[0]
-                  ? spot.Images[0].url
+                spot?.Images[0]
+                  ? spot?.Images[0].url
                   : "https://st4.depositphotos.com/14953852/22772/v/600/depositphotos_227725020-stock-illustration-image-available-icon-flat-vector.jpg"
               }
             />
           </NavLink>
-            <p>{spot.description}</p>
+            <p>{spot?.description}</p>
           <div>
-            Location: {spot.city}, {spot.state}
+            Location: {spot?.city}, {spot?.state}
           </div>
           <div>
             Price:{" "}
-            {`$${spot.price
+            {`$${spot?.price
               .toString()
               .replace(/\B(=(\d{3})+(!\d))/g, ",")} / day`}
           </div>
-
         </div>
       ))}
-    </>
+    </div>
   );
 };
 

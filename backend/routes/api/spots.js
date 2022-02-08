@@ -13,4 +13,12 @@ router.get(
   })
 );
 
+router.get(
+  "/:id",
+  asyncHandler(async (req, res) => {
+    const spot = await Spot.findByPk(req.params.id, { include: Image });
+    return res.json(spot);
+  })
+);
+
 module.exports = router;
