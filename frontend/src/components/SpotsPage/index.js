@@ -5,18 +5,19 @@ import { getSpots } from "../../store/spots";
 const AllSpots = () => {
   const dispatch = useDispatch();
 
-  const spots = useSelector(state => {
-    return Object.values(state.spotState.spots)
-  })
-  console.log(spots)
-
+  const spots = useSelector((state) => {
+    return Object.values(state.spots);
+  });
 
   useEffect(() => {
     dispatch(getSpots());
-  },[dispatch]);
+  }, [dispatch]);
 
   return (
   <>
+  <div>
+    
+  </div>
   </>);
 };
 

@@ -18,9 +18,6 @@ module.exports = (sequelize, DataTypes) => {
     Image.belongsTo(models.Spot, {
       foreignKey: "spotId",
     });
-    Image.belongsTo(models.User, {
-      foreignKey: 'userId'
-    })
   };
   return Image;
 };
