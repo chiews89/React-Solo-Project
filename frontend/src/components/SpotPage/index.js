@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
-import { getOne, getOneSpot } from "../../store/spots";
+import { useParams } from "react-router-dom";
+import { getOneSpot } from "../../store/spots";
 
 const SingleSpot = () => {
   const dispatch = useDispatch();
