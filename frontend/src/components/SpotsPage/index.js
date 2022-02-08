@@ -6,13 +6,14 @@ const AllSpots = () => {
   const dispatch = useDispatch();
 
   const spots = useSelector(state => {
-    return Object.values(state.spots)
+    return Object.values(state.spotState.spots)
   })
-  console.log('all spots', spots)
+  console.log(spots)
+
 
   useEffect(() => {
     dispatch(getSpots());
-  }, );
+  },[dispatch]);
 
   return (
   <>
