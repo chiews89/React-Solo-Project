@@ -17,17 +17,14 @@ export const getSpots = () => async (dispatch) => {
   }
 };
 
-const initialState = { spots : {} }
-const spotsReducer = (state = initialState, action) => {
+
+const spotsReducer = (state = {}, action) => {
   switch (action.type) {
     case LOAD_SPOTS:
-      let newState;
-      newState = {...state};
-      const spotsList = {}
+      const newState = {}
       action.spots.forEach((spot) => {
-        spotsList[action.spot.id] = spot;
+        newState[spot.id] = spot;
       });
-      newState.spots = spotsList
       return newState;
     default:
       return { ...state };

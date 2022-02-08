@@ -1,14 +1,14 @@
 const router = require("express").Router();
 const asyncHandler = require("express-async-handler");
 const { setTokenCookie, restoreUser } = require("../../utils/auth");
-const { Spot } = require("../../db/models");
+const { Spot, Image } = require("../../db/models");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 
 router.get(
-  "",
+  "/",
   asyncHandler(async (req, res) => {
-    const spots = await Spot.findAll({ include: ['Images']});
+    const spots = await Spot.findAll({ include: Image });
     return res.json(spots);
   })
 );

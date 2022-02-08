@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       userId: {
         allowNull: false,
         type: DataTypes.INTEGER,
-        references: {model: 'Users'}
+        references: {model: "Users"}
       },
       description: {
         allowNull: false,
@@ -23,12 +23,11 @@ module.exports = (sequelize, DataTypes) => {
       price: {
         allowNull: false,
         type: DataTypes.DECIMAL
+      },
     },
-  },
     {}
   );
   Spot.associate = function (models) {
-    // associations can be defined here
     Spot.belongsTo(models.User, {
       foreignKey: "userId",
     });
