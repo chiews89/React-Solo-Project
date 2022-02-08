@@ -6,7 +6,7 @@ const CREATE = "spots/CREATE";
 const EDIT = "spots/EDIT";
 const DELETE = "spots/DELETE";
 
-const load = (spots) => ({
+const loadAll = (spots) => ({
   type: LOAD_SPOTS,
   spots,
 });
@@ -35,7 +35,7 @@ export const getSpots = () => async (dispatch) => {
   const response = await csrfFetch("/api/spots");
   if (response.ok) {
     const spots = await response.json();
-    dispatch(load(spots));
+    dispatch(loadAll(spots));
     return spots
   }
 };

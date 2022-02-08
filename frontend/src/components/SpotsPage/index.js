@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getSpots } from "../../store/spots";
 
@@ -10,11 +9,14 @@ const AllSpots = () => {
     return Object.values(state.spots)
   })
   console.log('all spots', spots)
+
   useEffect(() => {
     dispatch(getSpots());
-  }, [dispatch]);
+  }, );
 
-  return <></>;
+  return (
+  <>
+  </>);
 };
 
 export default AllSpots;
