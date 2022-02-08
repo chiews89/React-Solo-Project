@@ -3,15 +3,15 @@ import { csrfFetch } from "./csrf";
 const LOAD_SPOTS = "spots/LOAD_SPOTS";
 const LOAD_ONE = "spots/LOAD_ONE";
 const CREATE = "spots/CREATE";
-const EDIT = "rides/EDIT";
-const DELETE = "rides/DELETE";
+const EDIT = "spots/EDIT";
+const DELETE = "spots/DELETE";
 
 const load = (spots) => ({
   type: LOAD_SPOTS,
   spots,
 });
 
-const loadOne = (spot) => ({
+const getOne = (spot) => ({
   type: LOAD_ONE,
   spot,
 });
