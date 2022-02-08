@@ -8,8 +8,7 @@ const { handleValidationErrors } = require("../../utils/validation");
 router.get(
   "/",
   asyncHandler(async (req, res) => {
-    const spots = await Spot.findAll();
-    console.log(spots)
+    const spots = await Spot.findAll({ include: ['Images']});
     return res.json(spots);
   })
 );
