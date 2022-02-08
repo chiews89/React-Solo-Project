@@ -15,7 +15,7 @@ module.exports = {
       },
       url: {
         allowNull: false,
-        type: Sequelize.TEXT,
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
@@ -28,6 +28,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("images");
+    return queryInterface.dropTable("Images");
   },
 };
