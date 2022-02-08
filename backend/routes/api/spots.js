@@ -9,6 +9,7 @@ router.get(
   "/",
   asyncHandler(async (req, res) => {
     const spots = await Spot.findAll();
+    console.log(spots)
     return res.json(spots);
   })
 );
