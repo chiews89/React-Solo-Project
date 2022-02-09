@@ -14,9 +14,9 @@ const loadOne = (spot) => ({
   spot,
 });
 
-const createSpot = (spot) => ({
+const createSpot = (newSpot) => ({
   type: CREATE_SPOT,
-  spot
+  newSpot
 })
 
 export const getSpots = () => async (dispatch) => {
@@ -38,7 +38,7 @@ export const getOneSpot = (id) => async (dispatch) => {
 };
 
 export const createNewSpot = (spot) => async (dispatch) => {
-  const response = await fetch ('/api/spots', {
+  const response = await csrfFetch ('/api/spots', {
     method: 'POST',
     header: { 'Content-Type': 'application/json'},
     body: JSON.stringify(spot)
@@ -64,7 +64,7 @@ const spotsReducer = (state = {}, action) => {
       return oneState;
     case CREATE_SPOT:
       const createState = {...state }
-      createState[action.spot.id] = action.spot
+      createState[action.newSpot.id] = action.spot
       return createState
     default:
       return { ...state };

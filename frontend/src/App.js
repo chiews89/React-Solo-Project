@@ -6,6 +6,10 @@ import SignupFormPage from "./components/SignupFormPage";
 import SpotsPage from "./components/SpotsPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+// import Footer from "./components/Footer";
+import NewSpot from "./components/CreateSpot";
+import SingleSpot from "./components/SpotPage";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -17,7 +21,7 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
+
         <Switch>
           <Route path="/login">
             <LoginFormPage />
@@ -25,11 +29,17 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/spots">
+          <Route exact path="/spots">
             <SpotsPage />
           </Route>
+          <Route exact path="/spots/:id">
+            <SingleSpot />
+          </Route>
+          <Route exact path="/spots/host">
+            <NewSpot />
+          </Route>
         </Switch>
-      )}
+        {/* <Footer /> */}
     </>
   );
 }

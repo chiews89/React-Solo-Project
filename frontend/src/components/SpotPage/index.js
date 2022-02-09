@@ -1,8 +1,11 @@
+import React from "react";
+
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getOneSpot } from "../../store/spots";
-
+import NewSpot from "../CreateSpot";
+import { useState } from "react";
 const SingleSpot = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -12,16 +15,24 @@ const SingleSpot = () => {
     dispatch(getOneSpot(id));
   }, [dispatch, id]);
 
+
+  const [showCreate, setShowCreate] = useState(true);
+
+  const hideForm = () => {
+    setShowCreate(true);
+  };
+
   return (
     <div>
+      <span className="host-spot-btn-container">
+        <div className={`host-spot-main-container ${showCreate}`}>
+          <NewSpot hideForm={hideForm} className="host-spot-ele" />
+        </div>
+      </span>
       <div className="spot-image">
         <img
           alt={spot?.name}
-          src={
-            spot?.Images[0]
-              ? spot?.Images[0].url
-              : "https://st4.depositphotos.com/14953852/22772/v/600/depositphotos_227725020-stock-illustration-image-available-icon-flat-vector.jpg"
-          }
+          src={spot?.Images[0] ? spot?.Images[0].url : ""}
         />
       </div>
       <div className="spot-info">
@@ -29,12 +40,7 @@ const SingleSpot = () => {
         <div>
           Location: {spot?.city}, {spot?.state}
         </div>
-        <div>
-          Price:{" "}
-          {`$${spot?.price
-            .toString()
-            .replace(/\B(=(\d{3})+(!\d))/g, ",")} / day`}
-        </div>
+        <div>Price: ${Math.round(spot?.price)} / Day</div>
       </div>
     </div>
   );

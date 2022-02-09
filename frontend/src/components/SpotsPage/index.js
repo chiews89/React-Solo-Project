@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
+
 import { useDispatch, useSelector } from "react-redux";
 import { getSpots } from "../../store/spots";
-
 const AllSpots = () => {
   const dispatch = useDispatch();
 
@@ -15,28 +15,24 @@ const AllSpots = () => {
     dispatch(getSpots());
   }, [dispatch]);
 
+
+
   return (
     <div>
+
       {spotsObj.map((spot) => (
         <div key={spot?.id}>
           <NavLink to={`/spots/${spot?.id}`}>
             <img
               alt={spot?.name}
-              src={
-                spot?.Images[0]
-                  ? spot?.Images[0].url
-                  : "https://st4.depositphotos.com/14953852/22772/v/600/depositphotos_227725020-stock-illustration-image-available-icon-flat-vector.jpg"
-              }
+              src={spot?.Images[0] ? spot?.Images[0].url : ""}
             />
           </NavLink>
-            <p>{spot?.description}</p>
+          <p>{spot?.description}</p>
           <div>
             Location: {spot?.city}, {spot?.state}
           </div>
-          <div>
-            Price:{" "}
-            {`$${spot?.price.toString().replace(/\B(=(\d{3})+(!\d))/g, ",")} / day`}
-          </div>
+          <div>${Math.round(spot.price)} / Day</div>
         </div>
       ))}
     </div>

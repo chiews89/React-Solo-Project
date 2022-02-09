@@ -5,6 +5,8 @@ const { User } = require("../../db/models");
 const sessionRouter = require("./session.js");
 const usersRouter = require("./users.js");
 const spotsRouter = require("./spots");
+const createRouter = require("./spots");
+
 
 router.use("/session", sessionRouter);
 router.use("/spots", spotsRouter);
