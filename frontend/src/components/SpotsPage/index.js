@@ -35,9 +35,7 @@ const AllSpots = () => {
           </div>
           <div>
             Price:{" "}
-            {`$${spot?.price
-              .toString()
-              .replace(/\B(=(\d{3})+(!\d))/g, ",")} / day`}
+            {`$${spot?.price.toString().replace(/\B(=(\d{3})+(!\d))/g, ",")} / day`}
           </div>
         </div>
       ))}

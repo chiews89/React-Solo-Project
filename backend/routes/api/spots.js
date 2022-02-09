@@ -1,9 +1,7 @@
 const router = require("express").Router();
 const asyncHandler = require("express-async-handler");
-const { setTokenCookie, restoreUser } = require("../../utils/auth");
 const { Spot, Image } = require("../../db/models");
-const { check } = require("express-validator");
-const { handleValidationErrors } = require("../../utils/validation");
+
 
 router.get(
   "/",
@@ -20,5 +18,15 @@ router.get(
     return res.json(spot);
   })
 );
+
+
+router.post(
+  "/",
+  asyncHandler(async (req, res) => {
+    const spot = await Spot.create(req.body)
+    return res.json(spot);
+  })
+);
+
 
 module.exports = router;
