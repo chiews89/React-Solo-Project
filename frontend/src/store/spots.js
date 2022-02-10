@@ -1,4 +1,3 @@
-import { response } from "express";
 import { csrfFetch } from "./csrf";
 
 const LOAD_SPOTS = "spots/LOAD_SPOTS";
@@ -57,18 +56,18 @@ export const createNewSpot = (spot) => async (dispatch) => {
   }
 }
 
-// export const editSpot = (spot) => async (dispatch) => {
-//   const reponse = await csrfFetch(`/api/spots/${spot.id}`, {
-//     method: 'PUT',
-//     headers: { 'Content-Type': 'application/json' },
-//     body: JSON.stringify(spot)
-//   })
-//   if (response.ok) {
-//     const spot = await response.json()
-//     dispatch(updateSpot(spot))
-//     return spot
-//   }
-// }
+export const editSpot = (spot) => async (dispatch) => {
+  const response = await csrfFetch(`/api/spots/${spot.id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(spot)
+  })
+  if (response.ok) {
+    const spot = await response.json()
+    dispatch(updateSpot(spot))
+    return spot
+  }
+}
 
 const spotsReducer = (state = {}, action) => {
   switch (action.type) {

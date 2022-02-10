@@ -5,7 +5,7 @@ function Footer(){
         return (
             <div className="footer-container">
                     <p>Chiew Saetern</p>
-                    <a id="github_icon" href="https://github.com/Code-rina"><i className="fab fa-github-square"></i></a>
+                    <a id="github_icon" href="https://github.com/chiews89"><i className="fab fa-github-square"></i></a>
             </div>
         )
     }

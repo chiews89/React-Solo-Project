@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { createNewSpot } from "../../store/spots";
 
-const NewSpot = () => {
+const NewSpot = ({hideForm}) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
@@ -30,6 +30,7 @@ const NewSpot = () => {
     if (newSpot) {
       history.push(`/spots/${newSpot.id}`)
       reset();
+      hideForm()
     }
   };
   const reset = () => {

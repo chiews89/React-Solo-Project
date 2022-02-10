@@ -6,7 +6,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import SpotsPage from "./components/SpotsPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
-// import Footer from "./components/Footer";
+import Footer from "./components/Footer";
 import NewSpot from "./components/CreateSpot";
 import SingleSpot from "./components/SpotPage";
 
@@ -39,7 +39,7 @@ function App() {
             <SingleSpot />
           </Route>
         </Switch>
-        {/* <Footer /> */}
+        <Footer />
     </>
   );
 }
