@@ -62,12 +62,27 @@ router.put(
   csrfProtection,
   spotValidators,
   asyncHandler(async (req, res) => {
-    const spotId = Number(req.params.id)
-    const spot = await Spot.findByPk(spotId, {include: Image})
-    const updatedSpot = await spot.update(req.body)
-    console.log('$$$$$$$$$$$$$$$$$$$$$$$$$',updatedSpot)
-    return res.json(updatedSpot)
+    const spotId = Number(req.params.id);
+    const imageUrl = req.body.image.url
+    const image = await Image.findByPk(req.params.id);
+    const spot = await Spot.findByPk(spotId);
+    const newUrlImage = {
+      id: image.id,
+      spotId: spot.id,
+      url: req.body.image.url
+    };
+    const currentImage = await image.update(newUrlImage);
+    const updatedSpot = await spot.update(req.body);
+    updatedSpot.dataValues.Images = [currentImage];
+
+    return res.json(updatedSpot);
   })
 );
+
+router.delete('/:id', csrfProtection, asyncHandler(async(req, res) => {
+  const spotId = Number(req.params.id)
+  Spot.destroy({where: { id: spotId}})
+  return res.json(spotId)
+}))
 
 module.exports = router;

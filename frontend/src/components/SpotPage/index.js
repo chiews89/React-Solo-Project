@@ -11,7 +11,7 @@ const SingleSpot = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const spot = useSelector((state) => state.spots[id]);
-  const [showEdit, setShowEdit] = useState(false);
+  const [setShowEdit] = useState(false);
 
   useEffect(() => {
     dispatch(getOneSpot(id));
@@ -22,6 +22,10 @@ const SingleSpot = () => {
   if (!spot) {
     return null;
   }
+const handleDelete = () => {
+  
+}
+
 
   return (
     <div>
