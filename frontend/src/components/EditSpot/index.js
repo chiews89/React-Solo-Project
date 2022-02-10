@@ -24,7 +24,6 @@ const UpdateSpot = ({ spot, hideForm }) => {
     if (!price?.length) errors.push("Please provide a price");
     if (price < 1) errors.push("Price cannot be less than $1.00");
     setErrorValidator(errors);
-    console.log("errorrrrrrrrrrrr", errors);
   }, [description, city, state, price]);
 
   const handleSubmit = async (e) => {

@@ -56,9 +56,9 @@ const NewSpot = () => {
     setPrice(0);
   };
 
-  const cancelButton = e => {
-    history.push(`/spots`)
-  }
+  const cancelButton = (e) => {
+    history.push(`/spots`);
+  };
 
   return (
     <div className="create-spot-container">
@@ -131,13 +131,13 @@ const NewSpot = () => {
           Submit
         </button>
       </form>
-        <button
-          className="cancel-create-button"
-          type="true"
-          onClick={cancelButton}
-        >
-          Cancel
-        </button>
+      <button
+        className="cancel-create-button"
+        type="true"
+        onClick={cancelButton}
+      >
+        Cancel
+      </button>
     </div>
   );
 };
