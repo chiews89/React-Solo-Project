@@ -15,9 +15,10 @@ const UpdateSpot = ({ spot, hideForm }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = {
-      // image: {
-      //   url,
-      // },
+      id: spot.id,
+      image: {
+        url,
+      },
       userId: user.id,
       description,
       city,
