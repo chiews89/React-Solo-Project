@@ -30,10 +30,10 @@ const UpdateSpot = ({ spot, hideForm }) => {
       if (updatedSpot) hideForm();
     }
   };
-  // const handleCancelClick = (e) => {
-  //   e.preventDefault();
-  //   hideForm();
-  // };
+  const handleCancelClick = (e) => {
+    e.preventDefault();
+    hideForm();
+  };
   return (
     <div className="edit-spot-container">
       <form className="edit-spot" onSubmit={handleSubmit}>
@@ -92,9 +92,9 @@ const UpdateSpot = ({ spot, hideForm }) => {
         <button className="edit-spot-button" type="submit">
           Submit
         </button>
-        {/* <button type="button" onClick={handleCancelClick}>
+        <button type="button" onClick={handleCancelClick}>
           Cancel
-        </button> */}
+        </button>
       </form>
     </div>
   );

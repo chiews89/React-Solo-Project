@@ -62,22 +62,12 @@ router.put(
   csrfProtection,
   spotValidators,
   asyncHandler(async (req, res) => {
-    const { id, userId, description, city, state, price } = req.body
-    let parseSpotId = parseInt(id, 10)
-    let spot = await Spot.update({
-      where: {
-        id
-      },
-      userId,
-      description,
-      city,
-      state,
-      price
-    })
-    console.log(spot)
-    spot = await Spot.findByPk(parseSpotId, { include: Image})
-    return res.json(spot)
+    const spotId = Number(req.params.id)
+    const spot = await Spot.findByPk(spotId, {include: Image})
+    const updatedSpot = await spot.update(req.body)
+    console.log('$$$$$$$$$$$$$$$$$$$$$$$$$',updatedSpot)
+    return res.json(updatedSpot)
   })
-  );
+);
 
-  module.exports = router;
+module.exports = router;

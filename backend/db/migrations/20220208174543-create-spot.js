@@ -19,11 +19,11 @@ module.exports = {
       },
       city: {
         allowNull: false,
-        type: Sequelize.STRING(20),
+        type: Sequelize.STRING(25),
       },
       state: {
         allowNull: false,
-        type: Sequelize.STRING(20),
+        type: Sequelize.STRING(25),
       },
       price: {
         allowNull: false,
