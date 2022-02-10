@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       spotId: {
         allowNull: false,
         type: DataTypes.INTEGER,
+        references: {model: 'spotId'}
       },
       url: {
         allowNull: false,

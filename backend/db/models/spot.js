@@ -6,23 +6,23 @@ module.exports = (sequelize, DataTypes) => {
       userId: {
         allowNull: false,
         type: DataTypes.INTEGER,
-        references: {model: "Users"}
+        references: { model: "Users" },
       },
       description: {
         allowNull: false,
-        type: DataTypes.TEXT
+        type: DataTypes.TEXT,
       },
       city: {
         allowNull: false,
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       state: {
         allowNull: false,
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
       },
       price: {
         allowNull: false,
-        type: DataTypes.DECIMAL
+        type: DataTypes.DECIMAL,
       },
     },
     {}
@@ -31,7 +31,11 @@ module.exports = (sequelize, DataTypes) => {
     Spot.belongsTo(models.User, {
       foreignKey: "userId",
     });
-    Spot.hasMany(models.Image, { foreignKey: "spotId" });
+    Spot.hasMany(models.Image, {
+      onDelete: "cascade",
+      hooks: true,
+      foreignKey: "spotId",
+    });
   };
   return Spot;
 };
