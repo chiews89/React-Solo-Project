@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
@@ -16,7 +16,7 @@ function Navigation({ isLoaded }) {
           Home
         </NavLink>
         <NavLink exact to="/spots">Find A Spot</NavLink>
-        <NavLink to="/spots/host">Host A Spot</NavLink>
+        <NavLink exact to="/spots/host">Host A Spot</NavLink>
         <div className="profile-button"></div>
       </div>
     );

@@ -1,8 +1,10 @@
+import { response } from "express";
 import { csrfFetch } from "./csrf";
 
 const LOAD_SPOTS = "spots/LOAD_SPOTS";
 const LOAD_ONE = "spots/LOAD_ONE";
 const CREATE_SPOT = "spots/CREATE_SPOT"
+const EDIT_SPOT = "spots/EDIT_SPOT"
 
 const loadAll = (spots) => ({
   type: LOAD_SPOTS,
@@ -14,9 +16,14 @@ const loadOne = (spot) => ({
   spot,
 });
 
-const createSpot = (newSpot) => ({
+const createSpot = (spot) => ({
   type: CREATE_SPOT,
-  newSpot
+  spot
+})
+
+const updateSpot = (spot) => ({
+  type: EDIT_SPOT,
+  spot
 })
 
 export const getSpots = () => async (dispatch) => {
@@ -40,15 +47,28 @@ export const getOneSpot = (id) => async (dispatch) => {
 export const createNewSpot = (spot) => async (dispatch) => {
   const response = await csrfFetch ('/api/spots', {
     method: 'POST',
-    header: { 'Content-Type': 'application/json'},
+    headers: { 'Content-Type': 'application/json'},
     body: JSON.stringify(spot)
   })
   if (response.ok) {
-    const newSpot = await response.json();
-    dispatch(createSpot(newSpot))
-    return newSpot
+    const spot = await response.json();
+    dispatch(createSpot(spot))
+    return spot
   }
 }
+
+// export const editSpot = (spot) => async (dispatch) => {
+//   const reponse = await csrfFetch(`/api/spots/${spot.id}`, {
+//     method: 'PUT',
+//     headers: { 'Content-Type': 'application/json' },
+//     body: JSON.stringify(spot)
+//   })
+//   if (response.ok) {
+//     const spot = await response.json()
+//     dispatch(updateSpot(spot))
+//     return spot
+//   }
+// }
 
 const spotsReducer = (state = {}, action) => {
   switch (action.type) {
@@ -64,7 +84,7 @@ const spotsReducer = (state = {}, action) => {
       return oneState;
     case CREATE_SPOT:
       const createState = {...state }
-      createState[action.newSpot.id] = action.spot
+      createState[action.spot.id] = action.spot
       return createState
     default:
       return { ...state };

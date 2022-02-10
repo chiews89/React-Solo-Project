@@ -8,8 +8,7 @@ const NewSpot = () => {
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
 
-
-
+  const [url, setUrl] = useState("");
   const [description, setDescription] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
@@ -18,6 +17,9 @@ const NewSpot = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = {
+      image: {
+        url,
+      },
       userId: user.id,
       description,
       city,
@@ -41,6 +43,18 @@ const NewSpot = () => {
     <div className="create-spot-container">
       <form className="create-spot" onSubmit={handleSubmit}>
         <h2 className="create-spot-description">Host A New Spot!</h2>
+        <div className="image">
+        <label >
+        Image Url
+        <input
+          type="text"
+          placeholder="Image Url"
+          value={url ? url : ''}
+          onChange={(e) => setUrl(e.target.value)}
+          required
+        />
+      </label>
+        </div>
         <div className="description">
           <label> Description </label>
           <textarea

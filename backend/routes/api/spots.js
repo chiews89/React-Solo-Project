@@ -23,7 +23,11 @@ router.post(
   "/",
   asyncHandler(async (req, res) => {
     const spot = await Spot.create(req.body)
-    return res.json(spot);
+    const image = await Image.create({
+      url: req.body.image.url,
+      spotId: spot.id
+    })
+    return res.json({spot, image});
   })
 );
 

@@ -25,7 +25,7 @@ function LoginFormPage() {
   };
 
   return (
-    <body>
+    <>
       <div className="main">
         <form onSubmit={handleSubmit}>
           <ul>
@@ -63,7 +63,7 @@ function LoginFormPage() {
           </div>
         </form>
       </div>
-    </body>
+    </>
   );
 }
 

@@ -32,11 +32,11 @@ function App() {
           <Route exact path="/spots">
             <SpotsPage />
           </Route>
-          <Route exact path="/spots/:id">
-            <SingleSpot />
-          </Route>
           <Route exact path="/spots/host">
             <NewSpot />
+          </Route>
+          <Route exact path="/spots/:id">
+            <SingleSpot />
           </Route>
         </Switch>
         {/* <Footer /> */}
