@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { editSpot } from "../../store/spots";
 
 const UpdateSpot = ({ spot, hideForm }) => {
@@ -11,6 +11,21 @@ const UpdateSpot = ({ spot, hideForm }) => {
   const [city, setCity] = useState(spot?.city);
   const [state, setState] = useState(spot?.state);
   const [price, setPrice] = useState(spot?.price);
+  const [errorValidator, setErrorValidator] = useState([]);
+
+  useEffect(() => {
+    const errors = [];
+    if (!description?.length) errors.push("Please provide a description");
+    if (!city?.length) errors.push("Please provide a city");
+    if (city?.length > 25) errors.push("City must be less than 25 characters");
+    if (!state?.length) errors.push("Please provide a state");
+    if (state?.length > 25)
+      errors.push("State must be less than 25 characters");
+    if (!price?.length) errors.push("Please provide a price");
+    if (price < 1) errors.push("Price cannot be less than $1.00");
+    setErrorValidator(errors);
+    console.log("errorrrrrrrrrrrr", errors);
+  }, [description, city, state, price]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,6 +49,13 @@ const UpdateSpot = ({ spot, hideForm }) => {
   return (
     <div className="edit-spot-container">
       <form className="edit-spot" onSubmit={handleSubmit}>
+        <ul>
+          {errorValidator.map((error) => (
+            <li className="error_list" key={error}>
+              {error}
+            </li>
+          ))}
+        </ul>
         <div className="image">
           <label>
             Image Url
@@ -86,13 +108,23 @@ const UpdateSpot = ({ spot, hideForm }) => {
             onChange={(e) => setPrice(e.target.value)}
           />
         </div>
-        <button className="edit-spot-button" type="submit">
+        <button
+          className="edit-spot-button"
+          type="submit"
+          disabled={errorValidator.length > 0}
+        >
           Submit
+        </button>
+        <button
+          className="cancel-edit-button"
+          type="true"
+          to={`/spots/${spot.id}`}
+        >
+          Cancel
         </button>
       </form>
     </div>
   );
 };
-
 
 export default UpdateSpot;

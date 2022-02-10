@@ -24,7 +24,7 @@ const SingleSpot = () => {
     return null;
   }
   const handleDelete = () => {
-    dispatch(removeSpot(id));
+    dispatch(removeSpot(id, spot));
     redirect();
   };
   const editSpotClick = () => {
