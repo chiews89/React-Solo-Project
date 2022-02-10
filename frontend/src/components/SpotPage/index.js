@@ -1,31 +1,35 @@
 import React from "react";
-
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
-import { getOneSpot } from "../../store/spots";
-import  UpdateSpot from '../EditSpot/index'
+import { getOneSpot, removeSpot } from "../../store/spots";
+import UpdateSpot from "../EditSpot/index";
 
 const SingleSpot = () => {
   const sessionUser = useSelector((state) => state.session.user);
+  const userId = useSelector((state) => state.session.user?.id);
   const dispatch = useDispatch();
   const { id } = useParams();
   const spot = useSelector((state) => state.spots[id]);
-  const [setShowEdit] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
+
+  const history = useHistory();
+  const redirect = () => history.replace("/spots");
 
   useEffect(() => {
     dispatch(getOneSpot(id));
   }, [dispatch, id]);
 
-
-
   if (!spot) {
     return null;
   }
-const handleDelete = () => {
-  
-}
-
+  const handleDelete = () => {
+    dispatch(removeSpot(id));
+    redirect();
+  };
+  const editSpotClick = () => {
+    setShowEdit((prevState) => !prevState);
+  };
 
   return (
     <div>
@@ -46,12 +50,21 @@ const handleDelete = () => {
         </div>
         <div>Price: ${Math.round(spot?.price)} / Day</div>
       </div>
-      <div>
-
-      <div>
+      <div className="edit-delete-container" hidden={userId !== spot?.userId}>
+        {userId === spot?.userId && (
+          <button className="edit-spot-btn" onClick={editSpotClick}>
+            Edit
+          </button>
+        )}
+        <div hidden={!showEdit}>
+          <UpdateSpot spot={spot} hideForm={() => setShowEdit(false)} />
+        </div>
       </div>
-        <UpdateSpot spot={spot} hideForm={() => setShowEdit(false)} />
-      </div>
+      {userId === spot?.userId && (
+        <button className="delete-spot-btnn" onClick={handleDelete}>
+          Delete
+        </button>
+      )}
     </div>
   );
 };

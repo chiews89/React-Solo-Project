@@ -80,9 +80,7 @@ router.put(
 );
 
 router.delete('/:id', csrfProtection, asyncHandler(async(req, res) => {
-  const spotId = Number(req.params.id)
-  Spot.destroy({where: { id: spotId}})
-  return res.json(spotId)
+  const spotId = Number
 }))
 
 module.exports = router;

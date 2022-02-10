@@ -30,10 +30,7 @@ const UpdateSpot = ({ spot, hideForm }) => {
       if (updatedSpot) hideForm();
     }
   };
-  const handleCancelClick = (e) => {
-    e.preventDefault();
-    hideForm();
-  };
+
   return (
     <div className="edit-spot-container">
       <form className="edit-spot" onSubmit={handleSubmit}>
@@ -45,7 +42,7 @@ const UpdateSpot = ({ spot, hideForm }) => {
               placeholder="Image Url"
               value={url ? url : ""}
               onChange={(e) => setUrl(e.target.value)}
-              required
+              // required
             />
           </label>
         </div>
@@ -54,7 +51,7 @@ const UpdateSpot = ({ spot, hideForm }) => {
           <textarea
             type="text"
             placeholder="Description"
-            required
+            // required
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
@@ -64,7 +61,7 @@ const UpdateSpot = ({ spot, hideForm }) => {
           <input
             type="text"
             placeholder="City"
-            required
+            // required
             value={city}
             onChange={(e) => setCity(e.target.value)}
           />
@@ -74,7 +71,7 @@ const UpdateSpot = ({ spot, hideForm }) => {
           <input
             type="text"
             placeholder="State"
-            required
+            // required
             value={state}
             onChange={(e) => setState(e.target.value)}
           />
@@ -84,16 +81,13 @@ const UpdateSpot = ({ spot, hideForm }) => {
           <input
             type="number"
             placeholder="Price"
-            required
+            // required
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
         </div>
         <button className="edit-spot-button" type="submit">
           Submit
-        </button>
-        <button type="button" onClick={handleCancelClick}>
-          Cancel
         </button>
       </form>
     </div>
