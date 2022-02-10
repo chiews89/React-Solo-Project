@@ -1,59 +1,52 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { createNewSpot } from "../../store/spots";
+import { editSpot } from "../../store/spots";
 
-const NewSpot = () => {
+const UpdateSpot = ({ spot, hideForm }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const user = useSelector((state) => state.session.user);
 
-  const [url, setUrl] = useState("");
-  const [description, setDescription] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [price, setPrice] = useState(0);
+  const [url, setUrl] = useState(spot?.url);
+  const [description, setDescription] = useState(spot?.description);
+  const [city, setCity] = useState(spot?.city);
+  const [state, setState] = useState(spot?.state);
+  const [price, setPrice] = useState(spot?.price);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = {
-      image: {
-        url,
-      },
+      // image: {
+      //   url,
+      // },
       userId: user.id,
       description,
       city,
       state,
       price,
     };
-    const newSpot = await dispatch(createNewSpot(payload));
-    if (newSpot) {
-      history.push(`/spots/${newSpot.id}`)
-      reset();
+    const updatedSpot = await dispatch(editSpot(payload));
+    if (updatedSpot) {
+      if (updatedSpot) hideForm();
     }
   };
-  const reset = () => {
-    setDescription("");
-    setCity("");
-    setState("");
-    setPrice(0);
-  };
-
+  // const handleCancelClick = (e) => {
+  //   e.preventDefault();
+  //   hideForm();
+  // };
   return (
-    <div className="create-spot-container">
-      <form className="create-spot" onSubmit={handleSubmit}>
-        <h2 className="create-spot-description">Host A New Spot!</h2>
+    <div className="edit-spot-container">
+      <form className="edit-spot" onSubmit={handleSubmit}>
         <div className="image">
-        <label >
-        Image Url
-        <input
-          type="text"
-          placeholder="Image Url"
-          value={url ? url : ''}
-          onChange={(e) => setUrl(e.target.value)}
-          required
-        />
-      </label>
+          <label>
+            Image Url
+            <input
+              type="text"
+              placeholder="Image Url"
+              value={url ? url : ""}
+              onChange={(e) => setUrl(e.target.value)}
+              required
+            />
+          </label>
         </div>
         <div className="description">
           <label> Description </label>
@@ -95,13 +88,16 @@ const NewSpot = () => {
             onChange={(e) => setPrice(e.target.value)}
           />
         </div>
-        <button className="create-spot-button" type="submit">
+        <button className="edit-spot-button" type="submit">
           Submit
         </button>
+        {/* <button type="button" onClick={handleCancelClick}>
+          Cancel
+        </button> */}
       </form>
-
     </div>
   );
 };
 
-export default NewSpot;
+
+export default UpdateSpot;

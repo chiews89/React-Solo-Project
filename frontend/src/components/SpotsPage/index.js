@@ -25,7 +25,7 @@ const AllSpots = () => {
           <NavLink to={`/spots/${spot?.id}`}>
             <img
               alt={spot?.name}
-              src={spot?.Images[0] ? spot?.Images[0].url : ""}
+              src={spot?.Images[0] ? spot?.Images[0].url : "https://media.istockphoto.com/vectors/no-image-available-sign-vector-id922962354?k=20&m=922962354&s=612x612&w=0&h=f-9tPXlFXtz9vg_-WonCXKCdBuPUevOBkp3DQ-i0xqo="}
             />
           </NavLink>
           <p>{spot?.description}</p>
