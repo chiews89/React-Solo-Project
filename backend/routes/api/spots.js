@@ -2,7 +2,7 @@ const router = require("express").Router();
 const asyncHandler = require("express-async-handler");
 const { check } = require("express-validator");
 const csrf = require("csurf");
-const { Spot, Image } = require("../../db/models");
+const { User, Spot, Image, Review } = require("../../db/models");
 const csrfProtection = csrf({ cookie: true });
 
 const spotValidators = [
@@ -30,6 +30,7 @@ router.get(
   "/",
   asyncHandler(async (req, res) => {
     const spots = await Spot.findAll({ include: Image });
+    console.log("********************", { Review });
     return res.json(spots);
   })
 );
@@ -63,13 +64,13 @@ router.put(
   spotValidators,
   asyncHandler(async (req, res) => {
     const spotId = Number(req.params.id);
-    const imageUrl = req.body.image.url
+    const imageUrl = req.body.image.url;
     const image = await Image.findByPk(req.params.id);
     const spot = await Spot.findByPk(spotId);
     const newUrlImage = {
       id: image.id,
       spotId: spot.id,
-      url: req.body.image.url
+      url: req.body.image.url,
     };
     const currentImage = await image.update(newUrlImage);
     const updatedSpot = await spot.update(req.body);
@@ -79,10 +80,29 @@ router.put(
   })
 );
 
-router.delete('/:id', csrfProtection, asyncHandler(async(req, res) => {
-  const spotId = Number(req.params.id)
-  Spot.destroy({where: { id: spotId}})
-  return res.json(spotId)
-}))
+router.delete(
+  "/:id",
+  csrfProtection,
+  asyncHandler(async (req, res) => {
+    const spotId = Number(req.params.id);
+    Spot.destroy({ where: { id: spotId } });
+    return res.json(spotId);
+  })
+);
+
+router.put(
+  "/:id",
+  csrfProtection,
+  asyncHandler(async (req, res) => {
+    const reviewId = Number(req.params.id);
+    const review = await Review.findByPk(reviewId, {
+      include: Spot,
+      include: User
+    })
+    const updatedReview = await review.update(req.body)
+
+    return res.json(updatedReview)
+  })
+);
 
 module.exports = router;

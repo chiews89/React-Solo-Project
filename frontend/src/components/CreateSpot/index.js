@@ -1,13 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { createNewSpot } from "../../store/spots";
 
 const NewSpot = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
-  const { spot } = useParams();
 
   const [url, setUrl] = useState("");
   const [description, setDescription] = useState("");

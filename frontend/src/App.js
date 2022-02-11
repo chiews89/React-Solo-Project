@@ -6,6 +6,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import SpotsPage from "./components/SpotsPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import Home from "./components/Home";
 import Footer from "./components/Footer";
 import NewSpot from "./components/CreateSpot";
 import SingleSpot from "./components/SpotPage";
@@ -23,6 +24,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
 
         <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
           <Route path="/login">
             <LoginFormPage />
           </Route>
