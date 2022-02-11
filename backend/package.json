@@ -27,6 +27,7 @@
         "morgan": "^1.10.0",
         "per-env": "^1.0.2",
         "pg": "^8.7.1",
+        "react-simple-star-rating": "^4.0.5",
         "sequelize": "^5.22.5",
         "sequelize-cli": "^5.5.1"
     },

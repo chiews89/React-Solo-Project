@@ -1,19 +1,20 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { updateReview } from "../../store/reviews";
+import Rating from "react-simple-star-rating";
 
 const EditSpot = ({ review, hideForm }) => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
 
-  const [rating, setRating] = useState({ review, hideForm }?.rating);
+  const [rating, setRating] = useState(review?.rating);
   const [review, setReview] = useState(review?.review);
   const [errorValidator, setErrorValidator] = useState([]);
 
   useEffect(() => {
     const errors = [];
 
-    if (!rating?.length) errors.push("Please provide a rating");
+    if (!rating?.rate) errors.push("Please provide a rating");
     if (!review?.length) errors.push("Please provide a review");
     setErrorValidator(errors);
   }, []);
@@ -29,10 +30,40 @@ const EditSpot = ({ review, hideForm }) => {
     if (updatedReview) {
       if (updatedReview) hideForm();
     }
+    const handleRating = (rate) => {
+      setRating(rate);
+    };
   };
 
   return (
-      <>
-      </>
-  )
+    <>
+      <div className="edit-review-container">
+        <form className="edit-review" onSubmit={handleSubmit}>
+          <ul>
+            {errorValidator.map((error) => (
+              <li className="error-list" key={error}>
+                {error}
+              </li>
+            ))}
+          </ul>
+          <div className="rating">
+            <label>
+              <Rating
+
+              />
+            </label>
+          </div>
+          <div className="review">
+            <label>Review</label>
+            <textarea
+              type="text"
+              placeholder="Review"
+              value={review}
+              onChange={(e) => setReview(e.target.value)}
+            />
+          </div>
+        </form>
+      </div>
+    </>
+  );
 };

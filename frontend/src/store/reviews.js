@@ -8,6 +8,15 @@ const editReview = (review) => ({
   review,
 });
 
+export const getReviews = (spotId) => async (dispatch) => {
+    const  res = await csrfFetch(`/api/spots/${spotId}/reviews`);
+    if (res.ok) {
+        const reviews = await res.json();
+        dispatch(getAllReviews(reviews))
+    }
+}
+
+
 export const updateReview = (spotId, review) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots/${spotId}/${review}`, {
     method: "PUT",

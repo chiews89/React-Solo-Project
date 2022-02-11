@@ -30,7 +30,6 @@ router.get(
   "/",
   asyncHandler(async (req, res) => {
     const spots = await Spot.findAll({ include: Image });
-    console.log("********************", { Review });
     return res.json(spots);
   })
 );
@@ -89,6 +88,36 @@ router.delete(
     return res.json(spotId);
   })
 );
+//Creating a new review on a specific spot
+router.post(
+  "/",
+  // requireAuth,
+  // reviewValidator,
+  asyncHandler(async (req, res) => {
+    const review = await Review.create(req.body);
+
+    console.log
+
+    const newReview = await Review.findByPk(review.id, {
+      include: [User],
+    });
+    res.json(newReview);
+  })
+);
+router.get(
+  '/',
+   asyncHandler(async (req, res) => {
+  const reviews = await Review.findAll({
+      where: {
+          userId: req.params.userId
+      },
+      include: [
+          { model: User }
+      ]
+  })
+  res.json(reviews);
+}))
+
 
 router.put(
   "/:id",
@@ -97,11 +126,11 @@ router.put(
     const reviewId = Number(req.params.id);
     const review = await Review.findByPk(reviewId, {
       include: Spot,
-      include: User
-    })
-    const updatedReview = await review.update(req.body)
+      include: User,
+    });
+    const updatedReview = await review.update(req.body);
 
-    return res.json(updatedReview)
+    return res.json(updatedReview);
   })
 );
 
