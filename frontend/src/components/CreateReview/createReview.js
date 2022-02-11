@@ -4,11 +4,11 @@ import { useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { createReview } from "../../store/reviews";
 
-function Reviews({ reviews, spotId }) {
+function Reviews() {
   const dispatch = useDispatch();
-  const {id } = useParams()
+  const { id } = useParams();
   const userId = useSelector((state) => state.session.user?.id);
-  const spot = useSelector((state) => state.spots[id])
+  const spotId = useSelector((state) => state.spots[id]);
   const history = useHistory();
   const [errors, setErrors] = useState([]);
 
@@ -18,13 +18,15 @@ function Reviews({ reviews, spotId }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = {
+      userId,
+      spotId,
       rating,
       review,
     };
     const newReview = await dispatch(createReview(payload));
     if (newReview) {
-        history.push(`/spots/${newReview.id}`)
-        reset()
+      history.push(`/spots/${newReview.id}`);
+      reset();
     }
   };
   const reset = () => {
@@ -67,20 +69,19 @@ function Reviews({ reviews, spotId }) {
             />
           </div>
           <button
-          className="create-review-button"
-          type="submit"
-        //   disabled={errorValidator.length > 0}
-        >
-          Submit
-        </button>
-        <button
-        className="cancel-review-button"
-        type="true"
-        onClick={cancelButton}
-      >
-        Cancel
-      </button>
-
+            className="create-review-button"
+            type="submit"
+            //   disabled={errorValidator.length > 0}
+          >
+            Submit
+          </button>
+          <button
+            className="cancel-review-button"
+            type="true"
+            onClick={cancelButton}
+          >
+            Cancel
+          </button>
         </form>
       </div>
     </div>

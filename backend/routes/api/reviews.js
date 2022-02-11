@@ -20,11 +20,7 @@ router.get(
 router.post(
   "/spots/:id/",
   asyncHandler(async (req, res) => {
-    const review = await Review.create(req.body, {
-      where: {
-        spotId: req.params.id,
-      },
-    });
+    const review = await Review.create(req.body);
     return res.json(review);
   })
 );
