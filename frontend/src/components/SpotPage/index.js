@@ -4,13 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { getOneSpot, removeSpot } from "../../store/spots";
 import UpdateSpot from "../EditSpot/index";
+import { getReviews, createReview } from "../../store/reviews";
+import Reviews from "../CreateReview/createReview";
 
 const SingleSpot = () => {
-  const sessionUser = useSelector((state) => state.session.user);
   const userId = useSelector((state) => state.session.user?.id);
   const dispatch = useDispatch();
   const { id } = useParams();
   const spot = useSelector((state) => state.spots[id]);
+  const review = useSelector((state) => state.reviews[id]);
+
   const [showEdit, setShowEdit] = useState(false);
 
   const history = useHistory();
@@ -18,11 +21,16 @@ const SingleSpot = () => {
 
   useEffect(() => {
     dispatch(getOneSpot(id));
+    dispatch(getReviews(id));
   }, [dispatch, id]);
 
   if (!spot) {
     return null;
   }
+
+  const handleReviewSubmit = () => {
+    dispatch(createReview());
+  };
   const handleDelete = () => {
     dispatch(removeSpot(id, spot));
     redirect();
@@ -43,6 +51,26 @@ const SingleSpot = () => {
           }
         />
       </div>
+      <h2> User Reviews</h2>
+      <div>
+        {review?.review}
+      </div>
+      <div hidden={userId !== spot?.userId}>
+          {userId === spot?.userId && (
+            <button onClick={editSpotClick}>
+              Edit Review
+            </button>
+          )}
+          {userId === spot?.userId && (
+            <button onClick={editSpotClick}>
+              Delete
+            </button>
+          )}
+      <div hidden={!userId}>
+            <Reviews/>
+      </div>
+
+      </div>
       <div className="spot-info">
         <p>{spot?.description}</p>
         <div>
@@ -52,7 +80,7 @@ const SingleSpot = () => {
       </div>
       <div className="edit-delete-container" hidden={userId !== spot?.userId}>
         {userId === spot?.userId && (
-          <button className="edit-spot-btn" onClick={editSpotClick}>
+          <button className="edit-spot-button" onClick={editSpotClick}>
             Edit
           </button>
         )}
@@ -61,7 +89,7 @@ const SingleSpot = () => {
         </div>
       </div>
       {userId === spot?.userId && (
-        <button className="delete-spot-btnn" onClick={handleDelete}>
+        <button className="delete-spot-button" onClick={handleDelete}>
           Delete
         </button>
       )}

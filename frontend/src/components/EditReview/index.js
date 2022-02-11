@@ -49,7 +49,7 @@ const EditSpot = ({ review, hideForm }) => {
           <div className="rating">
             <label>
               <Rating
-
+              type=""
               />
             </label>
           </div>

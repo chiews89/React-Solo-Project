@@ -5,12 +5,13 @@ const { User } = require("../../db/models");
 const sessionRouter = require("./session.js");
 const usersRouter = require("./users.js");
 const spotsRouter = require("./spots");
-const createRouter = require("./spots");
+const reviewsRouter = require("./reviews")
 
 
 router.use("/session", sessionRouter);
 router.use("/spots", spotsRouter);
 router.use("/users", usersRouter);
+router.use('/reviews', reviewsRouter)
 
 router.get(
   "/set-token-cookie",
