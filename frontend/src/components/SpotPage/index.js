@@ -6,13 +6,17 @@ import { getOneSpot, removeSpot } from "../../store/spots";
 import UpdateSpot from "../EditSpot/index";
 import { getReviews, createReview } from "../../store/reviews";
 import Reviews from "../CreateReview/createReview";
+import EditReview from "../EditReview";
 
 const SingleSpot = () => {
   const userId = useSelector((state) => state.session.user?.id);
   const dispatch = useDispatch();
   const { id } = useParams();
   const spot = useSelector((state) => state.spots[id]);
-  const review = useSelector((state) => state.reviews[id]);
+  const review = useSelector((state) => {
+    return state.reviews;
+  });
+  const reviewsObj = Object.values(review);
 
   const [showEdit, setShowEdit] = useState(false);
 
@@ -28,9 +32,6 @@ const SingleSpot = () => {
     return null;
   }
 
-  const handleReviewSubmit = () => {
-    dispatch(createReview());
-  };
   const handleDelete = () => {
     dispatch(removeSpot(id, spot));
     redirect();
@@ -52,25 +53,14 @@ const SingleSpot = () => {
         />
       </div>
       <h2> User Reviews</h2>
-      <div>
-        {review?.review}
-      </div>
-      <div hidden={userId !== spot?.userId}>
-          {userId === spot?.userId && (
-            <button onClick={editSpotClick}>
-              Edit Review
-            </button>
-          )}
-          {userId === spot?.userId && (
-            <button onClick={editSpotClick}>
-              Delete
-            </button>
-          )}
-      <div hidden={!userId}>
-            <Reviews/>
-      </div>
-
-      </div>
+      {reviewsObj.map((review) => (
+        <div key={review.id}>
+          {review?.review}
+        </div>
+      ))}
+          <div hidden={!userId}>
+            <Reviews />
+          </div>
       <div className="spot-info">
         <p>{spot?.description}</p>
         <div>

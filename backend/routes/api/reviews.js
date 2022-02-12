@@ -20,8 +20,10 @@ router.get(
 router.post(
   "/spots/:id/",
   asyncHandler(async (req, res) => {
-    const review = await Review.create(req.body);
-    return res.json(review);
+      const { userId, spotId, rating, review } = req.body
+    const reviews = await Review.create({userId, spotId, rating, review});
+    console.log('********************', reviews)
+    return res.json(reviews);
   })
 );
 module.exports = router;

@@ -8,7 +8,7 @@ function Reviews() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const userId = useSelector((state) => state.session.user?.id);
-  const spotId = useSelector((state) => state.spots[id]);
+  const spotId = useSelector((state) => state.spots[id].id);
   const history = useHistory();
   const [errors, setErrors] = useState([]);
 
@@ -25,7 +25,7 @@ function Reviews() {
     };
     const newReview = await dispatch(createReview(payload));
     if (newReview) {
-      history.push(`/spots/${newReview.id}`);
+      history.push(`/spots/${id}`);
       reset();
     }
   };
@@ -37,6 +37,7 @@ function Reviews() {
   const cancelButton = (e) => {
     history.push(`/spots/`);
   };
+
 
   return (
     <div className="reviews_main_container">

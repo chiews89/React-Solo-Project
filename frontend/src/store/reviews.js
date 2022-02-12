@@ -36,6 +36,7 @@ export const createReview = (payload) => async (dispatch) => {
     body: JSON.stringify(payload),
   });
   if (response.ok) {
+
     const review = await response.json();
     dispatch(create(review));
     return review;
