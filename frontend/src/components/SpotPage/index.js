@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { getOneSpot, removeSpot } from "../../store/spots";
 import UpdateSpot from "../EditSpot/index";
-import { getReviews, createReview } from "../../store/reviews";
+import { getReviews, deleteReview } from "../../store/reviews";
 import Reviews from "../CreateReview/createReview";
-import EditReview from "../EditReview";
+
+// import EditReview from "../EditReview";
 
 const SingleSpot = () => {
   const userId = useSelector((state) => state.session.user?.id);
@@ -16,6 +17,7 @@ const SingleSpot = () => {
   const review = useSelector((state) => {
     return state.reviews;
   });
+  console.log("%%%%%%%%%%%%%", review);
   const reviewsObj = Object.values(review);
 
   const [showEdit, setShowEdit] = useState(false);
@@ -36,6 +38,11 @@ const SingleSpot = () => {
     dispatch(removeSpot(id, spot));
     redirect();
   };
+
+  const handleDeleteReview = () => {
+    dispatch(deleteReview(id));
+    history.replace(`/spots/${id}`);
+  };
   const editSpotClick = () => {
     setShowEdit((prevState) => !prevState);
   };
@@ -53,14 +60,17 @@ const SingleSpot = () => {
         />
       </div>
       <h2> User Reviews</h2>
-      {reviewsObj.map((review) => (
+      {reviewsObj?.map((review) => (
         <div key={review.id}>
           {review?.review}
+          <button className="delete-review-button" onClick={handleDeleteReview}>
+            Delete Review
+          </button>
         </div>
       ))}
-          <div hidden={!userId}>
-            <Reviews />
-          </div>
+      <div hidden={!userId}>
+        <Reviews />
+      </div>
       <div className="spot-info">
         <p>{spot?.description}</p>
         <div>

@@ -20,10 +20,24 @@ router.get(
 router.post(
   "/spots/:id/",
   asyncHandler(async (req, res) => {
-      const { userId, spotId, rating, review } = req.body
-    const reviews = await Review.create({userId, spotId, rating, review});
-    console.log('********************', reviews)
+    const { userId, spotId, rating, review } = req.body;
+    const reviews = await Review.create({ userId, spotId, rating, review });
     return res.json(reviews);
   })
 );
+
+router.delete(
+  "/spots/:id/",
+  asyncHandler(async (req, res) => {
+    const reviewId = Number(req.params.id);
+    Review.destroy({
+      where: {
+        id: reviewId
+      },
+    });
+    return res.json(reviewId);
+  })
+);
+
+
 module.exports = router;

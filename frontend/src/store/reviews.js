@@ -1,9 +1,9 @@
 import { csrfFetch } from "./csrf";
-// import Reviews from "../components/CreateReview/createReview";
 
 const EDIT_REVIEW = "reviews/EDIT_REVIEW";
 const GET_REVIEWS = "reviews/GET_REVIEWS";
 const CREATE_REVIEW = "reviews/CREATE_REVIEW";
+const DELETE_REVIEW = "reviews/DELETE_REVIEW";
 
 const getAllReviews = (reviews) => {
   return {
@@ -21,6 +21,11 @@ const editReview = (review) => ({
   review,
 });
 
+const removeReview = (reviewId) => ({
+  type: DELETE_REVIEW,
+  reviewId,
+});
+
 export const getReviews = (spotId) => async (dispatch) => {
   const response = await csrfFetch(`/api/reviews/spots/${spotId}`);
   if (response.ok) {
@@ -36,41 +41,56 @@ export const createReview = (payload) => async (dispatch) => {
     body: JSON.stringify(payload),
   });
   if (response.ok) {
-
     const review = await response.json();
     dispatch(create(review));
     return review;
   }
 };
 
-export const updateReview = (spotId, review) => async (dispatch) => {
-  const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
+// export const updateReview = (spotId, review) => async (dispatch) => {
+//   const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
+//     method: "PUT",
+//     headers: { "Content-Type": "application/json" },
+//   });
+//   if (response.ok) {
+//     const review = await response.json();
+//     dispatch(editReview(review));
+//     return review;
+//   }
+// };
+
+export const deleteReview = (reviewId) => async (dispatch) => {
+  console.log('$$$$$$$$$$$$$$$$$$$$', reviewId)
+  const response = await csrfFetch(`/api/reviews/spots/${reviewId}`, {
+    method: "DELETE",
   });
   if (response.ok) {
-    const review = await response.json();
-    dispatch(editReview(review));
-    return review;
+    const reviewId = await response.json();
+    dispatch(removeReview(reviewId));
+    return reviewId;
   }
 };
 
 const reviewsReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_REVIEWS:
-      const allReviews = {};
+      const allState = {};
       action.reviews.forEach((review) => {
-        allReviews[review.id] = review;
+        allState[review.id] = review;
       });
-      return allReviews;
+      return allState;
     case CREATE_REVIEW:
-      const newReview = { ...state };
-      newReview[action.review.id] = action.review;
-      return newReview;
+      const newState = { ...state };
+      newState[action.review.id] = action.review;
+      return newState;
     case EDIT_REVIEW:
       const editState = { ...state };
       editState[action.review.id] = action.review;
       return editState;
+    case DELETE_REVIEW:
+      const removeState = { ...state };
+      delete removeState[action.reviewId];
+      return removeState;
     default:
       return { ...state };
   }

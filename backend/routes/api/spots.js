@@ -90,19 +90,6 @@ router.delete(
     return res.json(spotId);
   })
 );
-//Creating a new review on a specific spot
-router.post(
-  "/spots/:id",
-  asyncHandler(async (req, res) => {
-    const review = await Review.create(req.body);
 
-    console.log;
-
-    const newReview = await Review.findByPk(review.id, {
-      include: [User],
-    });
-    res.json(newReview);
-  })
-);
 
 module.exports = router;

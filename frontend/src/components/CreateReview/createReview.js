@@ -30,7 +30,7 @@ function Reviews() {
     }
   };
   const reset = () => {
-    setRating(0);
+    // setRating(0);
     setReview("");
   };
 
@@ -59,7 +59,7 @@ function Reviews() {
               onChange={(e) => setReview(e.target.value)}
             />
           </div>
-          <div className="rating">
+          {/* <div className="rating">
             <label> Rating </label>
             <textarea
               type="number"
@@ -68,7 +68,7 @@ function Reviews() {
               value={rating}
               onChange={(e) => setRating(e.target.value)}
             />
-          </div>
+          </div> */}
           <button
             className="create-review-button"
             type="submit"
