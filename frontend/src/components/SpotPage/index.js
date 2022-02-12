@@ -17,7 +17,6 @@ const SingleSpot = () => {
   const review = useSelector((state) => {
     return state.reviews;
   });
-  console.log("%%%%%%%%%%%%%", review);
   const reviewsObj = Object.values(review);
 
   const [showEdit, setShowEdit] = useState(false);
@@ -39,9 +38,13 @@ const SingleSpot = () => {
     redirect();
   };
 
-  const handleDeleteReview = () => {
-    dispatch(deleteReview(id));
-    history.replace(`/spots/${id}`);
+  const handleDeleteReview = (id) => {
+    reviewsObj.forEach(async (review) => {
+      if (id === review.id) {
+        return await dispatch(deleteReview(review?.id));
+      }
+    });
+    history.replace(`/spots/${spot.id}`);
   };
   const editSpotClick = () => {
     setShowEdit((prevState) => !prevState);
@@ -60,12 +63,17 @@ const SingleSpot = () => {
         />
       </div>
       <h2> User Reviews</h2>
-      {reviewsObj?.map((review) => (
+      {reviewsObj.map((review) => (
         <div key={review.id}>
           {review?.review}
-          <button className="delete-review-button" onClick={handleDeleteReview}>
-            Delete Review
-          </button>
+          {review.userId === userId && (
+            <button
+              className="delete-review-button"
+              onClick={() => handleDeleteReview(review?.id)}
+            >
+              Delete Review
+            </button>
+          )}
         </div>
       ))}
       <div hidden={!userId}>
