@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { createReview } from "../../store/reviews";
+import StarRating from "../StarComponent/starRating";
 
 function Reviews() {
   const dispatch = useDispatch();
@@ -30,15 +31,16 @@ function Reviews() {
     }
   };
   const reset = () => {
-    // setRating(0);
+    setRating(0);
     setReview("");
   };
 
   const cancelButton = (e) => {
     history.push(`/spots/`);
   };
-
-
+  function log(value) {
+    console.log(value);
+  }
   return (
     <div className="reviews_main_container">
       <div className="all_reviews_container">
@@ -49,6 +51,9 @@ function Reviews() {
               <li key={index}>{error}</li>
             ))}
           </ul>
+          <div>
+            <StarRating onChange={log} />
+          </div>
           <div className="review">
             <label> Review </label>
             <textarea
@@ -59,16 +64,6 @@ function Reviews() {
               onChange={(e) => setReview(e.target.value)}
             />
           </div>
-          {/* <div className="rating">
-            <label> Rating </label>
-            <textarea
-              type="number"
-              placeholder="Rating"
-              // required
-              value={rating}
-              onChange={(e) => setRating(e.target.value)}
-            />
-          </div> */}
           <button
             className="create-review-button"
             type="submit"

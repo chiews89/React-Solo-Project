@@ -6,6 +6,7 @@ import { getOneSpot, removeSpot } from "../../store/spots";
 import UpdateSpot from "../EditSpot/index";
 import { getReviews, deleteReview } from "../../store/reviews";
 import Reviews from "../CreateReview/createReview";
+import EditReview from "../EditReview";
 
 // import EditReview from "../EditReview";
 
@@ -66,6 +67,11 @@ const SingleSpot = () => {
       {reviewsObj.map((review) => (
         <div key={review.id}>
           {review?.review}
+          {review.userId === userId && (
+            <div>
+              <EditReview reviews={review} />
+            </div>
+          )}
           {review.userId === userId && (
             <button
               className="delete-review-button"

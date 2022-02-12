@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import { updateReview } from "../../store/reviews";
-// import Rating from "react-simple-star-rating";
 
 const EditReview = ({ reviews, hideForm }) => {
   const dispatch = useDispatch();
+  const { id } = useParams();
   const user = useSelector((state) => state.session.user);
-  const spot = useSelector((state) => state.session.spot);
+  const spotId = useSelector((state) => state.spots[id].id);
 
   const [rating, setRating] = useState(reviews?.rating);
   const [review, setReview] = useState(reviews?.review);
@@ -15,22 +16,24 @@ const EditReview = ({ reviews, hideForm }) => {
   useEffect(() => {
     const errors = [];
 
-    if (!rating?.rate) errors.push("Please provide a rating");
+    // if (!rating?.rate) errors.push("Please provide a rating");
     if (!review?.length) errors.push("Please provide a review");
     setErrorValidator(errors);
   }, [rating, review]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("33333333333", reviews.id);
     const payload = {
+      id: reviews.id,
       userId: user.id,
-      spotId: spot.id,
+      spotId: spotId,
       rating,
       review,
     };
+    console.log("payload", payload);
     const updatedReview = await dispatch(updateReview(payload));
     if (updatedReview) {
-      if (updatedReview) hideForm();
     }
   };
   //   const handleRating = (rate) => {
@@ -49,7 +52,7 @@ const EditReview = ({ reviews, hideForm }) => {
               </li>
             ))}
           </ul>
-          <div className="rating">
+          {/* <div className="rating">
             <label>Rating</label>
             <input
               type="number"
@@ -57,9 +60,9 @@ const EditReview = ({ reviews, hideForm }) => {
               value={rating}
               onChange={(e) => setRating(e.target.value)}
             />
-          </div>
+          </div> */}
           <div className="review">
-            <label>Review</label>
+            <label>Edit Review</label>
             <textarea
               type="text"
               placeholder="Review"
@@ -72,15 +75,15 @@ const EditReview = ({ reviews, hideForm }) => {
             type="submit"
             // disabled={errorValidator.length > 0}
           >
-            Submit
+            Edit
           </button>
-          <button
+          {/* <button
             className="cancel-edit-button"
             type="true"
             to={`/spots/${spot.id}`}
           >
             Cancel
-          </button>
+          </button> */}
         </form>
       </div>
     </>

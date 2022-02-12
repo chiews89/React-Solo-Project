@@ -16,9 +16,9 @@ const create = (review) => ({
   type: CREATE_REVIEW,
   review,
 });
-const editReview = (review) => ({
+const editReview = (reviewId) => ({
   type: EDIT_REVIEW,
-  review,
+  reviewId,
 });
 
 const removeReview = (reviewId) => ({
@@ -47,17 +47,21 @@ export const createReview = (payload) => async (dispatch) => {
   }
 };
 
-// export const updateReview = (spotId, review) => async (dispatch) => {
-//   const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
-//     method: "PUT",
-//     headers: { "Content-Type": "application/json" },
-//   });
-//   if (response.ok) {
-//     const review = await response.json();
-//     dispatch(editReview(review));
-//     return review;
-//   }
-// };
+export const updateReview = (reviewId) => async (dispatch) => {
+
+  console.log('reviewId', reviewId)
+  const response = await csrfFetch(`/api/reviews/spots/${reviewId.spotId}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(reviewId)
+  });
+  if (response.ok) {
+    console.log('response', response)
+    const reviewId = await response.json();
+    dispatch(editReview(reviewId));
+    return reviewId;
+  }
+};
 
 export const deleteReview = (reviewId) => async (dispatch) => {
   const response = await csrfFetch(`/api/reviews/spots/${reviewId}`, {
@@ -84,7 +88,8 @@ const reviewsReducer = (state = {}, action) => {
       return newState;
     case EDIT_REVIEW:
       const editState = { ...state };
-      editState[action.review.id] = action.review;
+      console.log('editState', editState, '5333333333300', action)
+      editState[action.reviewId.id] = action.reviewId;
       return editState;
     case DELETE_REVIEW:
       const removeState = { ...state };

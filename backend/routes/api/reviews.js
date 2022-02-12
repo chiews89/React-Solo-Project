@@ -26,18 +26,29 @@ router.post(
   })
 );
 
+router.put(
+  "/spots/:id/",
+  asyncHandler(async (req, res) => {
+    const { userId, spotId, rating, review, id} = req.body;
+
+    const reviewId = await Review.findByPk(id)
+    const updatedReview = await reviewId.update(req.body)
+    console.log('11111', updatedReview)
+    return res.json(updatedReview)
+  })
+);
+
 router.delete(
   "/spots/:id/",
   asyncHandler(async (req, res) => {
     const reviewId = Number(req.params.id);
     Review.destroy({
       where: {
-        id: reviewId
+        id: reviewId,
       },
     });
     return res.json(reviewId);
   })
 );
-
 
 module.exports = router;

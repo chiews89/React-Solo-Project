@@ -11,7 +11,6 @@ import Footer from "./components/Footer";
 import NewSpot from "./components/CreateSpot";
 import SingleSpot from "./components/SpotPage";
 
-
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -22,28 +21,27 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/login">
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route exact path="/spots">
-            <SpotsPage />
-          </Route>
-          <Route exact path="/spots/host">
-            <NewSpot />
-          </Route>
-          <Route exact path="/spots/:id">
-            <SingleSpot />
-          </Route>
-        </Switch>
-        <Footer />
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/login">
+          <LoginFormPage />
+        </Route>
+        <Route path="/signup">
+          <SignupFormPage />
+        </Route>
+        <Route exact path="/spots">
+          <SpotsPage />
+        </Route>
+        <Route exact path="/spots/host">
+          <NewSpot />
+        </Route>
+        <Route exact path="/spots/:id">
+          <SingleSpot />
+        </Route>
+      </Switch>
+      <Footer />
     </>
   );
 }
