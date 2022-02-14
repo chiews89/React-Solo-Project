@@ -90,7 +90,7 @@ const SingleSpot = () => {
         <Reviews />
       </div>
       <div className="spot-info">
-        <p>{spot?.description}</p>
+        <div>{spot?.description}</div>
         <div>
           Location: {spot?.city}, {spot?.state}
         </div>

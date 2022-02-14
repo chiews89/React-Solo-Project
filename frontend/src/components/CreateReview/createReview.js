@@ -39,12 +39,12 @@ function Reviews() {
     history.push(`/spots/`);
   };
   function log(value) {
-    console.log(value);
+    // console.log(value);
   }
   return (
     <div className="reviews_main_container">
       <div className="all_reviews_container">
-        <h3>Share your review</h3>
+        <h3>Submit your review</h3>
         <form className="reviews_form" onSubmit={handleSubmit}>
           <ul>
             {errors.map((error, index) => (
@@ -59,7 +59,7 @@ function Reviews() {
             <textarea
               type="text"
               placeholder="Review"
-              // required
+              required
               value={review}
               onChange={(e) => setReview(e.target.value)}
             />
@@ -70,13 +70,6 @@ function Reviews() {
             //   disabled={errorValidator.length > 0}
           >
             Submit
-          </button>
-          <button
-            className="cancel-review-button"
-            type="true"
-            onClick={cancelButton}
-          >
-            Cancel
           </button>
         </form>
       </div>

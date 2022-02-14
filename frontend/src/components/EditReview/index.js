@@ -15,15 +15,12 @@ const EditReview = ({ reviews, hideForm }) => {
 
   useEffect(() => {
     const errors = [];
-
-    // if (!rating?.rate) errors.push("Please provide a rating");
     if (!review?.length) errors.push("Please provide a review");
     setErrorValidator(errors);
   }, [rating, review]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("33333333333", reviews.id);
     const payload = {
       id: reviews.id,
       userId: user.id,
@@ -31,7 +28,7 @@ const EditReview = ({ reviews, hideForm }) => {
       rating,
       review,
     };
-    console.log("payload", payload);
+
     const updatedReview = await dispatch(updateReview(payload));
     if (updatedReview) {
     }
@@ -73,17 +70,10 @@ const EditReview = ({ reviews, hideForm }) => {
           <button
             className="edit-spot-button"
             type="submit"
-            // disabled={errorValidator.length > 0}
+            disabled={errorValidator.length > 0}
           >
             Edit
           </button>
-          {/* <button
-            className="cancel-edit-button"
-            type="true"
-            to={`/spots/${spot.id}`}
-          >
-            Cancel
-          </button> */}
         </form>
       </div>
     </>

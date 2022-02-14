@@ -1,0 +1,42 @@
+
+/* .create-spot-container {
+    padding-top: 80px;
+    padding-bottom: 60px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+} */
+/* form {
+    display:flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+} */
+/*
+h2 {
+    font-size: 35px;
+    text-align: center;
+} */
+
+.error-list {
+    font-size: 13px;
+
+    color: #d93b30;
+    margin-bottom: 2px;
+}
+
+#form-label-image,
+#form-label-description,
+#form-label-city,
+#form-label-state,
+#form-label-price {
+    display: flex;
+    justify-content: space-between;
+}
+
+#create-spot-button,
+#cancel-create-button {
+    background-color:#faf3f2;
+}

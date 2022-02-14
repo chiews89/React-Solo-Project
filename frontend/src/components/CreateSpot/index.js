@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { createNewSpot } from "../../store/spots";
+import './createspot.css'
 
 const NewSpot = () => {
   const dispatch = useDispatch();
@@ -65,7 +66,7 @@ const NewSpot = () => {
         <h2 className="create-spot-description">Host A New Spot!</h2>
         <ul>
           {errorValidator.map((error) => (
-            <li className="error_list" key={error}>
+            <li className="error-list" key={error}>
               {error}
             </li>
           ))}
@@ -73,7 +74,7 @@ const NewSpot = () => {
         <div className="image">
           <label>
             Image Url
-            <input
+            <input id='form-label-image'
               type="text"
               placeholder="Image Url"
               value={url ? url : ""}
@@ -84,7 +85,7 @@ const NewSpot = () => {
         </div>
         <div className="description">
           <label> Description </label>
-          <textarea
+          <input id='form-label-description'
             type="text"
             placeholder="Description"
             // required
@@ -94,7 +95,7 @@ const NewSpot = () => {
         </div>
         <div className="city">
           <label> City </label>
-          <input
+          <input id='form-label-city'
             type="text"
             placeholder="City"
             // required
@@ -104,7 +105,7 @@ const NewSpot = () => {
         </div>
         <div className="state">
           <label> State </label>
-          <input
+          <input id='form-label-state'
             type="text"
             placeholder="State"
             // required
@@ -114,7 +115,7 @@ const NewSpot = () => {
         </div>
         <div className="price">
           <label> Price </label>
-          <input
+          <input id='form-label-price'
             type="number"
             placeholder="Price"
             // required
@@ -123,7 +124,7 @@ const NewSpot = () => {
           />
         </div>
         <button
-          className="create-spot-button"
+          id="create-spot-button"
           type="submit"
           disabled={errorValidator.length > 0}
         >
@@ -131,7 +132,7 @@ const NewSpot = () => {
         </button>
       </form>
       <button
-        className="cancel-create-button"
+        id="cancel-create-button"
         type="true"
         onClick={cancelButton}
       >

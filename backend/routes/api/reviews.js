@@ -33,7 +33,7 @@ router.put(
 
     const reviewId = await Review.findByPk(id)
     const updatedReview = await reviewId.update(req.body)
-    console.log('11111', updatedReview)
+
     return res.json(updatedReview)
   })
 );

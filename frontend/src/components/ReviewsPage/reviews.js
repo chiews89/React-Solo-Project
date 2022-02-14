@@ -31,7 +31,6 @@ function Reviews({review, spotId}) {
     //     dispatch(getReviews());
     //   }, [dispatch]);
 
-    // console.log('*********************************',reviewsObj)
 
     const handleReview = (e) => {
         // e.preventDefault();
@@ -49,7 +48,7 @@ function Reviews({review, spotId}) {
         <div className="reviews_main_container">
             <div className="all_reviews_container">
 
-                <h3>Share your review</h3>
+                <h3>Submit a review</h3>
                 <form>
                     <input
                      name="content"
