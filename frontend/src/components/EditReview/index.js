@@ -60,7 +60,7 @@ const EditReview = ({ reviews, hideForm }) => {
           </div> */}
           <div className="review">
             <label>Edit Review</label>
-            <textarea
+            <input
               type="text"
               placeholder="Review"
               value={review}

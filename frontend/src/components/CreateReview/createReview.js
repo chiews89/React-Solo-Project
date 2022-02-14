@@ -5,6 +5,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { createReview } from "../../store/reviews";
 import StarRating from "../StarComponent/starRating";
 
+
 function Reviews() {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -56,7 +57,7 @@ function Reviews() {
           </div>
           <div className="review">
             <label> Review </label>
-            <textarea
+            <input
               type="text"
               placeholder="Review"
               required
