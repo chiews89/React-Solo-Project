@@ -33,10 +33,10 @@ function LoginFormPage() {
               <li key={idx}>{error}</li>
             ))}
           </ul>
-          <div className="sign">
+          <div id="sign">
             <label>Sign In</label>
           </div>
-          <div className="userinput">
+          <div id="userinput">
             <label>
               Username or Email
               <input
@@ -47,7 +47,7 @@ function LoginFormPage() {
               />
             </label>
           </div>
-          <div className="passwordinput">
+          <div id="passwordinput">
             <label>
               Password
               <input
@@ -58,7 +58,7 @@ function LoginFormPage() {
               />
             </label>
           </div>
-          <div className="submitButton">
+          <div id="submitbutton">
             <button type="submit">Log In</button>
           </div>
         </form>
