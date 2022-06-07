@@ -61,11 +61,42 @@ export const UserProfile = () => {
       </div>
       <h4> Your upcoming trips</h4>
       <div className="profile-page-bookings">
-        <div className="upcoming-bookings">
-            {/* {upcomingBookings.map((booking) => (
-{}
-            ))} */}
-        </div>
+          {!upcomingBookings && <div className="no-bookings">
+            <h4>No upcoming trips</h4>
+            <NavLink to={`/spots`}>Find a spot!!!</NavLink>
+          </div>}
+          {upcomingBookings && <div className="upcoming-bookings">
+            {pastBookings && upcomingBookings.map((booking) => (
+              <div className="profile-spots-bookings">
+                <div className="profile-spot-title">
+                  <h4>{spots[booking.spotId]?.title}</h4>
+                </div>
+                <div className="profile-spot-image-container">
+                  <NavLink to={`/spots/${spots[booking.spotId]?.id}`}>
+                    <img
+                      className="profile-spot-image"
+                      width={"auto"}
+                      height={500}
+                      alt={spots[booking.spotId]?.id}
+                      src={spots[booking.spotId]?.Images[0]?.url}
+                    />
+                  </NavLink>
+                </div>
+                <div className="profile-spot-address">
+                  {spots[booking.spotId]?.address}
+                </div>
+                <div className="profile-spot-address">
+                  {spots[booking.spotId]?.city}
+                </div>
+                <div className="profile-spot-address">
+                  {spots[booking.spotId]?.state}
+                </div>
+                <div className="profile-spot-address">
+                  {spots[booking.spotId]?.zipcode}
+                </div>
+              </div>
+            ))}
+          </div>}
       </div>
     </div>
   );
