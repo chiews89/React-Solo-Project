@@ -19,7 +19,7 @@ const SingleSpot = () => {
     return state.reviews;
   });
   const reviewsObj = Object.values(review);
-  const bookings = ((state) => state.bookings)
+  const bookings = ((state) => state?.bookings)
   console.log('bookings', bookings)
 
   const [showEdit, setShowEdit] = useState(false);
@@ -30,7 +30,6 @@ const SingleSpot = () => {
   useEffect(() => {
     dispatch(getOneSpot(id));
     dispatch(getReviews(id));
-    dispatch(getAllBookings(id))
   }, [dispatch, id]);
 
   if (!spot) {
