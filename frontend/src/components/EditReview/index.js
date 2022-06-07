@@ -31,12 +31,9 @@ const EditReview = ({ reviews, hideForm }) => {
 
     const updatedReview = await dispatch(updateReview(payload));
     if (updatedReview) {
+      return
     }
   };
-  //   const handleRating = (rate) => {
-  //     setRating(rate);
-  //   };
-  // };
 
   return (
     <>
@@ -49,15 +46,7 @@ const EditReview = ({ reviews, hideForm }) => {
               </li>
             ))}
           </ul>
-          {/* <div className="rating">
-            <label>Rating</label>
-            <input
-              type="number"
-              placeholder="Rating"
-              value={rating}
-              onChange={(e) => setRating(e.target.value)}
-            />
-          </div> */}
+
           <div className="review">
             <label>Edit Review</label>
             <input

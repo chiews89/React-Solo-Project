@@ -11,12 +11,15 @@ import Footer from "./components/Footer";
 import NewSpot from "./components/CreateSpot";
 import SingleSpot from "./components/SpotPage";
 import { getAllBookings } from "./store/bookings";
+import { UserProfile } from "./components/UserProfile/UserProfile";
+import { getSpots } from "./store/spots";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(getAllBookings())
+    dispatch(getSpots())
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
@@ -42,6 +45,9 @@ function App() {
         </Route>
         <Route exact path="/spots/:id">
           <SingleSpot />
+        </Route>
+        <Route exact path="/users/:userId">
+          <UserProfile />
         </Route>
       </Switch>
       <Footer />

@@ -1,8 +1,14 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import './home.css'
 
 function Home() {
+
+    const user = useSelector((state) => state?.session?.user)
+
+    console.log('user', user)
+
     return (
         <div className="main_container">
             <div className="first_photo_container">

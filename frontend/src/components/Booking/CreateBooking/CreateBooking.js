@@ -24,8 +24,6 @@ export const CreateBooking = ({ spot }) => {
   const bookingSubmit = async (e) => {
     e.preventDefault();
 
-    console.log('user', user)
-
     const payload = {
       spotId: spot.id,
       userId: user,
