@@ -7,7 +7,6 @@ import UpdateSpot from "../EditSpot/index";
 import { getReviews, deleteReview } from "../../store/reviews";
 import Reviews from "../CreateReview/createReview";
 import EditReview from "../EditReview";
-import { getAllBookings } from "../../store/bookings";
 
 
 const SingleSpot = () => {
@@ -19,8 +18,6 @@ const SingleSpot = () => {
     return state.reviews;
   });
   const reviewsObj = Object.values(review);
-  const bookings = ((state) => state?.bookings)
-  console.log('bookings', bookings)
 
   const [showEdit, setShowEdit] = useState(false);
 
