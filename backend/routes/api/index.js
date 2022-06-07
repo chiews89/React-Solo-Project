@@ -6,12 +6,14 @@ const sessionRouter = require("./session.js");
 const usersRouter = require("./users.js");
 const spotsRouter = require("./spots");
 const reviewsRouter = require("./reviews")
+const bookingsRouter = require('./bookings')
 
 
 router.use("/session", sessionRouter);
 router.use("/spots", spotsRouter);
 router.use("/users", usersRouter);
 router.use('/reviews', reviewsRouter)
+router.use('/bookings', bookingsRouter)
 
 router.get(
   "/set-token-cookie",

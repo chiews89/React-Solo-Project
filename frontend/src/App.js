@@ -10,6 +10,7 @@ import Home from "./components/Home";
 import Footer from "./components/Footer";
 import NewSpot from "./components/CreateSpot";
 import SingleSpot from "./components/SpotPage";
+import { getAllBookings } from "./store/bookings";
 
 function App() {
   const dispatch = useDispatch();

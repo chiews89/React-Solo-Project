@@ -8,7 +8,6 @@ import { getReviews, deleteReview } from "../../store/reviews";
 import Reviews from "../CreateReview/createReview";
 import EditReview from "../EditReview";
 
-// import EditReview from "../EditReview";
 
 const SingleSpot = () => {
   const userId = useSelector((state) => state.session.user?.id);

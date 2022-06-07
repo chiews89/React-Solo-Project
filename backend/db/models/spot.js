@@ -12,6 +12,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.TEXT,
       },
+      address: {
+        allowNull: false,
+        type: DataTypes.STRING(50)
+      },
       city: {
         allowNull: false,
         type: DataTypes.STRING,
@@ -23,6 +27,10 @@ module.exports = (sequelize, DataTypes) => {
       price: {
         allowNull: false,
         type: DataTypes.DECIMAL,
+      },
+      guests: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
       },
     },
     {}
@@ -37,6 +45,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "spotId",
     });
     Spot.hasMany(models.Review, {
+      onDelete: "cascade",
+      hooks: true,
+      foreignKey: "spotId"
+    })
+    Spot.hasMany(models.Booking, {
       onDelete: "cascade",
       hooks: true,
       foreignKey: "spotId"

@@ -17,6 +17,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.TEXT,
       },
+      address: {
+        allowNull: false,
+        type: Sequelize.STRING(50),
+      },
       city: {
         allowNull: false,
         type: Sequelize.STRING(25),
@@ -28,6 +32,10 @@ module.exports = {
       price: {
         allowNull: false,
         type: Sequelize.DECIMAL,
+      },
+      guests: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
