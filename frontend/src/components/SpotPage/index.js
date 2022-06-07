@@ -109,7 +109,7 @@ const SingleSpot = () => {
         </button>
       )}
       <div className="spot-page-booking">
-        <CreateBooking/>
+        <CreateBooking spot={spot}/>
       </div>
     </div>
   );

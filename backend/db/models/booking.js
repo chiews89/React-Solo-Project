@@ -15,7 +15,6 @@ module.exports = (sequelize, DataTypes) => {
       },
       checkIn: { allowNull: false, type: DataTypes.DATE },
       checkOut: { allowNull: false, type: DataTypes.DATE },
-      booked: { allowNull: false, type: DataTypes.BOOLEAN },
     },
     {}
   );
