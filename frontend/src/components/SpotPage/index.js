@@ -7,6 +7,7 @@ import UpdateSpot from "../EditSpot/index";
 import { getReviews, deleteReview } from "../../store/reviews";
 import Reviews from "../CreateReview/createReview";
 import EditReview from "../EditReview";
+import { getAllBookings } from "../../store/bookings";
 
 
 const SingleSpot = () => {
@@ -18,6 +19,8 @@ const SingleSpot = () => {
     return state.reviews;
   });
   const reviewsObj = Object.values(review);
+  const bookings = Object.values((state) => state.bookings)
+  console.log('bookings', bookings)
 
   const [showEdit, setShowEdit] = useState(false);
 
@@ -27,6 +30,7 @@ const SingleSpot = () => {
   useEffect(() => {
     dispatch(getOneSpot(id));
     dispatch(getReviews(id));
+    dispatch(getAllBookings(id))
   }, [dispatch, id]);
 
   if (!spot) {
