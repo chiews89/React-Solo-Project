@@ -8,13 +8,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         references: { model: "userId" },
       },
-      description: {
-        allowNull: false,
-        type: DataTypes.TEXT,
-      },
       address: {
         allowNull: false,
-        type: DataTypes.STRING(50)
+        type: DataTypes.STRING,
       },
       city: {
         allowNull: false,
@@ -24,11 +20,31 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING,
       },
+      zipcode: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
+      title: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      description: {
+        allowNull: false,
+        type: DataTypes.TEXT,
+      },
       price: {
         allowNull: false,
         type: DataTypes.DECIMAL,
       },
       guests: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
+      bedrooms: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
+      bathrooms: {
         allowNull: false,
         type: DataTypes.INTEGER,
       },
@@ -50,8 +66,6 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "spotId"
     })
     Spot.hasMany(models.Booking, {
-      onDelete: "cascade",
-      hooks: true,
       foreignKey: "spotId"
     })
   };

@@ -9,11 +9,13 @@ const getBookings = (bookings) => {
   };
 };
 
-export const getAllBookings = (bookings) => async (dispatch) => {
+export const getAllBookings = () => async (dispatch) => {
   const res = await csrfFetch("/api/bookings/");
+  console.log('res', res)
   if (res.ok) {
     const data = await res.json();
     dispatch(getBookings(data));
+
     return data;
   }
 };

@@ -1,21 +1,5 @@
 "use strict";
 
-function checkIn () {
-  let num = Math.ceil(Math.random() * 28);
-  if (num < 10) num = `2021-11-0${num}T11:00`;
-  else num = `2021-11-${num}T11:00`
-
-  return new Date(num);
-}
-
-function checkOut () {
-  let num = Math.ceil(Math.random() * 28);
-  if (num < 10) num = `2021-11-0${num}T11:00`;
-  else num = `2021-12-${num}T11:00`
-
-  return new Date(num);
-}
-
 module.exports = {
   up: (queryInterface, Sequelize) => {
     /*
@@ -34,8 +18,8 @@ module.exports = {
         {
           spotId: 1,
           userId: 2,
-          checkIn: checkIn(),
-          checkOut: checkOut(),
+          checkIn: '2022-11-11',
+          checkOut: '2022-11-15',
           booked: true,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -43,8 +27,8 @@ module.exports = {
         {
           spotId: 2,
           userId: 3,
-          checkIn: checkIn(),
-          checkOut: checkOut(),
+          checkIn: '2022-12-11',
+          checkOut: '2022-12-18',
           booked: true,
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -52,8 +36,8 @@ module.exports = {
         {
           spotId: 3,
           userId: 1,
-          checkIn: checkIn(),
-          checkOut: checkOut(),
+          checkIn: '2022-10-10',
+          checkOut: '2022-10-21',
           booked: true,
           createdAt: new Date(),
           updatedAt: new Date(),
