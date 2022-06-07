@@ -7,7 +7,7 @@ import UpdateSpot from "../EditSpot/index";
 import { getReviews, deleteReview } from "../../store/reviews";
 import Reviews from "../CreateReview/createReview";
 import EditReview from "../EditReview";
-
+import { CreateBooking } from "../Booking/CreateBooking/CreateBooking";
 
 const SingleSpot = () => {
   const userId = useSelector((state) => state.session.user?.id);
@@ -54,12 +54,10 @@ const SingleSpot = () => {
     <div>
       <div className="spot-image">
         <img
-        width={'auto'}
-        height={300}
-
+          width={"auto"}
+          height={300}
           alt={spot?.name}
           src={
-
             spot?.Images[0]
               ? spot?.Images[0].url
               : "https://media.istockphoto.com/vectors/no-image-available-sign-vector-id922962354?k=20&m=922962354&s=612x612&w=0&h=f-9tPXlFXtz9vg_-WonCXKCdBuPUevOBkp3DQ-i0xqo="
@@ -110,6 +108,9 @@ const SingleSpot = () => {
           Delete
         </button>
       )}
+      <div className="spot-page-booking">
+        <CreateBooking/>
+      </div>
     </div>
   );
 };

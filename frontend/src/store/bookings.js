@@ -26,7 +26,7 @@ export const getAllBookings = () => async (dispatch) => {
   }
 };
 
-export const createBookingThunk = (booking) => async (dispatch) => {
+export const createNewBooking = (booking) => async (dispatch) => {
   const response = await csrfFetch(`/api/bookings`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
