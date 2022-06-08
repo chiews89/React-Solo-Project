@@ -1,12 +1,17 @@
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./spotsPage.css";
+import { useEffect } from "react";
 
 const AllSpots = () => {
   const spots = useSelector((state) => {
     return state.spots;
   });
   const spotsObj = Object.values(spots);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="all-spots">
