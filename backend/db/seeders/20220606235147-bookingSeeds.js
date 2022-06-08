@@ -39,6 +39,14 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
+        {
+          spotId: 4,
+          userId: 1,
+          checkIn: '2022-02-10',
+          checkOut: '2022-02-21',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
       ],
       {}
     );
