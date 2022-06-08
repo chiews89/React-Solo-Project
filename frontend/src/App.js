@@ -7,12 +7,12 @@ import SpotsPage from "./components/SpotsPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Home from "./components/Home";
-import Footer from "./components/Footer";
 import NewSpot from "./components/CreateSpot";
 import SingleSpot from "./components/SpotPage";
 import { getAllBookings } from "./store/bookings";
 import { UserProfile } from "./components/UserProfile/UserProfile";
 import { getSpots } from "./store/spots";
+import { Footer } from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();

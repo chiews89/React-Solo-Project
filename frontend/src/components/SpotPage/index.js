@@ -83,9 +83,11 @@ const SingleSpot = () => {
           )}
         </div>
       ))}
-      <div hidden={!userId}>
-        <Reviews />
-      </div>
+      {userId !== spot.userId && (
+        <div className="create-review-button">
+          <Reviews />
+        </div>
+      )}
       <div className="spot-info">
         <div>{spot?.description}</div>
         <div>
@@ -108,9 +110,11 @@ const SingleSpot = () => {
           Delete
         </button>
       )}
-      <div className="spot-page-booking">
-        <CreateBooking spot={spot}/>
-      </div>
+      {userId !== spot.userId && (
+        <div className="spot-page-booking">
+          <CreateBooking spot={spot} />
+        </div>
+      )}
     </div>
   );
 };

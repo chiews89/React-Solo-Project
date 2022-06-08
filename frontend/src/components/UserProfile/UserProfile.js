@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import moment from "moment";
+import { DeleteBooking } from "../Booking/DeleteBooking/DeleteBooking";
 
 export const UserProfile = () => {
   const user = useSelector((state) => state?.session?.user);
@@ -59,44 +60,80 @@ export const UserProfile = () => {
           </div>
         ))}
       </div>
-      <h4> Your upcoming trips</h4>
+      {upcomingBookings.length > 0 && <h4> Your upcoming trips</h4>}
+      {!upcomingBookings.length && (
+        <div className="no-bookings">
+          <h4>No upcoming trips</h4>
+          <NavLink to={`/spots`}>Find your next trip</NavLink>
+        </div>
+      )}
       <div className="profile-page-bookings">
-          {!upcomingBookings && <div className="no-bookings">
-            <h4>No upcoming trips</h4>
-            <NavLink to={`/spots`}>Find a spot!!!</NavLink>
-          </div>}
-          {upcomingBookings && <div className="upcoming-bookings">
-            {pastBookings && upcomingBookings.map((booking) => (
-              <div className="profile-spots-bookings">
-                <div className="profile-spot-title">
-                  <h4>{spots[booking.spotId]?.title}</h4>
-                </div>
-                <div className="profile-spot-image-container">
-                  <NavLink to={`/spots/${spots[booking.spotId]?.id}`}>
-                    <img
-                      className="profile-spot-image"
-                      width={"auto"}
-                      height={500}
-                      alt={spots[booking.spotId]?.id}
-                      src={spots[booking.spotId]?.Images[0]?.url}
-                    />
-                  </NavLink>
-                </div>
-                <div className="profile-spot-address">
-                  {spots[booking.spotId]?.address}
-                </div>
-                <div className="profile-spot-address">
-                  {spots[booking.spotId]?.city}
-                </div>
-                <div className="profile-spot-address">
-                  {spots[booking.spotId]?.state}
-                </div>
-                <div className="profile-spot-address">
-                  {spots[booking.spotId]?.zipcode}
-                </div>
+        <div className="upcoming-bookings">
+          {upcomingBookings.map((booking) => (
+            <div className="profile-spots-bookings">
+              <div className="profile-spot-title">
+                <h4>{spots[booking.spotId]?.title}</h4>
               </div>
-            ))}
-          </div>}
+              <div className="profile-spot-image-container">
+                <NavLink to={`/spots/${spots[booking.spotId]?.id}`}>
+                  <img
+                    className="profile-spot-image"
+                    width={"auto"}
+                    height={500}
+                    alt={spots[booking.spotId]?.id}
+                    src={spots[booking.spotId]?.Images[0]?.url}
+                  />
+                </NavLink>
+              </div>
+              <div className="profile-spot-address">
+                {spots[booking.spotId]?.address}
+              </div>
+              <div className="profile-spot-address">
+                {spots[booking.spotId]?.city}
+              </div>
+              <div className="profile-spot-address">
+                {spots[booking.spotId]?.state}
+              </div>
+              <div className="profile-spot-address">
+                {spots[booking.spotId]?.zipcode}
+              </div>
+              <DeleteBooking booking={booking.id} />
+            </div>
+          ))}
+        </div>
+        <h4> Your previous trips</h4>
+        <div className="upcoming-bookings">
+          {pastBookings.map((booking) => (
+            <div className="profile-spots-bookings">
+              <div className="profile-spot-title">
+                <h4>{spots[booking.spotId]?.title}</h4>
+              </div>
+              <div className="profile-spot-image-container">
+                <NavLink to={`/spots/${spots[booking.spotId]?.id}`}>
+                  <img
+                    className="profile-spot-image"
+                    width={"auto"}
+                    height={500}
+                    alt={spots[booking.spotId]?.id}
+                    src={spots[booking.spotId]?.Images[0]?.url}
+                  />
+                </NavLink>
+              </div>
+              <div className="profile-spot-address">
+                {spots[booking.spotId]?.address}
+              </div>
+              <div className="profile-spot-address">
+                {spots[booking.spotId]?.city}
+              </div>
+              <div className="profile-spot-address">
+                {spots[booking.spotId]?.state}
+              </div>
+              <div className="profile-spot-address">
+                {spots[booking.spotId]?.zipcode}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
