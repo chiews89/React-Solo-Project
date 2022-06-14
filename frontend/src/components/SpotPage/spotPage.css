@@ -14,17 +14,40 @@
   overflow-wrap: break-word;
 }
 
+.spot-page-subheader {
+  display: flex;
+  width: 100%;
+  padding-bottom: 5px;
+  align-content: center;
+
+}
+
 .spot-page-image {
   height: 100%;
   width: 100%;
 }
+.spot-page-review-count {
+    margin-left: 5px;
+}
 
 .star-rating {
-  font-size: 24px;
-  color: red;
+    font-size: 20px;
+    color: red;
+    margin-right: 1px;
+    /* margin-bottom: 5px; */
+}
+
+.spot-page-rating {
+    margin-right: 5px;
+}
+
+.spot-page-address-info {
+    display: flex;
+    margin-left: 20px;
+    justify-content: space-between;
 }
 
 .spot-page-house-info {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }

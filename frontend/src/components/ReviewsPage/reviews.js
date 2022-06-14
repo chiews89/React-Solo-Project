@@ -1,68 +1,37 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-// import {useParams} from 'react-router-dom'
+import React from 'react';
+import {useParams} from 'react-router-dom'
 import {useSelector} from 'react-redux'
-// import { getReviews } from '../../store/reviews';
-;
+import * as FAIcons from 'react-icons/fa'
 
 
-function Reviews({review, spotId}) {
-    // const dispatch = useDispatch();
-    const sessionUser = useSelector((state) => state.session.user)
-    const [sessionId, setSessionId] = useState()
-    // const [reviews, setReviews] = useState("")
-    const [formData, setFormData] = useState({ reviews: "" })
-    // const [errors, setErrors] = useState([])
 
-    // const dispatch = useDispatch();
+function Reviews() {
+    const { id } = useParams()
+    const user = useSelector(state => state.session.user)
+    const reviews = useSelector(state => state.reviews)
+    const reviewArr = Object.values(reviews).reverse()
+    const filterReviews = reviewArr?.filter(({ spot_id }) => spot_id === +id)
 
-    const user = useSelector((state) => state.session.user);
-    useEffect(() => {
-        if (sessionUser) {
-            setSessionId(sessionUser.id)
-        }
-    }, [sessionUser])
-
-    // const reviews = useSelector((state) => {
-    //     return state.reviews;
-    // })
-    // const reviewsObj = Object.values(reviews)
-    // useEffect(() => {
-    //     dispatch(getReviews());
-    //   }, [dispatch]);
-
-
-    const handleReview = (e) => {
-        // e.preventDefault();
-
-        // const create = {spotId, userId: sessionId, reviews}
-        // return dispatch(createReview(create))
-
-        //Geoff's solution
-        setFormData({formData, [e.target.name]: e.target.value})
-    }
-
-
-    if (!user || !user.id) return null;
     return (
-        <div className="reviews_main_container">
-            <div className="all_reviews_container">
-
-                <h3>Submit a review</h3>
-                <form>
-                    <input
-                     name="content"
-                     type='text'
-                     value={review}
-                     onChange={handleReview}
-                     />
-                </form>
-                <button className='review-submit' type="submit">
-                    Submit
-                </button>
-            </div>
-
-
+        <div className="reviews-display-container">
+            {filterReviews.map((review) => (
+                <div className="display-each-review-container" key={review.id}>
+                    <div className="review-username-edit-delete-container">
+                        <p>Review By:
+                            {/* {review.username} */}
+                            </p>
+                        {/* {user && user?.id === review.user_id && <EditDeleteReviewModal review={review} id={review.id} />} */}
+                    </div>
+                    <p className="display-ratings-container"> Rating: {[...Array(5)].map((star, i) => (
+                        <FAIcons.FaStar key={i}
+                            className="display-rating-icons"
+                            color={(i + 1) <= review.rating ? "red" : "lightgray"}
+                        />
+                    ))}
+                    </p>
+                    <p className="display-review-text">Review: {review.review}</p>
+                </div>
+            ))}
         </div>
     )
 

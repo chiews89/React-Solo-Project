@@ -13,6 +13,7 @@ import { getAllBookings } from "./store/bookings";
 import { UserProfile } from "./components/UserProfile/UserProfile";
 import { getSpots } from "./store/spots";
 import { Footer } from "./components/Footer";
+import { getReviews } from "./store/reviews";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ function App() {
   useEffect(() => {
     dispatch(getAllBookings())
     dispatch(getSpots())
+    dispatch(getReviews())
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 

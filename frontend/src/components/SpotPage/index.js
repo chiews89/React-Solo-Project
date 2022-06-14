@@ -74,15 +74,16 @@ const SingleSpot = () => {
         <h2>{spot.title}</h2>
       </div>
       <div className="spot-page-subheader">
-        <p className="spot-page-star">
+        <div className="spot-page-star">
           <AiIcons.AiFillStar className="star-rating" />
-          {rating}
-        </p>
-        <p className="spot-page-review-amount">{reviewsArr.length} Reviews</p>
-        <p className="spot-page-address-info">
-          {spot.address}
-          {spot.city},{spot.state}
-        </p>
+        </div>
+        <div className="spot-page-rating">{rating}</div>
+        <li className="spot-page-review-count">
+          {reviewsArr.length} {reviewsArr.length === 1 ? "Review" : "Reviews"}
+        </li>
+        <div className="spot-page-address-info">
+          {spot.address} {spot.city}, {spot.state}
+        </div>
       </div>
       <div className="spot-page-image">
         <img
@@ -96,15 +97,19 @@ const SingleSpot = () => {
         />
       </div>
       <div className="spot-page-host">
-        <h3>Hosted by :
-          {/* {spot?.User?.username} */}
-          </h3>
+        <h3>Hosted by :{/* {spot?.User?.username} */}</h3>
       </div>
       <div className="spot-page-house-info">
         <p>
           Guests:{spot.guests} Bedrooms:{spot.bedrooms} Bathrooms:
           {spot.bathrooms}
         </p>
+      </div>
+      <div className="spot-page-description">
+        <h3>
+          Description
+          </h3>
+        <div className="spot-page-description-sub">{spot?.description}</div>
       </div>
       <div className="spot-page-reviews-container">
         <h2> User Reviews</h2>
