@@ -13,6 +13,7 @@ export const getAllFavorites = () => async (dispatch) => {
   const res = await csrfFetch("/api/favorites/");
   if (res.ok) {
     const data = await res.json();
+    console.log('data', data)
     dispatch(getFavorites(data));
     return data;
   }

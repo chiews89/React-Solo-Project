@@ -1,6 +1,46 @@
+.all-spots-container {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 20px;
+}
 
+.spot-container {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  max-height: 500px;
+  padding-bottom: 25px;
+  display: flex;
+}
 
 .spots-image {
-    width: 500px;
-    height: 500px;
+  height: 400px;
+  max-width: min(80%, 500px);
+  min-width: min(30vw, 500px);
+}
+
+.spot-info-container {
+  min-width: min(50%, 700px);
+  max-width: 670px;
+  margin-left: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.spot-title {
+  overflow-x: hidden;
+  overflow-wrap: break-word;
+}
+
+.spot-info {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 400px;
+}
+
+.spot-price {
+  margin-top: auto;
 }

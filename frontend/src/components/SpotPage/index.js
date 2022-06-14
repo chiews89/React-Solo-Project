@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, NavLink } from "react-router-dom";
 import { getOneSpot, removeSpot } from "../../store/spots";
 import UpdateSpot from "../EditSpot/index";
 import { getReviews, deleteReview } from "../../store/reviews";
@@ -9,6 +9,9 @@ import Reviews from "../CreateReview/createReview";
 import EditReview from "../EditReview";
 import { CreateBooking } from "../Booking/CreateBooking/CreateBooking";
 import { AllFavorites } from "../Favorites";
+import * as AiIcons from "react-icons/ai";
+
+import "./spotPage.css";
 
 const SingleSpot = () => {
   const userId = useSelector((state) => state.session.user?.id);
@@ -18,9 +21,8 @@ const SingleSpot = () => {
   const review = useSelector((state) => {
     return state.reviews;
   });
-  const reviewsObj = Object.values(review);
-
-
+  const reviewsArr = Object.values(review);
+  const spotReviews = reviewsArr.filter((review) => review.spotId === spot.id);
 
   const [showEdit, setShowEdit] = useState(false);
 
@@ -42,7 +44,7 @@ const SingleSpot = () => {
   };
 
   const handleDeleteReview = (id) => {
-    reviewsObj.forEach(async (review) => {
+    reviewsArr.forEach(async (review) => {
       if (id === review.id) {
         return await dispatch(deleteReview(review?.id));
       }
@@ -53,13 +55,38 @@ const SingleSpot = () => {
     setShowEdit((prevState) => !prevState);
   };
 
+  const overallRating = (spotReviews) => {
+    return spotReviews?.reduce(function (prevValue, review) {
+      return prevValue + review.rating;
+    }, 0);
+  };
+
+  let rating = Math.round(overallRating(spotReviews) / spotReviews.length);
+
+  if (Number.isNaN(rating)) {
+    rating = "Unrated";
+  }
+
   return (
-    <div>
-      <AllFavorites spot={spot}/>
-      <div className="spot-image">
+    <div className="spot-page-container">
+      {/* <AllFavorites spot={spot}/> */}
+      <div className="spot-page-title">
+        <h2>{spot.title}</h2>
+      </div>
+      <div className="spot-page-subheader">
+        <p className="spot-page-star">
+          <AiIcons.AiFillStar className="star-rating" />
+          {rating}
+        </p>
+        <p className="spot-page-review-amount">{reviewsArr.length} Reviews</p>
+        <p className="spot-page-address-info">
+          {spot.address}
+          {spot.city},{spot.state}
+        </p>
+      </div>
+      <div className="spot-page-image">
         <img
-          width={"auto"}
-          height={300}
+          className="spot-page-image"
           alt={spot?.name}
           src={
             spot?.Images[0]
@@ -68,36 +95,42 @@ const SingleSpot = () => {
           }
         />
       </div>
-      <h2> User Reviews</h2>
-      {reviewsObj.map((review) => (
-        <div key={review.id}>
-          {review?.review}
-          {review.userId === userId && (
-            <div>
-              <EditReview reviews={review} />
-            </div>
-          )}
-          {review.userId === userId && (
-            <button
-              className="delete-review-button"
-              onClick={() => handleDeleteReview(review?.id)}
-            >
-              Delete Review
-            </button>
-          )}
-        </div>
-      ))}
-      {userId !== spot.userId && (
-        <div className="create-review-button">
-          <Reviews />
-        </div>
-      )}
-      <div className="spot-info">
-        <div>{spot?.description}</div>
-        <div>
-          Location: {spot?.city}, {spot?.state}
-        </div>
-        <div>Price: ${Math.round(spot?.price)} / Day</div>
+      <div className="spot-page-host">
+        <h3>Hosted by :
+          {/* {spot?.User?.username} */}
+          </h3>
+      </div>
+      <div className="spot-page-house-info">
+        <p>
+          Guests:{spot.guests} Bedrooms:{spot.bedrooms} Bathrooms:
+          {spot.bathrooms}
+        </p>
+      </div>
+      <div className="spot-page-reviews-container">
+        <h2> User Reviews</h2>
+        {reviewsArr.map((review) => (
+          <div key={review.id}>
+            {review?.review}
+            {review.userId === userId && (
+              <div>
+                <EditReview reviews={review} />
+              </div>
+            )}
+            {review.userId === userId && (
+              <button
+                className="delete-review-button"
+                onClick={() => handleDeleteReview(review?.id)}
+              >
+                Delete Review
+              </button>
+            )}
+          </div>
+        ))}
+        {userId !== spot.userId && (
+          <div className="create-review-button">
+            <Reviews />
+          </div>
+        )}
       </div>
       <div className="edit-delete-container" hidden={userId !== spot?.userId}>
         {userId === spot?.userId && (

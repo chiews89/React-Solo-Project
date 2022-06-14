@@ -1,0 +1,30 @@
+.spot-page-container {
+  margin-top: 50px;
+  width: 70%;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+.spot-page-title {
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.spot-page-image {
+  height: 100%;
+  width: 100%;
+}
+
+.star-rating {
+  font-size: 24px;
+  color: red;
+}
+
+.spot-page-house-info {
+    display: flex;
+    justify-content: space-between;
+}
