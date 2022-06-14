@@ -10,7 +10,7 @@ router.get(
     const reviews = await Review.findAll({
       where: {
         spotId: req.params.id,
-      },
+      }
     });
     return res.json(reviews);
   })
@@ -29,7 +29,6 @@ router.put(
   "/spots/:id/",
   asyncHandler(async (req, res) => {
     const { userId, spotId, rating, review, id} = req.body;
-
     const reviewId = await Review.findByPk(id)
     const updatedReview = await reviewId.update(req.body)
 

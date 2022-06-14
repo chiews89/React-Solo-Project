@@ -19,6 +19,14 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: "Spots" },
       },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      }
     });
   },
   down: (queryInterface, Sequelize) => {

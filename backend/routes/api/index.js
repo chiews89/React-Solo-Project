@@ -15,7 +15,7 @@ router.use("/spots", spotsRouter);
 router.use("/users", usersRouter);
 router.use('/reviews', reviewsRouter)
 router.use('/bookings', bookingsRouter)
-router.use('favorites',favoritesRouter )
+router.use('/favorites',favoritesRouter )
 
 router.get(
   "/set-token-cookie",

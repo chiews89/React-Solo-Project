@@ -29,7 +29,7 @@ const spotValidators = [
 router.get(
   "/",
   asyncHandler(async (req, res) => {
-    const spots = await Spot.findAll({ include: Image });
+    const spots = await Spot.findAll({ include: [{model: Image}, {model: User}] });
     return res.json(spots);
   })
 );
@@ -38,7 +38,7 @@ router.get(
   "/:id",
   asyncHandler(async (req, res) => {
     const spot = await Spot.findByPk(req.params.id, {
-      include: Image,
+      include:  [{model: Image}, {model: User}]
     });
     return res.json(spot);
   })
