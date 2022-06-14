@@ -7,6 +7,7 @@ const usersRouter = require("./users.js");
 const spotsRouter = require("./spots");
 const reviewsRouter = require("./reviews")
 const bookingsRouter = require('./bookings')
+const favoritesRouter = require('./favorites')
 
 
 router.use("/session", sessionRouter);
@@ -14,6 +15,7 @@ router.use("/spots", spotsRouter);
 router.use("/users", usersRouter);
 router.use('/reviews', reviewsRouter)
 router.use('/bookings', bookingsRouter)
+router.use('favorites',favoritesRouter )
 
 router.get(
   "/set-token-cookie",

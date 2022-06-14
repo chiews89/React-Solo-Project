@@ -8,6 +8,7 @@ import { getReviews, deleteReview } from "../../store/reviews";
 import Reviews from "../CreateReview/createReview";
 import EditReview from "../EditReview";
 import { CreateBooking } from "../Booking/CreateBooking/CreateBooking";
+import { AllFavorites } from "../Favorites";
 
 const SingleSpot = () => {
   const userId = useSelector((state) => state.session.user?.id);
@@ -18,6 +19,8 @@ const SingleSpot = () => {
     return state.reviews;
   });
   const reviewsObj = Object.values(review);
+
+
 
   const [showEdit, setShowEdit] = useState(false);
 
@@ -52,6 +55,7 @@ const SingleSpot = () => {
 
   return (
     <div>
+      <AllFavorites spot={spot}/>
       <div className="spot-image">
         <img
           width={"auto"}

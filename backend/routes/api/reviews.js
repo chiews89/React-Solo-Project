@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const asyncHandler = require("express-async-handler");
-const { check } = require("express-validator");
 const csrf = require("csurf");
 const { User, Spot, Image, Review } = require("../../db/models");
 const csrfProtection = csrf({ cookie: true });
