@@ -5,12 +5,11 @@ import { useParams, useHistory, NavLink } from "react-router-dom";
 import { getOneSpot, removeSpot } from "../../store/spots";
 import UpdateSpot from "../EditSpot/index";
 import { getReviews, deleteReview } from "../../store/reviews";
-import Reviews from "../CreateReview/createReview";
 import EditReview from "../EditReview";
 import { CreateBooking } from "../Booking/CreateBooking/CreateBooking";
 import { AllFavorites } from "../Favorites";
-import * as AiIcons from "react-icons/ai";
-
+import { CreateReviews } from "../CreateReview/createReview";
+import * as FAIcons from 'react-icons/fa'
 import "./spotPage.css";
 
 const SingleSpot = () => {
@@ -55,13 +54,15 @@ const SingleSpot = () => {
     setShowEdit((prevState) => !prevState);
   };
 
-  const overallRating = (spotReviews) => {
-    return spotReviews?.reduce(function (prevValue, review) {
-      return prevValue + review.rating;
-    }, 0);
-  };
+  let sum = 0;
+  spotReviews.forEach(({ rating }) => {
+      sum += rating
+  })
 
-  let rating = Math.round(overallRating(spotReviews) / spotReviews.length);
+
+  const reviewsAvg = sum / spotReviews.length
+
+  let rating = Math.round(reviewsAvg * 100 ) / 100;
 
   if (Number.isNaN(rating)) {
     rating = "Unrated";
@@ -75,7 +76,7 @@ const SingleSpot = () => {
       </div>
       <div className="spot-page-subheader">
         <div className="spot-page-star">
-          <AiIcons.AiFillStar className="star-rating" />
+          <FAIcons.FaStar className="star-rating" />
         </div>
         <div className="spot-page-rating">{rating}</div>
         <li className="spot-page-review-count">
@@ -106,15 +107,24 @@ const SingleSpot = () => {
         </p>
       </div>
       <div className="spot-page-description">
-        <h3>
-          Description
-          </h3>
+        <h3>Description</h3>
         <div className="spot-page-description-sub">{spot?.description}</div>
       </div>
       <div className="spot-page-reviews-container">
         <h2> User Reviews</h2>
         {reviewsArr.map((review) => (
           <div key={review.id}>
+            <p className="display-ratings-container">
+              {" "}
+              Rating:{" "}
+              {[...Array(5)].map((star, i) => (
+                <FAIcons.FaStar
+                  key={i}
+                  className="display-rating-icons"
+                  color={i + 1 <= review.rating ? "red" : "lightgray"}
+                />
+              ))}
+            </p>
             {review?.review}
             {review.userId === userId && (
               <div>
@@ -133,7 +143,7 @@ const SingleSpot = () => {
         ))}
         {userId !== spot.userId && (
           <div className="create-review-button">
-            <Reviews />
+            <CreateReviews />
           </div>
         )}
       </div>

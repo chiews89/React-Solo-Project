@@ -3,14 +3,16 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { createReview } from "../../store/reviews";
+import * as FAIcons from "react-icons/fa";
+import "./createReview.css";
 
-
-function Reviews() {
+export const CreateReviews = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const userId = useSelector((state) => state.session.user?.id);
   const spotId = useSelector((state) => state.spots[id].id);
   const history = useHistory();
+  const [hover, setHover] = useState(null);
   const [errors, setErrors] = useState([]);
 
   const [rating, setRating] = useState(0);
@@ -45,6 +47,28 @@ function Reviews() {
               <li key={index}>{error}</li>
             ))}
           </ul>
+          <div className="review-form-rating-container">
+            <label>Please Rate from 1 to 5</label>
+            <div className="review-form-rating-field-container">
+              {[...Array(5)].map((star, i) => (
+                <label>
+                  <input
+                    className="review-form-rating-radio-buttons"
+                    type="radio"
+                    required
+                    value={rating}
+                    onClick={() => setRating(i + 1)}
+                  />
+                  <FAIcons.FaStar
+                    color={i + 1 <= (hover || rating) ? "red" : "lightgray"}
+                    className="review-form-rating-icons"
+                    onMouseEnter={() => setHover(i + 1)}
+                    onMouseLeave={() => setHover(null)}
+                  />
+                </label>
+              ))}
+            </div>
+          </div>
           <div className="review">
             <label> Review </label>
             <input
@@ -66,6 +90,4 @@ function Reviews() {
       </div>
     </div>
   );
-}
-
-export default Reviews;
+};

@@ -31,9 +31,9 @@
 }
 
 .star-rating {
-    font-size: 20px;
+    font-size: 16px;
     color: red;
-    margin-right: 1px;
+    margin-right: 4px;
     /* margin-bottom: 5px; */
 }
 
