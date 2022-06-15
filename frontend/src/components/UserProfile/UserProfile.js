@@ -24,8 +24,6 @@ export const UserProfile = () => {
     (upcoming) => moment(upcoming.checkIn) > moment()
   );
 
-  console.log("upcoming", upcomingBookings);
-
   if (!user) {
     return null;
   }

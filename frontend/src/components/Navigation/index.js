@@ -12,18 +12,19 @@ function Navigation({ isLoaded }) {
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <div>
-        <ProfileButton user={sessionUser} />
+      <div className="nav-bar">
         <NavLink exact to="/">
           Home
         </NavLink>
         <NavLink exact to="/spots">
           Find A Spot
         </NavLink>
+        <div className="profile-button">
         <NavLink exact to="/spots/host">
           Host A Spot
         </NavLink>
-        <div className="profile-button"></div>
+          <ProfileButton user={sessionUser} />
+        </div>
       </div>
     );
   } else {

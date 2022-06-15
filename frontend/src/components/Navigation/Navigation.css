@@ -1,9 +1,8 @@
 .nav-bar {
     display: flex;
-    width: 300px;
-    float: inline-end;
-    margin: 10px;
-    padding-top: 0px;
-    padding-bottom: 20px;
-    justify-content: space-evenly;
+    flex-direction: row;
+    width: 100%;
+    padding: 10px;
+    justify-content: space-between;
+    border-bottom: 1px solid grey
 }
