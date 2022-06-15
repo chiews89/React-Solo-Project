@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Modal } from "../context/Modal";
-import UpdateSpot from "./Edit.Spot";
+import { CreateReviews } from "./createReview";
 
-export const EditSpotModal = ({spot}) => {
+export const CreateReviewModal = () => {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -11,11 +11,11 @@ export const EditSpotModal = ({spot}) => {
         className="create-review-modal-button"
         onClick={() => setShowModal(true)}
       >
-        Edit Your Spot
+        Leave a Review
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <UpdateSpot spot ={spot} setShowModal={setShowModal} />
+          <CreateReviews setShowModal={setShowModal} />
         </Modal>
       )}
     </div>

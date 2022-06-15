@@ -6,7 +6,7 @@ import { createReview } from "../../store/reviews";
 import * as FAIcons from "react-icons/fa";
 import "./createReview.css";
 
-export const CreateReviews = () => {
+export const CreateReviews = ({setShowModal}) => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const userId = useSelector((state) => state.session.user?.id);
@@ -28,8 +28,8 @@ export const CreateReviews = () => {
     };
     const newReview = await dispatch(createReview(payload));
     if (newReview) {
-      history.push(`/spots/${id}`);
-      reset();
+      setShowModal(false)
+      reset()
     }
   };
   const reset = () => {
@@ -64,6 +64,7 @@ export const CreateReviews = () => {
                     className="review-form-rating-icons"
                     onMouseEnter={() => setHover(i + 1)}
                     onMouseLeave={() => setHover(null)}
+                    required
                   />
                 </label>
               ))}
@@ -75,6 +76,9 @@ export const CreateReviews = () => {
               type="text"
               placeholder="Review"
               required
+              row="40"
+              column="50"
+              maxLength="1000"
               value={review}
               onChange={(e) => setReview(e.target.value)}
             />

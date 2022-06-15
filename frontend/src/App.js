@@ -14,6 +14,7 @@ import { UserProfile } from "./components/UserProfile/UserProfile";
 import { getSpots } from "./store/spots";
 import { Footer } from "./components/Footer";
 import { getReviews } from "./store/reviews";
+import { getAllFavorites } from "./store/favorites";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ function App() {
     dispatch(getAllBookings())
     dispatch(getSpots())
     dispatch(getReviews())
+    dispatch(getAllFavorites())
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 

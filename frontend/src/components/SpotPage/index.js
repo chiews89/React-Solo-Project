@@ -3,14 +3,14 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory, NavLink } from "react-router-dom";
 import { getOneSpot, removeSpot } from "../../store/spots";
-import UpdateSpot from "../EditSpot/index";
 import { getReviews, deleteReview } from "../../store/reviews";
-import EditReview from "../EditReview";
+import EditReview from "../EditReview/EditReview";
 import { CreateBooking } from "../Booking/CreateBooking/CreateBooking";
-import { AllFavorites } from "../Favorites";
-import { CreateReviews } from "../CreateReview/createReview";
-import * as FAIcons from 'react-icons/fa'
+import { CreateReviewModal } from "../CreateReview";
+import * as FAIcons from "react-icons/fa";
 import "./spotPage.css";
+import { EditSpotModal } from "../EditSpot";
+import { EditReviewModal } from "../EditReview";
 
 const SingleSpot = () => {
   const userId = useSelector((state) => state.session.user?.id);
@@ -20,13 +20,13 @@ const SingleSpot = () => {
   const review = useSelector((state) => {
     return state.reviews;
   });
-  const reviewsArr = Object.values(review);
-  const spotReviews = reviewsArr.filter((review) => review.spotId === spot.id);
-
-  const [showEdit, setShowEdit] = useState(false);
+  const spotsReview = Object.values(review);
+  const spotReviews = spotsReview.filter(
+    (review) => review?.spotId === spot?.id
+  );
+  const favorites = useSelector((state) => state.favorites);
 
   const history = useHistory();
-  const redirect = () => history.replace("/spots");
 
   useEffect(() => {
     dispatch(getOneSpot(id));
@@ -37,32 +37,23 @@ const SingleSpot = () => {
     return null;
   }
 
-  const handleDelete = () => {
-    dispatch(removeSpot(id, spot));
-    redirect();
-  };
-
   const handleDeleteReview = (id) => {
-    reviewsArr.forEach(async (review) => {
+    spotsReview.forEach(async (review) => {
       if (id === review.id) {
         return await dispatch(deleteReview(review?.id));
       }
     });
     history.replace(`/spots/${spot.id}`);
   };
-  const editSpotClick = () => {
-    setShowEdit((prevState) => !prevState);
-  };
 
   let sum = 0;
   spotReviews.forEach(({ rating }) => {
-      sum += rating
-  })
+    sum += rating;
+  });
 
+  const reviewsAvg = sum / spotReviews.length;
 
-  const reviewsAvg = sum / spotReviews.length
-
-  let rating = Math.round(reviewsAvg * 100 ) / 100;
+  let rating = Math.round(reviewsAvg * 100) / 100;
 
   if (Number.isNaN(rating)) {
     rating = "Unrated";
@@ -80,7 +71,7 @@ const SingleSpot = () => {
         </div>
         <div className="spot-page-rating">{rating}</div>
         <li className="spot-page-review-count">
-          {reviewsArr.length} {reviewsArr.length === 1 ? "Review" : "Reviews"}
+          {spotsReview.length} {spotsReview.length === 1 ? "Review" : "Reviews"}
         </li>
         <div className="spot-page-address-info">
           {spot.address} {spot.city}, {spot.state}
@@ -89,16 +80,16 @@ const SingleSpot = () => {
       <div className="spot-page-image">
         <img
           className="spot-page-image"
-          alt={spot?.name}
+          alt={spot.name}
           src={
-            spot?.Images[0]
+            spot.Images[0]
               ? spot?.Images[0].url
               : "https://media.istockphoto.com/vectors/no-image-available-sign-vector-id922962354?k=20&m=922962354&s=612x612&w=0&h=f-9tPXlFXtz9vg_-WonCXKCdBuPUevOBkp3DQ-i0xqo="
           }
         />
       </div>
       <div className="spot-page-host">
-        <h3>Hosted by :{/* {spot?.User?.username} */}</h3>
+        <h3>Hosted by : {spot.User.username}</h3>
       </div>
       <div className="spot-page-house-info">
         <p>
@@ -108,12 +99,17 @@ const SingleSpot = () => {
       </div>
       <div className="spot-page-description">
         <h3>Description</h3>
-        <div className="spot-page-description-sub">{spot?.description}</div>
+        <div className="spot-page-description-sub">{spot.description}</div>
       </div>
       <div className="spot-page-reviews-container">
         <h2> User Reviews</h2>
-        {reviewsArr.map((review) => (
-          <div key={review.id}>
+        {userId !== spot.userId && (
+          <div className="create-review-button">
+            <CreateReviewModal />
+          </div>
+        )}
+        {spotReviews.map((review) => (
+          <div key={review?.id}>
             <p className="display-ratings-container">
               {" "}
               Rating:{" "}
@@ -121,47 +117,24 @@ const SingleSpot = () => {
                 <FAIcons.FaStar
                   key={i}
                   className="display-rating-icons"
-                  color={i + 1 <= review.rating ? "red" : "lightgray"}
+                  color={i + 1 <= review?.rating ? "red" : "lightgray"}
                 />
               ))}
             </p>
             {review?.review}
-            {review.userId === userId && (
+            {review?.userId === userId && (
               <div>
-                <EditReview reviews={review} />
+                <EditReviewModal reviews={review} />
               </div>
-            )}
-            {review.userId === userId && (
-              <button
-                className="delete-review-button"
-                onClick={() => handleDeleteReview(review?.id)}
-              >
-                Delete Review
-              </button>
             )}
           </div>
         ))}
-        {userId !== spot.userId && (
-          <div className="create-review-button">
-            <CreateReviews />
-          </div>
-        )}
       </div>
       <div className="edit-delete-container" hidden={userId !== spot?.userId}>
-        {userId === spot?.userId && (
-          <button className="edit-spot-button" onClick={editSpotClick}>
-            Edit
-          </button>
-        )}
-        <div hidden={!showEdit}>
-          <UpdateSpot spot={spot} hideForm={() => setShowEdit(false)} />
+        <div>
+          <EditSpotModal spot={spot} />
         </div>
       </div>
-      {userId === spot?.userId && (
-        <button className="delete-spot-button" onClick={handleDelete}>
-          Delete
-        </button>
-      )}
       {userId !== spot.userId && (
         <div className="spot-page-booking">
           <CreateBooking spot={spot} />

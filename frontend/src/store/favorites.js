@@ -13,7 +13,6 @@ export const getAllFavorites = () => async (dispatch) => {
   const res = await csrfFetch("/api/favorites/");
   if (res.ok) {
     const data = await res.json();
-    console.log('data', data)
     dispatch(getFavorites(data));
     return data;
   }
@@ -24,7 +23,7 @@ export const favortiesReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_FAVORITES:
       newState = { ...state };
-      action.bookings.forEach((favorite) => {
+      action.favorites.forEach((favorite) => {
         newState[favorite.id] = favorite;
       });
       return newState;
