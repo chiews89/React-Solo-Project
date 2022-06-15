@@ -51,3 +51,36 @@
   display: flex;
   justify-content: space-between;
 }
+
+.spot-page-reviews-container {
+  padding-top: 10px;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
+  padding-bottom: 40px;
+}
+
+.user-review-create-review {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+
+.create-review-modal-button {
+  margin-top: 8px;
+  display: flex;
+  align-content: flex-end;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 550;
+  padding: 15px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(1, 1, 1);
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 10px;
+}

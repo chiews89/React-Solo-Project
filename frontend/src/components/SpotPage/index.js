@@ -89,7 +89,7 @@ const SingleSpot = () => {
         />
       </div>
       <div className="spot-page-host">
-        <h3>Hosted by : {spot.User.username}</h3>
+        <h3>Hosted by : {spot?.User?.username}</h3>
       </div>
       <div className="spot-page-house-info">
         <p>
@@ -101,13 +101,15 @@ const SingleSpot = () => {
         <h3>Description</h3>
         <div className="spot-page-description-sub">{spot.description}</div>
       </div>
-      <div className="spot-page-reviews-container">
-        <h2> User Reviews</h2>
+      <div className="user-review-create-review">
+        <h3> User Reviews</h3>
         {userId !== spot.userId && (
           <div className="create-review-button">
             <CreateReviewModal />
           </div>
         )}
+      </div>
+      <div className="spot-page-reviews-container">
         {spotReviews.map((review) => (
           <div key={review?.id}>
             <p className="display-ratings-container">

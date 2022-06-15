@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 
 const UpdateSpot = ({ spot, setShowModal }) => {
   const dispatch = useDispatch();
-  const history = useHistory()
+  const history = useHistory();
   const user = useSelector((state) => state.session.user);
 
   const [url, setUrl] = useState(spot?.url);
@@ -49,7 +49,7 @@ const UpdateSpot = ({ spot, setShowModal }) => {
 
   const handleDelete = () => {
     dispatch(removeSpot(spot.id));
-    history.push(`/spots`)
+    history.push(`/spots`);
   };
 
   return (
@@ -128,8 +128,7 @@ const UpdateSpot = ({ spot, setShowModal }) => {
         >
           Cancel
         </button>
-        <button className="delete-spot-button"
-          onClick={handleDelete}>
+        <button className="delete-spot-button" onClick={handleDelete}>
           Delete
         </button>
       </form>

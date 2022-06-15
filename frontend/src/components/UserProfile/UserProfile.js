@@ -38,12 +38,12 @@ export const UserProfile = () => {
       <div className="user-listings-container">
         <h2>Your listings</h2>
         {userSpots.map((spot) => (
-          <div className="profile-user-spots" key={spot.id}>
+          <div className="profile-user-spots" key={spot?.id}>
             <div className="profile-spot-title">
               <h4>{spot?.title}</h4>
             </div>
             <div className="profile-spot-image-container">
-              <NavLink to={`/spots/${spot.id}`}>
+              <NavLink to={`/spots/${spot?.id}`}>
                 <img
                   className="profile-spot-image"
                   width={"auto"}
@@ -72,10 +72,10 @@ export const UserProfile = () => {
           {upcomingBookings.map((booking) => (
             <div className="profile-spots-bookings">
               <div className="profile-spot-title">
-                <h4>{spots[booking.spotId]?.title}</h4>
+                <h4>{spots[booking?.spotId]?.title}</h4>
               </div>
               <div className="profile-spot-image-container">
-                <NavLink to={`/spots/${spots[booking.spotId]?.id}`}>
+                <NavLink to={`/spots/${spots[booking?.spotId]?.id}`}>
                   <img
                     className="profile-spot-image"
                     width={"auto"}

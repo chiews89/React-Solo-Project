@@ -6,9 +6,9 @@ export const EditReviewModal = ({ reviews }) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <div className="create-review-modal-container">
+    <div className="edit-review-modal-container">
       <button
-        className="create-review-modal-button"
+        className="edit-review-modal-button"
         onClick={() => setShowModal(true)}
       >
         Edit Review
