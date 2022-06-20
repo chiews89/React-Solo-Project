@@ -40,7 +40,7 @@ export const CreateReviews = ({setShowModal}) => {
   return (
     <div className="reviews_main_container">
       <div className="all_reviews_container">
-        <h3>Submit your review</h3>
+        <h3>Leave a review</h3>
         <form className="reviews_form" onSubmit={handleSubmit}>
           <ul>
             {errors.map((error, index) => (
@@ -73,6 +73,7 @@ export const CreateReviews = ({setShowModal}) => {
           <div className="review">
             <label> Review </label>
             <input
+            id="form-label"
               type="text"
               placeholder="Review"
               required
@@ -88,7 +89,7 @@ export const CreateReviews = ({setShowModal}) => {
             type="submit"
             //   disabled={errorValidator.length > 0}
           >
-            Submit
+            Leave Review
           </button>
         </form>
       </div>

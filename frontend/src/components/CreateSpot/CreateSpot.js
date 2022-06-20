@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { createNewSpot } from "../../store/spots";
-import Multiselect from "multiselect-react-dropdown";
 import { State, City } from "country-state-city";
 import "./CreateSpot.css";
 
@@ -24,20 +23,20 @@ const NewSpot = ({ setShowModal }) => {
   const [bathrooms, setBathrooms] = useState(1);
   const [errorValidator, setErrorValidator] = useState([]);
 
-  useEffect(() => {
-    const errors = [];
-    if (!url.length || !url?.includes("http" || "https"))
-      errors.push("Please provide a url");
-    if (!description?.length) errors.push("Please provide a description");
-    if (!city?.length) errors.push("Please provide a city");
-    if (city?.length > 25) errors.push("City must be less than 25 characters");
-    if (!state?.length) errors.push("Please provide a state");
-    if (state?.length > 25)
-      errors.push("State must be less than 25 characters");
-    if (!price?.length) errors.push("Please provide a price");
-    if (price < 1) errors.push("Price cannot be less than $1.00");
-    setErrorValidator(errors);
-  }, [url, description, city, state, price]);
+  // useEffect(() => {
+  //   const errors = [];
+  //   if (!url.length || !url?.includes("http" || "https"))
+  //     errors.push("Please provide a url");
+  //   if (!description?.length) errors.push("Please provide a description");
+  //   if (!city?.length) errors.push("Please provide a city");
+  //   if (city?.length > 25) errors.push("City must be less than 25 characters");
+  //   if (!state?.length) errors.push("Please provide a state");
+  //   if (state?.length > 25)
+  //     errors.push("State must be less than 25 characters");
+  //   if (!price?.length) errors.push("Please provide a price");
+  //   if (price < 1) errors.push("Price cannot be less than $1.00");
+  //   setErrorValidator(errors);
+  // }, [url, description, city, state, price]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -59,19 +58,8 @@ const NewSpot = ({ setShowModal }) => {
     const newSpot = await dispatch(createNewSpot(payload));
     if (newSpot) {
       history.push(`/spots/${newSpot.id}`);
-      reset();
       setShowModal(false);
     }
-  };
-  const reset = () => {
-    setDescription("");
-    setCity("");
-    setState("");
-    setPrice(0);
-  };
-
-  const cancelButton = (e) => {
-    history.push(`/spots`);
   };
 
   return (
@@ -132,19 +120,19 @@ const NewSpot = ({ setShowModal }) => {
           />
         </div>
         <div className="state">
-            <label>State</label>
-            <select
-              id="form-label"
-              value={state}
-              onChange={(e) => setState(e.target.value)}
-            >
-              <option value="">Select a State</option>
-              {states?.map(({ name }, i) => (
-                <option key={i} value={name}>
-                  {name}
-                </option>
-              ))}
-            </select>
+          <label>State</label>
+          <select
+            id="form-label"
+            value={state}
+            onChange={(e) => setState(e.target.value)}
+          >
+            <option value="">Select a State</option>
+            {states?.map(({ name }, i) => (
+              <option key={i} value={name}>
+                {name}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="description">
           <label> Description </label>
@@ -208,12 +196,9 @@ const NewSpot = ({ setShowModal }) => {
           type="submit"
           disabled={errorValidator.length > 0}
         >
-          Submit
+          Add Spot
         </button>
       </form>
-      <button id="cancel-create-button" type="true" onClick={cancelButton}>
-        Cancel
-      </button>
     </div>
   );
 };

@@ -1,10 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import "./UserProfile.css";
 
 export const UserProfile = () => {
-  const user = useSelector((state) => state?.session?.user);
+  const { userId } = useParams()
+  const user = useSelector((state) => state?.users[userId]);
+  const sessionUser = useSelector((state) => state?.session.user)
   const spots = Object.values(useSelector((state) => state?.spots));
 
   const userSpots = spots.filter((spot) => {
@@ -19,8 +21,10 @@ export const UserProfile = () => {
   return (
     <div className="profile-page-container">
       <div className="profile-page-header">
-        <h1>Welcome back {user.username}</h1>
-        <div className="profile-links">
+      {sessionUser?.id === user.id ?
+        <h1>Welcome back {user?.username}</h1>
+        : <h1>User Profile</h1>}
+       {sessionUser?.id === user.id ? <div className="profile-links">
           <NavLink to={`/users/${user.id}`}>
             <li>Your Listings</li>
           </NavLink>
@@ -33,11 +37,11 @@ export const UserProfile = () => {
           <NavLink to={`/users/${user.id}/past`}>
             <li>Your Past Trips</li>
           </NavLink>
-        </div>
+        </div>: <div></div>}
       </div>
-      <div className="listing-header">
+      {sessionUser?.id === user.id ? <div className="listing-header">
         <h2>Your Listings</h2>
-      </div>
+      </div> : <h2 className="listing-header"> {user?.username}'s Listings </h2>}
       <div className="user-listings-container">
         {userSpots.map((spot) => (
           <div className="profile-user-spots" key={spot?.id}>

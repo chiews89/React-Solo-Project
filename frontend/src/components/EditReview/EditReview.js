@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { deleteReview, updateReview } from "../../store/reviews";
 import * as FAIcons from "react-icons/fa";
 
@@ -68,6 +68,7 @@ const EditReview = ({ reviews, setShowModal }) => {
           <div className="review">
             <label> Review </label>
             <input
+              id="form-label"
               type="text"
               placeholder="Review"
               required
@@ -92,9 +93,6 @@ const EditReview = ({ reviews, setShowModal }) => {
           >
             Edit
           </button>
-          <button className="cancel-edit-button" onClick={setShowModal}>
-          Cancel
-        </button>
           <button className="delete-spot-button" onClick={handleDelete}>
             Delete
           </button>

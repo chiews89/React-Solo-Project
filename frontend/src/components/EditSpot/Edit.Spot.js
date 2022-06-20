@@ -9,10 +9,15 @@ const UpdateSpot = ({ spot, setShowModal }) => {
   const user = useSelector((state) => state.session.user);
 
   const [url, setUrl] = useState(spot?.url);
-  const [description, setDescription] = useState(spot?.description);
+  const [address, setAddress] = useState("");
   const [city, setCity] = useState(spot?.city);
   const [state, setState] = useState(spot?.state);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState(spot?.description);
   const [price, setPrice] = useState(spot?.price);
+  const [guests, setGuests] = useState(1);
+  const [bedrooms, setBedrooms] = useState(1);
+  const [bathrooms, setBathrooms] = useState(1);
   const [errorValidator, setErrorValidator] = useState([]);
 
   useEffect(() => {
@@ -36,10 +41,15 @@ const UpdateSpot = ({ spot, setShowModal }) => {
         url,
       },
       userId: user.id,
-      description,
+      address,
       city,
       state,
+      title,
+      description,
       price,
+      guests,
+      bedrooms,
+      bathrooms,
     };
     const updatedSpot = await dispatch(editSpot(payload));
     if (updatedSpot) {
@@ -53,8 +63,9 @@ const UpdateSpot = ({ spot, setShowModal }) => {
   };
 
   return (
-    <div className="edit-spot-container">
+    <div className="create-spot-container">
       <form className="edit-spot" onSubmit={handleSubmit}>
+        <h2 className="create-spot-description">Edit Your Spot</h2>
         <ul>
           {errorValidator.map((error) => (
             <li className="error_list" key={error}>
@@ -62,10 +73,22 @@ const UpdateSpot = ({ spot, setShowModal }) => {
             </li>
           ))}
         </ul>
+        <div className="title">
+          <label> Title </label>
+          <input
+            id="form-label"
+            type="text"
+            placeholder="Title"
+            // required
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
         <div className="image">
           <label>
             Image Url
             <input
+              id="form-label"
               type="text"
               placeholder="Image Url"
               value={url ? url : ""}
@@ -74,19 +97,21 @@ const UpdateSpot = ({ spot, setShowModal }) => {
             />
           </label>
         </div>
-        <div className="description">
-          <label> Description </label>
-          <textarea
+        <div className="address">
+          <label> Address </label>
+          <input
+            id="form-label"
             type="text"
-            placeholder="Description"
+            placeholder="Address"
             // required
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
           />
         </div>
         <div className="city">
           <label> City </label>
           <input
+            id="form-label"
             type="text"
             placeholder="City"
             // required
@@ -97,6 +122,7 @@ const UpdateSpot = ({ spot, setShowModal }) => {
         <div className="state">
           <label> State </label>
           <input
+            id="form-label"
             type="text"
             placeholder="State"
             // required
@@ -104,14 +130,62 @@ const UpdateSpot = ({ spot, setShowModal }) => {
             onChange={(e) => setState(e.target.value)}
           />
         </div>
+        <div className="description">
+          <label> Description </label>
+          <textarea
+            id="form-label"
+            type="text"
+            placeholder="Description"
+            // required
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </div>
         <div className="price">
           <label> Price </label>
           <input
+            id="form-label"
             type="number"
             placeholder="Price"
             // required
             value={price}
             onChange={(e) => setPrice(e.target.value)}
+          />
+        </div>
+        <div className="guests">
+          <label> Guests </label>
+          <input
+            id="form-label"
+            type="number"
+            placeholder="Guests"
+            min={1}
+            // required
+            value={guests}
+            onChange={(e) => setGuests(e.target.value)}
+          />
+        </div>
+        <div className="bedrooms">
+          <label> Bedrooms </label>
+          <input
+            id="form-label"
+            type="number"
+            placeholder="Bedrooms"
+            min={1}
+            // required
+            value={bedrooms}
+            onChange={(e) => setBedrooms(e.target.value)}
+          />
+        </div>
+        <div className="bathrooms">
+          <label> Bathrooms </label>
+          <input
+            id="form-label"
+            type="number"
+            placeholder="bathrooms"
+            min={1}
+            // required
+            value={bathrooms}
+            onChange={(e) => setBathrooms(e.target.value)}
           />
         </div>
         <button
@@ -120,13 +194,6 @@ const UpdateSpot = ({ spot, setShowModal }) => {
           disabled={errorValidator.length > 0}
         >
           Submit
-        </button>
-        <button
-          className="cancel-edit-button"
-          type="true"
-          to={`/spots/${spot.id}`}
-        >
-          Cancel
         </button>
         <button className="delete-spot-button" onClick={handleDelete}>
           Delete

@@ -5,13 +5,15 @@ import { favortiesReducer } from "./favorites";
 import reviewsReducer from "./reviews";
 import sessionReducer from "./session";
 import spotsReducer from "./spots";
+import { usersReducer } from "./users";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   spots: spotsReducer,
   reviews: reviewsReducer,
   bookings: bookingsReducer,
-  favorites: favortiesReducer
+  favorites: favortiesReducer,
+  users: usersReducer
 });
 
 let enhancer;

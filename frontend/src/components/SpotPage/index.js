@@ -1,16 +1,15 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory, NavLink } from "react-router-dom";
-import { getOneSpot, removeSpot } from "../../store/spots";
-import { getReviews, deleteReview } from "../../store/reviews";
-import EditReview from "../EditReview/EditReview";
+import { useParams, NavLink } from "react-router-dom";
+import { getOneSpot } from "../../store/spots";
 import { CreateBooking } from "../Booking/CreateBooking/CreateBooking";
 import { CreateReviewModal } from "../CreateReview";
 import * as FAIcons from "react-icons/fa";
 import "./spotPage.css";
 import { EditSpotModal } from "../EditSpot";
 import { EditReviewModal } from "../EditReview";
+import { Favorites } from "../Favorites/Favorites";
 
 const SingleSpot = () => {
   const userId = useSelector((state) => state.session.user?.id);
@@ -20,6 +19,7 @@ const SingleSpot = () => {
   const review = useSelector((state) => {
     return state.reviews;
   });
+
   const spotsReview = Object.values(review);
   const spotReviews = spotsReview.filter(
     (review) => review?.spotId === spot?.id
@@ -48,7 +48,6 @@ const SingleSpot = () => {
 
   return (
     <div className="spot-page-container">
-      {/* <AllFavorites spot={spot}/> */}
       <div className="spot-page-title">
         <h2>{spot.title}</h2>
       </div>
@@ -76,7 +75,13 @@ const SingleSpot = () => {
         />
       </div>
       <div className="spot-page-host">
-        <h3>Hosted by : <NavLink to={spot?.userId}>{spot?.User.username}</NavLink></h3>
+        <Favorites spot={spot} />
+        <h3>
+          Hosted by :
+          <NavLink to={`/users/${spot?.User.id}`}>
+            {spot?.User?.username}
+          </NavLink>
+        </h3>
       </div>
       <div className="spot-page-house-info">
         <p>

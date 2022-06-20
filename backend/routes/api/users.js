@@ -25,16 +25,24 @@ const validateSignup = [
   handleValidationErrors,
 ];
 
-// router.get(
-//   "/demo",
-//   asyncHandler(async (req, res) => {
-//     const user = await User.getCurrentUserById(1);
-//     await setTokenCookie(res, user);
-//     return res.json({
-//       user,
-//     });
-//   })
-// );
+router.get(
+  "/",
+  asyncHandler(async (req, res) => {
+    const users = await User.findAll();
+    return res.json(users);
+  })
+);
+
+router.get(
+  "/demo",
+  asyncHandler(async (req, res) => {
+    const user = await User.getCurrentUserById(1);
+    await setTokenCookie(res, user);
+    return res.json({
+      user,
+    });
+  })
+);
 
 // Sign up
 router.post(

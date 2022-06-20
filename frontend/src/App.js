@@ -17,6 +17,8 @@ import { getAllFavorites } from "./store/favorites";
 import { UserFavorites } from "./components/UserProfile/UserFavorites/UserFavorites";
 import { UserUpcoming } from "./components/UserProfile/UserUpcoming/UserUpcoming";
 import { UserPast } from "./components/UserProfile/UserPast/UserPast";
+import { getAllUsers } from "./store/users";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +28,7 @@ function App() {
     dispatch(getSpots())
     dispatch(getReviews())
     dispatch(getAllFavorites())
+    dispatch(getAllUsers())
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 

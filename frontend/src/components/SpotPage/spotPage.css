@@ -84,3 +84,8 @@
   border: 1px solid rgb(0, 0, 0);
   border-radius: 10px;
 }
+
+.filled-heart {
+  color: red;
+  font-size: 28px;
+}
