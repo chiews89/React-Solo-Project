@@ -10,3 +10,12 @@
     border-bottom: 1px solid grey;
     background-color: white;
 }
+
+
+.profile-button {
+    margin-right: 30px;
+}
+
+.fa-circle-user {
+    font-size: 20px;
+}

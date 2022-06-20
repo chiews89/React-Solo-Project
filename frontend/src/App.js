@@ -7,14 +7,14 @@ import SpotsPage from "./components/SpotsPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Home from "./components/Home";
-import NewSpot from "./components/CreateSpot";
 import SingleSpot from "./components/SpotPage";
 import { getAllBookings } from "./store/bookings";
-import { UserProfile } from "./components/UserProfile/UserProfile";
+import { UserProfile } from "./components/UserProfile/UserProfile/UserProfile";
 import { getSpots } from "./store/spots";
 import { Footer } from "./components/Footer";
 import { getReviews } from "./store/reviews";
 import { getAllFavorites } from "./store/favorites";
+import { UserFavorites } from "./components/UserProfile/UserFavorites/UserFavorites";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,14 +44,14 @@ function App() {
         <Route exact path="/spots">
           <SpotsPage />
         </Route>
-        <Route exact path="/spots/host">
-          <NewSpot />
-        </Route>
         <Route exact path="/spots/:id">
           <SingleSpot />
         </Route>
         <Route exact path="/users/:userId">
           <UserProfile />
+        </Route>
+        <Route exact path="/users/:userId/favorites">
+          <UserFavorites />
         </Route>
       </Switch>
       <Footer />

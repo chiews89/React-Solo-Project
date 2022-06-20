@@ -1,0 +1,22 @@
+.profile-page-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+.profile-page-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-listings-container {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(2, 2fr);
+  align-content: center;
+  margin-left: 200px;
+  margin-right: 200px;
+}

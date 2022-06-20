@@ -22,13 +22,6 @@ function Home() {
           </NavLink>
         </div>
       </div>
-      <div className="second_photo_container">
-        <img
-          id="cabin-house"
-          src="https://www.southerncomfortcabinrentals.com/custimages/page-images/category-images/cabin-rentals-luxury.jpg"
-          alt="cabin-house"
-        ></img>
-      </div>
     </div>
   );
 }

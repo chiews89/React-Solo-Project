@@ -5,12 +5,6 @@ import "./Footer.css";
 export const Footer = () => {
   return (
     <div className="footer">
-      <ul className="footer-created-with">
-        <li className="created-with">Javasctipt</li>
-        <li className="created-with">React</li>
-        <li className="created-with">Redux</li>
-        <li className="created-with">PostgreSQL</li>
-      </ul>
       <div className="footer-created-by">
         <p className="footer-owner">Chiew Saetern</p>
         <a

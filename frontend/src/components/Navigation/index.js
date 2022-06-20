@@ -5,6 +5,7 @@ import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 import "./demoUser";
 import DemoUser from "./demoUser";
+import { CreateSpotModal } from "../CreateSpot";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
@@ -13,16 +14,16 @@ function Navigation({ isLoaded }) {
   if (sessionUser) {
     sessionLinks = (
       <div className="nav-bar">
-        <NavLink exact to="/">
-          Home
-        </NavLink>
+        <div className="home-logo">
+          <NavLink exact to="/">
+            HomeBnB
+          </NavLink>
+        </div>
         <NavLink exact to="/spots">
           Find A Spot
         </NavLink>
+        <CreateSpotModal />
         <div className="profile-button">
-        <NavLink exact to="/spots/host">
-          Host A Spot
-        </NavLink>
           <ProfileButton user={sessionUser} />
         </div>
       </div>
@@ -30,10 +31,14 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <div className="nav-bar">
-        <div className="login-signup">
-          <NavLink to="/login">Log In</NavLink>
-          <NavLink to="/signup">Sign Up</NavLink>
-          <NavLink to="/spots">Find A Spot</NavLink>
+        <div className="home-logo">
+          <NavLink exact to="/">
+            HomeBnB
+          </NavLink>
+        </div>
+        <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink to="/spots">Find A Spot</NavLink>
+        <div className="profile-button">
           <DemoUser> Demo </DemoUser>
         </div>
       </div>

@@ -2,7 +2,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import moment from "moment";
-import { DeleteBooking } from "../Booking/DeleteBooking/DeleteBooking";
+import { DeleteBooking } from "../../Booking/DeleteBooking/DeleteBooking";
+import "./UserProfile.css";
 
 export const UserProfile = () => {
   const user = useSelector((state) => state?.session?.user);
@@ -32,9 +33,21 @@ export const UserProfile = () => {
     <div className="profile-page-container">
       <div className="profile-page-header">
         <h1>Welcome back {user.username}</h1>
+        <NavLink to={`/${user.id}`} exact={true}>
+          <li>Your Listings</li>
+        </NavLink>
+        <NavLink to={`/${user.id}/favorites`} exact={true}>
+          <li>Your Favorites</li>
+        </NavLink>
+        <NavLink to={`/${user.id}/upcoming`} exact={true}>
+          <li>Your Upcoming Trips</li>
+        </NavLink>
+        <NavLink to={`/${user.id}/past`} exact={true}>
+          <li>Your Past Trips</li>
+        </NavLink>
+        <h2>Your listings</h2>
       </div>
       <div className="user-listings-container">
-        <h2>Your listings</h2>
         {userSpots.map((spot) => (
           <div className="profile-user-spots" key={spot?.id}>
             <div className="profile-spot-title">
