@@ -1,14 +1,14 @@
 const router = require("express").Router();
 const asyncHandler = require("express-async-handler");
 const csrf = require("csurf");
-const { User, Spot, Booking } = require("../../db/models");
+const { User, Spot, Booking, Image } = require("../../db/models");
 const { requireAuth, setTokenCookie } = require("../../utils/auth");
 const csrfProtection = csrf({ cookie: true });
 
 router.get(
   "/",
   asyncHandler(async (req, res) => {
-    const bookings = await Booking.findAll();
+    const bookings = await Booking.findAll({ include: [{model: Spot, include: Image}] });
     return res.json(bookings);
   })
 );

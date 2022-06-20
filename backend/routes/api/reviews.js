@@ -7,11 +7,7 @@ const csrfProtection = csrf({ cookie: true });
 router.get(
   "/spots/:id/",
   asyncHandler(async (req, res) => {
-    const reviews = await Review.findAll({
-      where: {
-        spotId: req.params.id,
-      }
-    });
+    const reviews = await Review.findAll();
     return res.json(reviews);
   })
 );

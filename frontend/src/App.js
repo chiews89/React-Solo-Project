@@ -15,6 +15,8 @@ import { Footer } from "./components/Footer";
 import { getReviews } from "./store/reviews";
 import { getAllFavorites } from "./store/favorites";
 import { UserFavorites } from "./components/UserProfile/UserFavorites/UserFavorites";
+import { UserUpcoming } from "./components/UserProfile/UserUpcoming/UserUpcoming";
+import { UserPast } from "./components/UserProfile/UserPast/UserPast";
 
 function App() {
   const dispatch = useDispatch();
@@ -52,6 +54,12 @@ function App() {
         </Route>
         <Route exact path="/users/:userId/favorites">
           <UserFavorites />
+        </Route>
+        <Route exact path="/users/:userId/upcoming">
+          <UserUpcoming />
+        </Route>
+        <Route exact path="/users/:userId/past">
+          <UserPast />
         </Route>
       </Switch>
       <Footer />

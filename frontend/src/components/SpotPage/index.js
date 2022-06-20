@@ -24,27 +24,16 @@ const SingleSpot = () => {
   const spotReviews = spotsReview.filter(
     (review) => review?.spotId === spot?.id
   );
-  const favorites = useSelector((state) => state.favorites);
 
-  const history = useHistory();
+  console.log("spotreviews", spotReviews);
 
   useEffect(() => {
     dispatch(getOneSpot(id));
-    dispatch(getReviews(id));
   }, [dispatch, id]);
 
   if (!spot) {
     return null;
   }
-
-  const handleDeleteReview = (id) => {
-    spotsReview.forEach(async (review) => {
-      if (id === review.id) {
-        return await dispatch(deleteReview(review?.id));
-      }
-    });
-    history.replace(`/spots/${spot.id}`);
-  };
 
   let sum = 0;
   spotReviews.forEach(({ rating }) => {
@@ -71,7 +60,7 @@ const SingleSpot = () => {
         </div>
         <div className="spot-page-rating">{rating}</div>
         <li className="spot-page-review-count">
-          {spotsReview.length} {spotsReview.length === 1 ? "Review" : "Reviews"}
+          {spotReviews.length} {spotReviews.length === 1 ? "Review" : "Reviews"}
         </li>
         <div className="spot-page-address-info">
           {spot.address} {spot.city}, {spot.state}
