@@ -62,7 +62,6 @@ export const UserPast = () => {
             <div className="profile-spot-address">{booking.Spot?.address}</div>
             <div className="profile-spot-address">{booking.Spot?.city}</div>
             <div className="profile-spot-address">{booking.Spot?.state}</div>
-            <div className="profile-spot-address">{booking.Spot?.zipcode}</div>
           </div>
         ))}
       </div>

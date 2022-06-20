@@ -1,29 +1,16 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import moment from "moment";
-import { DeleteBooking } from "../../Booking/DeleteBooking/DeleteBooking";
 import "./UserProfile.css";
 
 export const UserProfile = () => {
   const user = useSelector((state) => state?.session?.user);
   const spots = Object.values(useSelector((state) => state?.spots));
-  const bookings = Object.values(useSelector((state) => state?.bookings));
 
   const userSpots = spots.filter((spot) => {
     return spot.userId === user?.id;
   });
 
-  const userBookings = bookings.filter((booking) => {
-    return booking.userId === user?.id;
-  });
-
-  const pastBookings = userBookings.filter(
-    (past) => moment(past.checkIn) < moment()
-  );
-  const upcomingBookings = userBookings.filter(
-    (upcoming) => moment(upcoming.checkIn) > moment()
-  );
 
   if (!user) {
     return null;
@@ -71,7 +58,6 @@ export const UserProfile = () => {
             <div className="profile-spot-address">{spot?.address}</div>
             <div className="profile-spot-address">{spot?.city}</div>
             <div className="profile-spot-address">{spot?.state}</div>
-            <div className="profile-spot-address">{spot?.zipcode}</div>
           </div>
         ))}
       </div>

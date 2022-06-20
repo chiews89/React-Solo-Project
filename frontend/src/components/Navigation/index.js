@@ -6,6 +6,7 @@ import "./Navigation.css";
 import "./demoUser";
 import DemoUser from "./demoUser";
 import { CreateSpotModal } from "../CreateSpot";
+import LoginFormPage from "../LoginFormPage";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
@@ -38,6 +39,7 @@ function Navigation({ isLoaded }) {
         </div>
         <NavLink to="/signup">Sign Up</NavLink>
         <NavLink to="/spots">Find A Spot</NavLink>
+        <LoginFormPage/>
         <div className="profile-button">
           <DemoUser> Demo </DemoUser>
         </div>

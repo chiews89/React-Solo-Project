@@ -25,3 +25,21 @@
 #cancel-create-button {
     background-color:#faf3f2;
 }
+
+.create-spot-container {
+    width: 500px;
+}
+
+#form-label {
+    height: 30px;
+    width: 99%;
+    display: flex;
+    justify-content: center;
+    resize: none;
+    border-right: none;
+    border-left: none;
+    border-top: 1px solid rgb(214, 214, 214);
+    border-bottom: 1px solid rgb(214, 214, 214);
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

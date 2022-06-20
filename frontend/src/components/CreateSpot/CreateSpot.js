@@ -2,18 +2,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { createNewSpot } from "../../store/spots";
+import Multiselect from "multiselect-react-dropdown";
+import { State, City } from "country-state-city";
 import "./CreateSpot.css";
 
 const NewSpot = ({ setShowModal }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
+  const states = State.getStatesOfCountry("US");
 
   const [url, setUrl] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
-  const [zipcode, setZipcode] = useState(0);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(1);
@@ -47,7 +49,6 @@ const NewSpot = ({ setShowModal }) => {
       address,
       city,
       state,
-      zipcode,
       title,
       description,
       price,
@@ -84,13 +85,24 @@ const NewSpot = ({ setShowModal }) => {
             </li>
           ))}
         </ul>
+        <div className="title">
+          <label> Title </label>
+          <input
+            id="form-label"
+            type="text"
+            placeholder="Title"
+            required
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
         <div className="image">
           <label>
-            Image Url
+            Image
             <input
-              id="form-label-image"
+              id="form-label"
               type="text"
-              placeholder="Image Url"
+              placeholder="Image"
               value={url ? url : ""}
               onChange={(e) => setUrl(e.target.value)}
               required
@@ -100,7 +112,7 @@ const NewSpot = ({ setShowModal }) => {
         <div className="address">
           <label> Address </label>
           <input
-            id="form-label-address"
+            id="form-label"
             type="text"
             placeholder="Address"
             required
@@ -111,7 +123,7 @@ const NewSpot = ({ setShowModal }) => {
         <div className="city">
           <label> City </label>
           <input
-            id="form-label-city"
+            id="form-label"
             type="text"
             placeholder="City"
             required
@@ -120,44 +132,24 @@ const NewSpot = ({ setShowModal }) => {
           />
         </div>
         <div className="state">
-          <label> State </label>
-          <input
-            id="form-label-state"
-            type="text"
-            placeholder="State"
-            required
-            value={state}
-            onChange={(e) => setState(e.target.value)}
-          />
-        </div>
-        <div className="zipcode">
-          <label> Zipcode </label>
-          <input
-            id="form-label-zipcode"
-            type="number"
-            placeholder="Zipcode"
-            maxLength={10}
-            required
-            value={zipcode}
-            onChange={(e) => setZipcode(e.target.value)}
-          />
-        </div>
-        <div className="title">
-          <label> Title </label>
-          <input
-            id="form-label-title"
-            type="text"
-            placeholder="Title"
-            required
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
+            <label>State</label>
+            <select
+              id="form-label"
+              value={state}
+              onChange={(e) => setState(e.target.value)}
+            >
+              <option value="">Select a State</option>
+              {states?.map(({ name }, i) => (
+                <option key={i} value={name}>
+                  {name}
+                </option>
+              ))}
+            </select>
         </div>
         <div className="description">
           <label> Description </label>
-          <input
-            id="form-label-description"
-            type="text"
+          <textarea
+            id="form-label"
             placeholder="Description"
             required
             value={description}
@@ -167,7 +159,7 @@ const NewSpot = ({ setShowModal }) => {
         <div className="price">
           <label> Price </label>
           <input
-            id="form-label-price"
+            id="form-label"
             type="number"
             placeholder="Price"
             required
@@ -178,7 +170,7 @@ const NewSpot = ({ setShowModal }) => {
         <div className="guests">
           <label> Guests </label>
           <input
-            id="form-label-guests"
+            id="form-label"
             type="number"
             placeholder="Guests"
             min={1}
@@ -190,7 +182,7 @@ const NewSpot = ({ setShowModal }) => {
         <div className="bedrooms">
           <label> Bedrooms </label>
           <input
-            id="form-label-bedrooms"
+            id="form-label"
             type="number"
             placeholder="Bedrooms"
             min={1}
@@ -202,7 +194,7 @@ const NewSpot = ({ setShowModal }) => {
         <div className="bathrooms">
           <label> Bathrooms </label>
           <input
-            id="form-label-bathrooms"
+            id="form-label"
             type="number"
             placeholder="bathrooms"
             min={1}

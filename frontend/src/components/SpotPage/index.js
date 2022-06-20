@@ -25,8 +25,6 @@ const SingleSpot = () => {
     (review) => review?.spotId === spot?.id
   );
 
-  console.log("spotreviews", spotReviews);
-
   useEffect(() => {
     dispatch(getOneSpot(id));
   }, [dispatch, id]);
@@ -78,7 +76,7 @@ const SingleSpot = () => {
         />
       </div>
       <div className="spot-page-host">
-        <h3>Hosted by : {spot?.User?.username}</h3>
+        <h3>Hosted by : <NavLink to={spot?.userId}>{spot?.User.username}</NavLink></h3>
       </div>
       <div className="spot-page-house-info">
         <p>

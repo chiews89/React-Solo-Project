@@ -7,7 +7,7 @@ export const UserFavorites = () => {
   const favorites = Object.values(useSelector((state) => state?.favorites));
 
   const userFavorites = favorites.filter((favorite) => {
-    return (favorite.userId = user?.id);
+    return favorite.userId === user?.id;
   });
   console.log("userFavorites", userFavorites);
 
@@ -56,9 +56,6 @@ export const UserFavorites = () => {
             </div>
             <div className="profile-spot-address">{favorite?.Spot?.city}</div>
             <div className="profile-spot-address">{favorite?.Spot?.state}</div>
-            <div className="profile-spot-address">
-              {favorite?.Spot?.zipcode}
-            </div>
             <div className="profile-spot-address">
               {favorite?.Spot?.address}
             </div>

@@ -16,7 +16,6 @@ module.exports = {
           address: "396 Locust View Drive",
           city: "Oakland",
           state: "California",
-          zipcode: 94610,
           title: "A Beautiful small sized house to spend some quiet nights in",
           description:
             "A Beautiful small sized house to spend some quiet nights in.",
@@ -32,7 +31,6 @@ module.exports = {
           address: "1866 Station Street",
           city: "Oakland",
           state: "California",
-          zipcode: 94601,
           title: "A beautiful medium sized house for you and your family",
           description:
             "A beautiful medium sized house for you and your family.",
@@ -48,7 +46,6 @@ module.exports = {
           address: "4511 Station Street",
           city: "Oakland",
           state: "California",
-          zipcode: 94601,
           title:
             "A Spacious large sized house for you to have a big gathering in",
           description:
@@ -65,7 +62,6 @@ module.exports = {
           address: "155 Green Avenue",
           city: "Alameda",
           state: "California",
-          zipcode: 94601,
           title: "A Beautiful small sized house to spend some quiet nights in",
           description:
             "A Beautiful small sized house to spend some quiet nights in.",
@@ -81,7 +77,6 @@ module.exports = {
           address: "1528 Lindale Avenue",
           city: "Alameda",
           state: "California",
-          zipcode: 94601,
           title: "A beautiful medium sized house for you and your family",
           description:
             "A beautiful medium sized house for you and your family.",
@@ -97,7 +92,6 @@ module.exports = {
           address: "706 Lindale Avenue",
           city: "Alameda",
           state: "California",
-          zipcode: 94601,
           title:
             "A Spacious large sized house for you to have a big gathering in",
           description:
@@ -114,7 +108,6 @@ module.exports = {
           address: "610 Lindale Avenue",
           city: "Berkeley",
           state: "California",
-          zipcode: 94601,
           title: "A Beautiful small sized house to spend some quiet nights in",
           description:
             "A Beautiful small sized house to spend some quiet nights in.",
@@ -130,7 +123,6 @@ module.exports = {
           address: "2919 Clifford Street",
           city: "Berkeley",
           state: "California",
-          zipcode: 94601,
           title: "A beautiful medium sized house for you and your family",
           description:
             "A beautiful medium sized house for you and your family.",
@@ -146,7 +138,6 @@ module.exports = {
           address: "3860 Lindale Avenue",
           city: "Berkeley",
           state: "California",
-          zipcode: 94601,
           title:
             "A Spacious large sized house for you to have a big gathering in",
           description:
