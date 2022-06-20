@@ -25,10 +25,10 @@ router.post(
 );
 
 router.delete(
-  "/",
+  "/:favoriteId",
   requireAuth,
   asyncHandler(async (req, res) => {
-    const favoriteId = Number(req.params.id);
+    const favoriteId = Number(req.params.favoriteId);
     Favorite.destroy({
       where: {
         id: favoriteId,

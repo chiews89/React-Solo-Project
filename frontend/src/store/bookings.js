@@ -48,7 +48,6 @@ export const createNewBooking = (booking) => async (dispatch) => {
 };
 
 export const deleteABooking = (bookingId) => async (dispatch) => {
-  console.log('bookingId', bookingId)
   const res = await csrfFetch(`/api/bookings/${bookingId}`, {
     method: "DELETE",
   });

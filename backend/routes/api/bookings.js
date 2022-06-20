@@ -27,7 +27,7 @@ router.delete(
   "/:bookingId",
   requireAuth,
   asyncHandler(async (req, res) => {
-    const { id, Bookings } = req.body;
+    const { id } = req.body;
     const bookingId = parseInt(req.params.bookingId, 10);
     const currentBooking = await Booking.findByPk(bookingId);
 

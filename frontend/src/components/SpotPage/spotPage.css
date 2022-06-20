@@ -87,5 +87,8 @@
 
 .filled-heart {
   color: red;
+}
+
+.heart-container {
   font-size: 28px;
 }
