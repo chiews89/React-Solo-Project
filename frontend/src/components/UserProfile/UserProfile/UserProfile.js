@@ -24,17 +24,17 @@ export const UserProfile = () => {
       {sessionUser?.id === user.id ?
         <h1>Welcome back {user?.username}</h1>
         : <h1>User Profile</h1>}
-       {sessionUser?.id === user.id ? <div className="profile-links">
-          <NavLink to={`/users/${user.id}`}>
+       {sessionUser?.id === user?.id ? <div className="profile-links">
+          <NavLink to={`/users/${user?.id}`}>
             <li>Your Listings</li>
           </NavLink>
-          <NavLink to={`/users/${user.id}/favorites`}>
+          <NavLink to={`/users/${user?.id}/favorites`}>
             <li>Your Favorites</li>
           </NavLink>
-          <NavLink to={`/users/${user.id}/upcoming`}>
+          <NavLink to={`/users/${user?.id}/upcoming`}>
             <li>Your Upcoming Trips</li>
           </NavLink>
-          <NavLink to={`/users/${user.id}/past`}>
+          <NavLink to={`/users/${user?.id}/past`}>
             <li>Your Past Trips</li>
           </NavLink>
         </div>: <div></div>}

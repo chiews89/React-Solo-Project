@@ -29,6 +29,10 @@ const SingleSpot = () => {
     dispatch(getOneSpot(id));
   }, [dispatch, id]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   if (!spot) {
     return null;
   }
@@ -75,7 +79,7 @@ const SingleSpot = () => {
         />
       </div>
       <div className="spot-page-host">
-        <Favorites spot={spot} />
+        {userId !== spot.userId && <Favorites spot={spot} />}
         <h3>
           Hosted by :
           <NavLink to={`/users/${spot?.User.id}`}>

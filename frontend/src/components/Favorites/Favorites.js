@@ -16,10 +16,6 @@ export const Favorites = ({ spot }) => {
     return favorite?.spotId === spot?.id;
   });
 
-  console.log("user", user);
-  console.log("userFavorite", userFavorited);
-  console.log("spotFavorited", spotFavorited);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = {

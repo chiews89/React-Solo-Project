@@ -8,7 +8,7 @@ router.get(
   "/",
   asyncHandler(async (req, res) => {
     const favorites = await Favorite.findAll({
-      include: [{ model: Spot, include: Image }],
+      include: [{ model: Spot, include: Image }]
     });
     return res.json(favorites);
   })
@@ -20,6 +20,8 @@ router.post(
   asyncHandler(async (req, res) => {
     const { userId, spotId } = req.body;
     const favorite = await Favorite.create(req.body);
+    const spot = await Spot.findByPk(spotId, {include: Image})
+    favorite.dataValues.Spot = spot
     return res.json(favorite);
   })
 );

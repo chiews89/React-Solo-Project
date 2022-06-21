@@ -7,7 +7,7 @@ export const UserFavorites = () => {
   const favorites = Object.values(useSelector((state) => state?.favorites));
 
   const userFavorites = favorites.filter((favorite) => {
-    return favorite.userId === user?.id;
+    return favorite?.userId === user?.id;
   });
   console.log("userFavorites", userFavorites);
 
