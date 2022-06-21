@@ -7,9 +7,11 @@
 }
 
 .spot-container {
+  border-bottom: rgb(235,235,235) 2px solid;
   display: flex;
   justify-content: space-between;
   width: 70%;
+  margin-bottom: 10px;
   max-height: 500px;
   padding-bottom: 25px;
   display: flex;
@@ -19,6 +21,9 @@
   height: 400px;
   max-width: min(80%, 500px);
   min-width: min(30vw, 500px);
+  border-radius: 15px;
+  border: 1px solid white;
+  box-shadow: 10px 10px 15px 5px lightgray;
 }
 
 .spot-info-container {
@@ -32,6 +37,7 @@
 .spot-title {
   overflow-x: hidden;
   overflow-wrap: break-word;
+  border-bottom: rgb(235,235,235) 2px solid;
 }
 
 .spot-info {

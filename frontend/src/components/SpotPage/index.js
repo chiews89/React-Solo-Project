@@ -78,6 +78,8 @@ const SingleSpot = () => {
           }
         />
       </div>
+      <div className="spot-page-house-info">
+        <p>
       <div className="spot-page-host">
         {userId !== spot.userId && <Favorites spot={spot} />}
         <h3>
@@ -87,15 +89,18 @@ const SingleSpot = () => {
           </NavLink>
         </h3>
       </div>
-      <div className="spot-page-house-info">
-        <p>
           Guests:{spot.guests} Bedrooms:{spot.bedrooms} Bathrooms:
           {spot.bathrooms}
+          <div className="spot-page-description">
+            <h3>Description</h3>
+            <div className="spot-page-description-sub">{spot.description}</div>
+          </div>
         </p>
-      </div>
-      <div className="spot-page-description">
-        <h3>Description</h3>
-        <div className="spot-page-description-sub">{spot.description}</div>
+        {userId !== spot.userId && (
+          <div className="spot-page-booking">
+            <CreateBooking spot={spot} />
+          </div>
+        )}
       </div>
       <div className="user-review-create-review">
         <h3> User Reviews</h3>
@@ -133,11 +138,11 @@ const SingleSpot = () => {
           <EditSpotModal spot={spot} />
         </div>
       </div>
-      {userId !== spot.userId && (
+      {/* {userId !== spot.userId && (
         <div className="spot-page-booking">
           <CreateBooking spot={spot} />
         </div>
-      )}
+      )} */}
     </div>
   );
 };

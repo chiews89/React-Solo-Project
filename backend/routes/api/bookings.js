@@ -19,6 +19,8 @@ router.post(
   asyncHandler(async (req, res) => {
     const { spotId, userId, guests, checkIn, checkOut } = req.body;
     const booking = await Booking.create(req.body);
+    const spot = await Spot.findByPk(spotId, {include: Image})
+    booking.dataValues.Spot = spot
     return res.json(booking);
   })
 );

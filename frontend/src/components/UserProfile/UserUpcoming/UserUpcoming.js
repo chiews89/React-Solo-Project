@@ -33,7 +33,7 @@ export const UserUpcoming = () => {
             <li>Your Upcoming Trips</li>
           </NavLink>
           <NavLink to={`/users/${user.id}/past`}>
-            <li>Your Past Trips</li>
+            <li>Your Previous Trips</li>
           </NavLink>
         </div>
         <div className="listing-header">

@@ -35,7 +35,7 @@ export const UserProfile = () => {
             <li>Your Upcoming Trips</li>
           </NavLink>
           <NavLink to={`/users/${user?.id}/past`}>
-            <li>Your Past Trips</li>
+            <li>Your Previous Trips</li>
           </NavLink>
         </div>: <div></div>}
       </div>

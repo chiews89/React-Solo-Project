@@ -12,6 +12,9 @@
 .spot-page-title {
   max-width: 100%;
   overflow-wrap: break-word;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  color: rgb(235,235,235) 2px solid;
 }
 
 .spot-page-subheader {
@@ -19,32 +22,35 @@
   width: 100%;
   padding-bottom: 5px;
   align-content: center;
-
+  margin-bottom: 10px;
 }
 
 .spot-page-image {
-  height: 100%;
+  border: 1px solid white;
+  box-shadow: 10px 10px 15px 5px lightgray;
   width: 100%;
+  height: 100%;
+  border-radius: 25px;
 }
 .spot-page-review-count {
-    margin-left: 5px;
+  margin-left: 5px;
 }
 
 .star-rating {
-    font-size: 16px;
-    color: red;
-    margin-right: 4px;
-    /* margin-bottom: 5px; */
+  font-size: 16px;
+  color: red;
+  margin-right: 4px;
+  /* margin-bottom: 5px; */
 }
 
 .spot-page-rating {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
 .spot-page-address-info {
-    display: flex;
-    margin-left: 20px;
-    justify-content: space-between;
+  display: flex;
+  margin-left: 20px;
+  justify-content: space-between;
 }
 
 .spot-page-house-info {
@@ -66,9 +72,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-top: 30px;
 }
-
-
 
 .create-review-modal-button {
   margin-top: 8px;

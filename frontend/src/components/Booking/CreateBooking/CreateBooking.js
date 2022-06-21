@@ -18,8 +18,9 @@ export const CreateBooking = ({ spot }) => {
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
 
-  const today = new Date();
-  today.setDate(today.getDate() + 1);
+  const today = new Date()
+  const tomorrow = new Date()
+  tomorrow.setDate(today.getDate() + 1)
 
   const bookingSubmit = async (e) => {
     e.preventDefault();
@@ -67,7 +68,7 @@ export const CreateBooking = ({ spot }) => {
             selected={checkOut}
             selectsEnd
             placeholderText="Check-out Date"
-            minDate={checkIn}
+            minDate={tomorrow}
             onChange={(range) => setCheckOut(range)}
           />
         </div>
