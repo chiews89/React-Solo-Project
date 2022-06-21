@@ -52,7 +52,7 @@ const AllSpots = () => {
             </div>
               <h4>
                 ${Math.round(spot.price)}
-                <span>/ night</span>
+                <span className="spot-night">/ night</span>
               </h4>
             </div>
           </div>

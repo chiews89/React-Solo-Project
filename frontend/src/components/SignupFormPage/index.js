@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Modal } from "../context/Modal";
 import SignupFormPage from "./SignupForm";
+import './SignupForm.css'
 
 
 export const SignupFormModal = () => {

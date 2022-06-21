@@ -42,7 +42,7 @@ export const CreateBooking = ({ spot }) => {
   return (
     <div className="create-booking-container">
 
-      <h4 className="booking-price">${spot?.price} /night</h4>
+      <h4 className="booking-price">${spot?.price} / <span className="spot-night"> night</span></h4>
       <form className="create-booking-form" onSubmit={bookingSubmit}>
         <div className="create-booking-dates-container">
           <label className="calendar-icon">

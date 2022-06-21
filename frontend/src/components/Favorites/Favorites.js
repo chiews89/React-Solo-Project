@@ -34,7 +34,7 @@ export const Favorites = ({ spot }) => {
     <div className="favorites-container">
       <div className="heart-container">
         {!spotFavorited.length && <AiOutlineHeart onClick={handleSubmit} />}
-        {spotFavorited.length && (
+        {spotFavorited.length > 0 && (
           <span className="filled-heart">
             <AiFillHeart onClick={handleDelete}/>
           </span>

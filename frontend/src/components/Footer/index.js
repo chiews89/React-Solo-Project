@@ -1,4 +1,5 @@
 import React from "react";
+import { BsGithub, BsLinkedin } from 'react-icons/bs'
 
 import "./Footer.css";
 
@@ -13,7 +14,7 @@ export const Footer = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <i className="fab fa-github-square"></i>
+          <BsGithub/>
         </a>
         <a
           className="linkedin-icon"
@@ -21,7 +22,7 @@ export const Footer = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <i className="fab fa-linkedin"></i>
+          <BsLinkedin/>
         </a>
       </div>
     </div>

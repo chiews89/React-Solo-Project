@@ -45,8 +45,16 @@
   justify-content: space-between;
   flex-wrap: wrap;
   max-width: 400px;
+  color: rgb(153, 153, 153);
 }
 
 .spot-price {
   margin-top: auto;
+}
+
+.spot-location {
+  color: rgb(153, 153, 153);
+}
+.spot-night {
+  font-weight: 400;
 }

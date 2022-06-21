@@ -1,5 +1,5 @@
 * {
-  font-family: "Ubuntu", sans-serif;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
 }
 
 .main_container {
@@ -37,7 +37,7 @@
   border-radius: 25px;
   font-size: 18px;
   font-weight: 800;
-  color: #139af3;
+  color: rgb(206, 95, 95);
 }
 
 .find-spot:hover,

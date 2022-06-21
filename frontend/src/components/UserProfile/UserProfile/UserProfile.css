@@ -50,17 +50,17 @@
   margin-bottom: 20px;
 }
 
-.profile-spot-image-container {
-  width: 75%;
-  border-bottom: rgb(235,235,235) 2px solid;
-}
 
 .profile-spot-address {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
+  width: 70%;
+  margin-bottom: 10px;
+  border-bottom: rgb(235,235,235) 2px solid;
+
 }
 
 .profile-spot-address-info {
-  margin-top: 5px;
+  margin-bottom: 10px;
 }

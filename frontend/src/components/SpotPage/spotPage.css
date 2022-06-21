@@ -51,11 +51,13 @@
   display: flex;
   margin-left: 20px;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .spot-page-house-info {
   display: flex;
   justify-content: space-between;
+  margin-top: 40px;
 }
 
 .spot-page-reviews-container {
@@ -66,6 +68,7 @@
   grid-column-gap: 30px;
   grid-row-gap: 30px;
   padding-bottom: 40px;
+  font-weight: 400;
 }
 
 .user-review-create-review {
@@ -101,5 +104,6 @@
 }
 
 .heart-container {
-  font-size: 28px;
+  font-size: 38px;
+  cursor: pointer;
 }

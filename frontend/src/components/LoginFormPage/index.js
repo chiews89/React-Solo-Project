@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { Modal } from "../context/Modal";
 import LoginFormPage from "./LoginForm";
 
-
-
 export const LoginFormModal = () => {
   const [showModal, setShowModal] = useState(false);
 
