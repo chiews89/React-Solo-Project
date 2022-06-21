@@ -54,9 +54,11 @@ const SingleSpot = () => {
     <div className="spot-page-container">
       <div className="spot-page-title">
         <h2 className="-spot-page-title-2">{spot.title}</h2>
-        {userId === spot.userId && <span className="spot-edit-modal">
-          <EditSpotModal spot={spot} />
-        </span>}
+        {userId === spot.userId && (
+          <span className="spot-edit-modal">
+            <EditSpotModal spot={spot} />
+          </span>
+        )}
       </div>
       <div className="spot-page-subheader">
         <div className="spot-page-star">
@@ -86,14 +88,23 @@ const SingleSpot = () => {
           <div className="spot-page-host">
             {userId !== spot.userId && <Favorites spot={spot} />}
             <h3>
-              Hosted by :
+              Hosted by :{" "}
               <NavLink to={`/users/${spot?.User?.id}`}>
                 {spot?.User?.username}
               </NavLink>
             </h3>
           </div>
-          Guests:{spot.guests} Bedrooms:{spot.bedrooms} Bathrooms:
-          {spot.bathrooms}
+          <div className="spot-page-rooms">
+            <li>
+            Guests : {spot.guests}
+            </li>
+            <li>
+            Bedrooms : {spot.bedrooms}
+            </li>
+            <li>
+            Bathrooms : {spot.bathrooms}
+            </li>
+          </div>
           <div className="spot-page-description">
             <h3>Description</h3>
             <div className="spot-page-description-sub">{spot.description}</div>

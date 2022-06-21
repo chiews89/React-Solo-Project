@@ -6,7 +6,7 @@ import { DeleteBooking } from "../../Booking/DeleteBooking/DeleteBooking";
 
 export const UserUpcoming = () => {
   const user = useSelector((state) => state?.session?.user);
-  const bookings = Object.values(useSelector((state) => state?.bookings));
+  const bookings = Object.values(useSelector((state) => state?.bookings)).reverse();
   const userBookings = bookings.filter((booking) => {
     return booking.userId === user?.id;
   });
@@ -61,6 +61,14 @@ export const UserUpcoming = () => {
                 />
               </NavLink>
             </div>
+            <div className="profile-booking-dates">
+                                    <div>
+                                        <span>Check In {moment(booking.checkIn).add('days', 1).format('MMMM D YYYY')}</span>
+                                    </div>
+                                    <div>
+                                        <span>Check Out {moment(booking.checkOut).add('days', 1).format('MMMM D YYYY')}</span>
+                                    </div>
+                                </div>
             <div className="profile-spot-address">
 
               <span className="profile-spot-address-info">{booking?.Spot?.address}

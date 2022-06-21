@@ -28,7 +28,7 @@ function Navigation({ isLoaded }) {
   return (
     <nav className="nav-bar">
       <div className="left-container">
-        <NavLink exact to="/">
+        <NavLink exact to="/spots">
           <h3 className="home-logo"><FcHome className="home-icon"/> {' '} HomeBnB</h3>
         </NavLink>
       </div>

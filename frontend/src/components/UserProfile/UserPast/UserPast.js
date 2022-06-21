@@ -57,6 +57,14 @@ export const UserPast = () => {
                 />
               </NavLink>
             </div>
+            <div className="profile-booking-dates">
+                                    <div>
+                                        <span>Check In {moment(booking.checkIn).add('days', 1).format('MMMM D YYYY')}</span>
+                                    </div>
+                                    <div>
+                                        <span>Check Out {moment(booking.checkOut).add('days', 1).format('MMMM D YYYY')}</span>
+                                    </div>
+                                </div>
             <div className="profile-spot-address">
               <span className="profile-spot-address-info">{booking?.Spot?.address}</span>
               <span className="profile-spot-address-info">{booking?.Spot?.city}</span>

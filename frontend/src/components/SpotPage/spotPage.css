@@ -65,6 +65,13 @@
   margin-bottom: 20px;
 }
 
+.spot-page-rooms {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 400px;
+}
+
 .spot-page-house-info {
   display: flex;
   justify-content: space-between;
