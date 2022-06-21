@@ -1,15 +1,124 @@
 .create-booking-container {
-    position: sticky;
-    top: 150;
-    bottom: 150;
-    left: 2000;
-    justify-content: flex-end;
-    position: -webkit-sticky;
-    background-color: white;
-    border: 1px solid white;
-    box-shadow: 0 0 5px 0 rgb(200,200,200);
-    border-radius: 25px;
-    height: fit-content;
-    width: fit-content;
-    padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  position: -webkit-sticky;
+  background-color: white;
+  border: 1px solid white;
+  box-shadow: 0 0 5px 0 rgb(200, 200, 200);
+  border-radius: 25px;
+  height: fit-content;
+  width: fit-content;
+  padding: 20px;
+}
+
+.create_booking_form {
+  height: auto;
+}
+
+.create-booking-dates-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.calendar-icon {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+  margin-left: 0px;
+  margin-right: 0px;
+  font-size: 35px;
+}
+
+.calendar-icon2 {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+  margin-left: 0px;
+  padding-left: 25px;
+  margin-right: 0px;
+  font-size: 35px;
+}
+
+.react-datepicker__input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.react-date-picker__wrapper {
+  border: 1px solid rgb(200, 200, 200);
+  border-radius: 8px;
+}
+
+.booking-price {
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.check-in-date,
+.check-out-date {
+  color: rgb(150, 150, 150);
+  width: 120px;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid rgb(200, 200, 200);
+  text-align: center;
+  cursor: pointer;
+}
+
+.guests-amount {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.select-guests-label {
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.booking-guests-label {
+  display: flex;
+  align-items: center;
+}
+
+.number-of-guests {
+  width: 60px;
+  height: 35px;
+  color: rgb(50, 50, 50);
+  border: 1px solid rgb(200, 200, 200);
+  border-radius: 10px;
+  align-self: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.booking-reserve-button {
+  color: white;
+  background-color: #ff5a5f;
+  border-color: white;
+  border: 1px solid;
+  border-radius: 10px;
+  transition-duration: 0.4s;
+  margin-top: 5px;
+  margin-left: 40%;
+  cursor: pointer;
+  font-weight: 400;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.booking-reserve-button:hover {
+  background-color: #d93b30;
 }

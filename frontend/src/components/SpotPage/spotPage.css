@@ -79,10 +79,16 @@
   font-size: 16px;
   font-weight: 550;
   padding: 15px;
-  background-color: rgb(255, 255, 255);
-  color: rgb(1, 1, 1);
-  border: 1px solid rgb(0, 0, 0);
+  background-color: #ff5a5f;
+  border-color: white;
+  color: white;
   border-radius: 10px;
+  text-decoration: none;
+  transition-duration: 0.4s;
+}
+
+.create-review-modal-button:hover {
+  background-color: #d93b30;
 }
 
 .filled-heart {

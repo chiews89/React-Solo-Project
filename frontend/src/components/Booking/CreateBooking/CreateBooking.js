@@ -3,10 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { BsCalendar } from "react-icons/bs";
-
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { createNewBooking } from "../../../store/bookings";
+import './CreateBooking.css'
 
 export const CreateBooking = ({ spot }) => {
   const dispatch = useDispatch();
@@ -40,7 +40,8 @@ export const CreateBooking = ({ spot }) => {
 
   return (
     <div className="create-booking-container">
-      <span className="booking-price">${spot?.price} /night</span>
+
+      <h4 className="booking-price">${spot?.price} /night</h4>
       <form className="create-booking-form" onSubmit={bookingSubmit}>
         <div className="create-booking-dates-container">
           <label className="calendar-icon">
@@ -71,7 +72,7 @@ export const CreateBooking = ({ spot }) => {
           />
         </div>
         <div className="guests-amount">
-          <span className="select-guests-span">Guests</span>
+          <label className="select-guests-label">Guests</label>
           <select
             className="number-of-guests"
             defaultValue={guests}
