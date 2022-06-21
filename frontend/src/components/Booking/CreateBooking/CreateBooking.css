@@ -1,0 +1,15 @@
+.create-booking-container {
+    position: sticky;
+    top: 150;
+    bottom: 150;
+    left: 2000;
+    justify-content: flex-end;
+    position: -webkit-sticky;
+    background-color: white;
+    border: 1px solid white;
+    box-shadow: 0 0 5px 0 rgb(200,200,200);
+    border-radius: 25px;
+    height: fit-content;
+    width: fit-content;
+    padding: 20px;
+}

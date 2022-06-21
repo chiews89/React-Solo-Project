@@ -36,6 +36,10 @@ export const UserFavorites = () => {
         <div className="listing-header">
           <h2>Your Favorites</h2>
         </div>
+        {!userFavorites.length && <div className="no-booking">
+          <h4>No favorites yet!</h4>
+        <NavLink to={`/spots`}>Find your favorite trip</NavLink>
+        </div>}
       </div>
       <div className="user-listings-container">
         {userFavorites.map((favorite) => (

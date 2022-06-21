@@ -9,15 +9,15 @@ const UpdateSpot = ({ spot, setShowModal }) => {
   const user = useSelector((state) => state.session.user);
 
   const [url, setUrl] = useState(spot?.url);
-  const [address, setAddress] = useState("");
+  const [address, setAddress] = useState(spot?.address);
   const [city, setCity] = useState(spot?.city);
   const [state, setState] = useState(spot?.state);
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState(spot?.title);
   const [description, setDescription] = useState(spot?.description);
   const [price, setPrice] = useState(spot?.price);
-  const [guests, setGuests] = useState(1);
-  const [bedrooms, setBedrooms] = useState(1);
-  const [bathrooms, setBathrooms] = useState(1);
+  const [guests, setGuests] = useState(spot?.guests);
+  const [bedrooms, setBedrooms] = useState(spot?.bedrooms);
+  const [bathrooms, setBathrooms] = useState(spot?.bathrooms);
   const [errorValidator, setErrorValidator] = useState([]);
 
   useEffect(() => {

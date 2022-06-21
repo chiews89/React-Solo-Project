@@ -82,7 +82,7 @@ const SingleSpot = () => {
         {userId !== spot.userId && <Favorites spot={spot} />}
         <h3>
           Hosted by :
-          <NavLink to={`/users/${spot?.User.id}`}>
+          <NavLink to={`/users/${spot?.User?.id}`}>
             {spot?.User?.username}
           </NavLink>
         </h3>
