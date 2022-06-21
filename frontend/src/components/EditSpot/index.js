@@ -1,21 +1,23 @@
 import React, { useState } from "react";
 import { Modal } from "../context/Modal";
 import UpdateSpot from "./Edit.Spot";
+import { FaEllipsisH } from "react-icons/fa";
+import "./EditSpot.css";
 
-export const EditSpotModal = ({spot}) => {
+export const EditSpotModal = ({ spot }) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <div className="create-review-modal-container">
+    <div className="edit-spot-modal-container">
       <button
-        className="create-review-modal-button"
+        className="edit-spot-modal-button"
         onClick={() => setShowModal(true)}
       >
-        Edit Your Spot
+        <FaEllipsisH />
       </button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <UpdateSpot spot ={spot} setShowModal={setShowModal} />
+          <UpdateSpot spot={spot} setShowModal={setShowModal} />
         </Modal>
       )}
     </div>

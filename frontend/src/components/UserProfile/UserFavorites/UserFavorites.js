@@ -1,15 +1,16 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { Favorites } from "../../Favorites/Favorites";
 
-export const UserFavorites = () => {
+export const UserFavorites = ({spot}) => {
   const user = useSelector((state) => state?.session?.user);
   const favorites = Object.values(useSelector((state) => state?.favorites));
 
   const userFavorites = favorites.filter((favorite) => {
     return favorite?.userId === user?.id;
   });
-  console.log("userFavorites", userFavorites);
+
 
   if (!user) {
     return null;
@@ -37,8 +38,7 @@ export const UserFavorites = () => {
           <h2>Your Favorites</h2>
         </div>
         {!userFavorites.length && <div className="no-booking">
-          <h4>No favorites yet!</h4>
-        <NavLink to={`/spots`}>Find your favorite trip</NavLink>
+          <span>No favorites yet!</span>
         </div>}
       </div>
       <div className="user-listings-container">
@@ -56,10 +56,11 @@ export const UserFavorites = () => {
                 />
               </NavLink>
             </div>
-            <div className="profile-spot-address">{favorite?.Spot?.city}</div>
-            <div className="profile-spot-address">{favorite?.Spot?.state}</div>
+            <Favorites spot={spot}/>
             <div className="profile-spot-address">
-              {favorite?.Spot?.address}
+              <span className="profile-spot-address-info">{favorite?.Spot?.address}</span>
+              <span className="profile-spot-address-info">{favorite?.Spot?.city}</span>
+              <span className="profile-spot-address-info">{favorite?.Spot?.state}</span>
             </div>
           </div>
         ))}

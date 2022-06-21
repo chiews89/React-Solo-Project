@@ -61,10 +61,14 @@ export const UserUpcoming = () => {
                 />
               </NavLink>
             </div>
-            <div className="profile-spot-address">{booking.Spot?.address}</div>
-            <div className="profile-spot-address">{booking.Spot?.city}</div>
-            <div className="profile-spot-address">{booking.Spot?.state}</div>
-            <DeleteBooking booking={booking.id} />
+            <div className="profile-spot-address">
+
+              <span className="profile-spot-address-info">{booking?.Spot?.address}
+              <span> <DeleteBooking booking={booking.id} /></span>
+              </span>
+              <span className="profile-spot-address-info">{booking?.Spot?.city}</span>
+              <span className="profile-spot-address-info">{booking?.Spot?.state}</span>
+            </div>
           </div>
         ))}
       </div>

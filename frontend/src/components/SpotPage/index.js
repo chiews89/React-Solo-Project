@@ -53,7 +53,10 @@ const SingleSpot = () => {
   return (
     <div className="spot-page-container">
       <div className="spot-page-title">
-        <h2>{spot.title}</h2>
+        <h2 className="-spot-page-title-2">{spot.title}</h2>
+        {userId === spot.userId && <span className="spot-edit-modal">
+          <EditSpotModal spot={spot} />
+        </span>}
       </div>
       <div className="spot-page-subheader">
         <div className="spot-page-star">
@@ -133,11 +136,11 @@ const SingleSpot = () => {
           <CreateReviewModal />
         </div>
       )}
-      <div className="edit-delete-container" hidden={userId !== spot?.userId}>
+      {/* <div className="edit-delete-container" hidden={userId !== spot?.userId}>
         <div>
           <EditSpotModal spot={spot} />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

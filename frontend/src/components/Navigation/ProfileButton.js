@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 import { MdLogout } from "react-icons/md";
-import { BsHouseDoor } from "react-icons/bs";
 import * as sessionActions from "../../store/session";
 import { CreateSpotModal } from "../CreateSpot";
 

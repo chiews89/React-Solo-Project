@@ -1,9 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
+import { EditSpotModal } from "../../EditSpot";
 import "./UserProfile.css";
 
-export const UserProfile = () => {
+export const UserProfile = ({spot}) => {
   const { userId } = useParams();
   const user = useSelector((state) => state?.users[userId]);
   const sessionUser = useSelector((state) => state?.session.user);
@@ -56,6 +57,7 @@ export const UserProfile = () => {
           <div className="profile-user-spots" key={spot?.id}>
             <div className="profile-spot-title">
               <h4>{spot?.title}</h4>
+              <span className="profile-edit-modal"><EditSpotModal spot = {spot}/></span>
             </div>
             <div className="profile-spot-image-container">
               <NavLink to={`/spots/${spot?.id}`}>
@@ -67,7 +69,8 @@ export const UserProfile = () => {
               </NavLink>
             </div>
             <div className="profile-spot-address">
-              <span className="profile-spot-address-info">{spot?.address}</span>
+              <span className="profile-spot-address-info">{spot?.address}
+              </span>
               <span className="profile-spot-address-info">{spot?.city}</span>
               <span className="profile-spot-address-info">{spot?.state}</span>
             </div>
