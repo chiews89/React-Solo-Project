@@ -52,8 +52,6 @@ export const UserProfile = () => {
               <NavLink to={`/spots/${spot?.id}`}>
                 <img
                   className="profile-spot-image"
-                  width={500}
-                  height={500}
                   alt={spot?.id}
                   src={spot?.Images[0].url}
                 />

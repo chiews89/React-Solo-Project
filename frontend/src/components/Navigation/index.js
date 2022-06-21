@@ -5,47 +5,36 @@ import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 import "./demoUser";
 import DemoUser from "./demoUser";
-import { CreateSpotModal } from "../CreateSpot";
-import LoginFormPage from "../LoginFormPage";
+import { LoginFormModal } from "../LoginFormPage";
+import { SignupFormModal } from "../SignupFormPage";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
 
   let sessionLinks;
   if (sessionUser) {
-    sessionLinks = (
-      <div className="nav-bar">
-        <div className="home-logo">
-          <NavLink exact to="/">
-            HomeBnB
-          </NavLink>
-        </div>
-        <NavLink exact to="/spots">
-          Find A Spot
-        </NavLink>
-        <CreateSpotModal />
-        <div className="profile-button">
-          <ProfileButton user={sessionUser} />
-        </div>
-      </div>
-    );
+    sessionLinks = <ProfileButton user={sessionUser} />;
   } else {
     sessionLinks = (
-      <div className="nav-bar">
-        <div className="home-logo">
-          <NavLink exact to="/">
-            HomeBnB
-          </NavLink>
-        </div>
-        <NavLink to="/signup">Sign Up</NavLink>
-        <NavLink to="/spots">Find A Spot</NavLink>
-        <LoginFormPage/>
-        <div className="profile-button">
-          <DemoUser> Demo </DemoUser>
-        </div>
-      </div>
+      <>
+        <LoginFormModal />
+        <SignupFormModal />
+        <DemoUser />
+      </>
     );
   }
-  return <>{isLoaded && sessionLinks}</>;
+
+  return (
+    <nav className="nav-bar">
+      <div className="left-container">
+        <NavLink exact to="/">
+          <h3 className="home-logo">HomeBnB</h3>
+        </NavLink>
+      </div>
+      <div className="right-container">
+        <ul className="nav-right-ul">{isLoaded && sessionLinks}</ul>
+      </div>
+    </nav>
+  );
 }
 export default Navigation;

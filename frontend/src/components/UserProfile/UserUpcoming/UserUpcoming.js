@@ -56,8 +56,6 @@ export const UserUpcoming = () => {
               <NavLink to={`/spots/${booking.Spot?.id}`}>
                 <img
                   className="profile-spot-image"
-                  width={500}
-                  height={500}
                   alt={booking.Spot?.id}
                   src={booking.Spot?.Images[0].url}
                 />

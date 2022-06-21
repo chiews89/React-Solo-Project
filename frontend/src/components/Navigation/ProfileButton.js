@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
+import { FiUser, FiLogOut } from 'react-icons/fi';
 import * as sessionActions from "../../store/session";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
-  const history = useHistory();
-  const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
-  };
 
   useEffect(() => {
     if (!showMenu) return;
@@ -26,28 +22,23 @@ function ProfileButton({ user }) {
 
   const logout = (e) => {
     e.preventDefault();
-    history.push(`/`);
     dispatch(sessionActions.logout());
   };
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fa-solid fa-circle-user" />
-      </button>
-      {showMenu && (
-        <ul className="profile-dropdown">
-          <NavLink to={`/users/${user.id}`} className='profile-button'>
-            <li>{user.username}</li>
-            </NavLink>
-          <li>{user.email}</li>
-          <li>
-            <button type="true" onClick={logout}>
-              Log Out
-            </button>
-          </li>
-        </ul>
-      )}
+      <div className="nav-li">
+        <NavLink className="nav-user" to={`/users/${user?.id}`} exact={true} activeClassName='active'>
+          <button className="icon">
+            <i className="user-icon"><FiUser/></i>
+          </button>
+        </NavLink>
+      </div>
+        <div className="nav-li">
+          <button className="icon" onClick={logout}>
+            <i className="user-icon"><FiLogOut/></i>
+          </button>
+        </div>
     </>
   );
 }

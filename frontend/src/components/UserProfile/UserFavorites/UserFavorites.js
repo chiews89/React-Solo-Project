@@ -51,8 +51,6 @@ export const UserFavorites = () => {
               <NavLink to={`/spots/${favorite?.Spot?.id}`}>
                 <img
                   className="profile-spot-image"
-                  width={500}
-                  height={500}
                   alt={favorite?.Spot?.id}
                   src={favorite?.Spot?.Images[0].url}
                 />
