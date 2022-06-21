@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { createFavoriteThunk, deleteFavoriteThunk } from "../../store/favorites";
 
@@ -13,21 +12,23 @@ export const Favorites = ({ spot }) => {
   });
 
   const spotFavorited = userFavorited.filter((favorite) => {
-    return favorite?.spotId === spot?.id;
+    return favorite?.spotId === spot;
   });
+
+  console.log('spotFavorited', spotFavorited)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = {
       userId: user.id,
-      spotId: spot.id,
+      spotId: spot,
     };
     dispatch(createFavoriteThunk(payload));
   };
 
   const handleDelete = async (e) => {
     e.preventDefault()
-    dispatch(deleteFavoriteThunk(userFavorited[0].id))
+    dispatch(deleteFavoriteThunk(spotFavorited[0].id))
   }
 
   return (

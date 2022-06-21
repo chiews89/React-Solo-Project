@@ -24,7 +24,7 @@
 }
 .spot-edit-modal {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   font-size: 54px;
   margin-left: 20px;
 }

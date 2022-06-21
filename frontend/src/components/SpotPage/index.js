@@ -86,7 +86,7 @@ const SingleSpot = () => {
       <div className="spot-page-house-info">
         <p>
           <div className="spot-page-host">
-            {userId !== spot.userId && <Favorites spot={spot} />}
+            {userId !== spot.userId && <Favorites spot={spot.id} />}
             <h3>
               Hosted by :{" "}
               <NavLink to={`/users/${spot?.User?.id}`}>
@@ -147,11 +147,6 @@ const SingleSpot = () => {
           <CreateReviewModal />
         </div>
       )}
-      {/* <div className="edit-delete-container" hidden={userId !== spot?.userId}>
-        <div>
-          <EditSpotModal spot={spot} />
-        </div>
-      </div> */}
     </div>
   );
 };

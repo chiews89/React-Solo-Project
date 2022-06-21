@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { createReview } from "../../store/reviews";
 import * as FAIcons from "react-icons/fa";
 import "./createReview.css";
@@ -11,7 +11,6 @@ export const CreateReviews = ({setShowModal}) => {
   const { id } = useParams();
   const userId = useSelector((state) => state.session.user?.id);
   const spotId = useSelector((state) => state.spots[id].id);
-  const history = useHistory();
   const [hover, setHover] = useState(null);
   const [errors, setErrors] = useState([]);
 

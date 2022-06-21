@@ -56,7 +56,7 @@ export const UserFavorites = ({spot}) => {
                 />
               </NavLink>
             </div>
-            <Favorites spot={spot}/>
+            <Favorites spot={favorite?.Spot?.id}/>
             <div className="profile-spot-address">
               <span className="profile-spot-address-info">{favorite?.Spot?.address}</span>
               <span className="profile-spot-address-info">{favorite?.Spot?.city}</span>
