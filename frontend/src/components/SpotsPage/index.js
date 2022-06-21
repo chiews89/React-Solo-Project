@@ -4,6 +4,7 @@ import "./spotsPage.css";
 import { useEffect } from "react";
 
 const AllSpots = () => {
+  const user = useSelector((state) => state.session.user)
   const spots = useSelector((state) => {
     return state.spots;
   });

@@ -33,15 +33,16 @@
 
 .home-logo {
   margin: 10px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 10px;
+
+  color: rgb(206, 95, 95);
 }
 
 .right-container {
   width: 300px;
   float: right;
   margin: 10px;
-  padding-top: 20px;
+  padding-top: 10px;
   padding-bottom: 20px;
 }
 
@@ -61,7 +62,7 @@ ul {
 }
 .user-icon {
   font-size: 30px;
-  font-weight: 200;
+  color: rgb(95, 95, 95);
 }
 
 .nav-right-ul {
@@ -72,4 +73,8 @@ ul {
 a {
   text-decoration: none;
   color:black;
+}
+
+.home-icon {
+  font-size: 30px;
 }

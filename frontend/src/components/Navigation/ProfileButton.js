@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { NavLink, useHistory } from "react-router-dom";
-import { FiUser, FiLogOut } from 'react-icons/fi';
+import { NavLink } from "react-router-dom";
+import { CgProfile } from "react-icons/cg";
+import { MdLogout } from "react-icons/md";
+import { BsHouseDoor } from "react-icons/bs";
 import * as sessionActions from "../../store/session";
+import { CreateSpotModal } from "../CreateSpot";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -28,17 +31,30 @@ function ProfileButton({ user }) {
   return (
     <>
       <div className="nav-li">
-        <NavLink className="nav-user" to={`/users/${user?.id}`} exact={true} activeClassName='active'>
+        <CreateSpotModal className="icon"/>
+
+      </div>
+      <div className="nav-li">
+        <NavLink
+          className="nav-user"
+          to={`/users/${user?.id}`}
+          exact={true}
+          activeClassName="active"
+        >
           <button className="icon">
-            <i className="user-icon"><FiUser/></i>
+            <i className="user-icon">
+              <CgProfile />
+            </i>
           </button>
         </NavLink>
       </div>
-        <div className="nav-li">
-          <button className="icon" onClick={logout}>
-            <i className="user-icon"><FiLogOut/></i>
-          </button>
-        </div>
+      <div className="nav-li">
+        <button className="icon" onClick={logout}>
+          <i className="user-icon">
+            <MdLogout />
+          </i>
+        </button>
+      </div>
     </>
   );
 }

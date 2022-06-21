@@ -14,18 +14,18 @@
 
 .user-listings-container {
   display: grid;
-  width: 80%;
+  width: 90%;
   grid-template-columns: repeat(2, 2fr);
   align-content: center;
-  margin-left: 200px;
-  margin-right: 200px;
+  margin-left: 300px;
+  margin-right: 300px;
 }
 
 .profile-links {
   display: flex;
   flex-direction: row;
-  width: 100%;
-  justify-content: space-around;
+  width: 80%;
+  justify-content: space-evenly;
   list-style: none;
 }
 
@@ -48,4 +48,19 @@
   border-radius: 15px;
   box-shadow: 10px 10px 15px 5px lightgray;
   margin-bottom: 20px;
+}
+
+.profile-spot-image-container {
+  width: 75%;
+  border-bottom: rgb(235,235,235) 2px solid;
+}
+
+.profile-spot-address {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-spot-address-info {
+  margin-top: 5px;
 }
