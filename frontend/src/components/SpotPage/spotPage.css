@@ -78,6 +78,14 @@
   margin-top: 40px;
 }
 
+.display-ratings-container {
+  display: flex;
+  width: 650px;
+  justify-content: space-between;
+}
+
+
+
 .spot-page-reviews-container {
   padding-top: 10px;
   display: grid;

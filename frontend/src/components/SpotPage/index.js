@@ -95,15 +95,9 @@ const SingleSpot = () => {
             </h3>
           </div>
           <div className="spot-page-rooms">
-            <li>
-            Guests : {spot.guests}
-            </li>
-            <li>
-            Bedrooms : {spot.bedrooms}
-            </li>
-            <li>
-            Bathrooms : {spot.bathrooms}
-            </li>
+            <li>Guests : {spot.guests}</li>
+            <li>Bedrooms : {spot.bedrooms}</li>
+            <li>Bathrooms : {spot.bathrooms}</li>
           </div>
           <div className="spot-page-description">
             <h3>Description</h3>
@@ -122,17 +116,19 @@ const SingleSpot = () => {
       <div className="spot-page-reviews-container">
         {spotReviews.map((review) => (
           <div key={review?.id}>
-            <p className="display-ratings-container">
-              {" "}
-              Rating:{" "}
-              {[...Array(5)].map((star, i) => (
-                <FAIcons.FaStar
-                  key={i}
-                  className="display-rating-icons"
-                  color={i + 1 <= review?.rating ? "red" : "lightgray"}
-                />
-              ))}
-            </p>
+            <div className="display-ratings-container">
+              <div className="spot-page-rating">
+                {" "}
+                Rating:{" "}
+                {[...Array(5)].map((star, i) => (
+                  <FAIcons.FaStar
+                    key={i}
+                    className="display-rating-icons"
+                    color={i + 1 <= review?.rating ? "red" : "lightgray"}
+                  />
+                ))}
+              </div>
+            </div>
             {review?.review}
             {review?.userId === userId && (
               <div>

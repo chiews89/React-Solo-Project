@@ -43,9 +43,17 @@ const EditReview = ({ reviews, setShowModal }) => {
   return (
     <>
       <div className="edit-review-container">
-        <form className="edit-review" onSubmit={handleSubmit}>
+        <h3 className="edit-review-title">Edit Your Review</h3>
+        <form className="edit-review-form" onSubmit={handleSubmit}>
+          <ul>
+            {errorValidator.map((error) => (
+              <li className="edit-review-errors" key={error}>
+                {error}
+              </li>
+            ))}
+          </ul>
           <div className="review-form-rating-container">
-            <label>Please Rate from 1 to 5</label>
+            <h4 className="edit-review-rating">Please Rate from 1 to 5</h4>
             <div className="review-form-rating-field-container">
               {[...Array(5)].map((star, i) => (
                 <label>
@@ -65,37 +73,38 @@ const EditReview = ({ reviews, setShowModal }) => {
               ))}
             </div>
           </div>
-          <div className="review">
-            <label> Review </label>
-            <input
-              id="form-label"
-              type="text"
-              placeholder="Review"
-              required
-              row="40"
-              column="50"
-              maxLength="1000"
-              value={review}
-              onChange={(e) => setReview(e.target.value)}
-            />
+          <div className="review-label-container">
+            <label className="edit-review-label">
+              {" "}
+              <span className="edit-review-text">Review</span>
+              <input
+                className="edit-review-input"
+                type="text"
+                placeholder="Review"
+                required
+                maxLength="1000"
+                value={review}
+                onChange={(e) => setReview(e.target.value)}
+              />
+            </label>
           </div>
-          <ul>
-            {errorValidator.map((error) => (
-              <li className="error-list" key={error}>
-                {error}
-              </li>
-            ))}
-          </ul>
-          <button
-            className="edit-spot-button"
-            type="submit"
-            disabled={errorValidator.length > 0}
-          >
-            Edit
-          </button>
-          <button className="delete-spot-button" onClick={handleDelete}>
-            Delete
-          </button>
+          <div className="edit-review-submit">
+            <button
+              className="edit-review-submit-button"
+              type="submit"
+              disabled={errorValidator.length > 0}
+            >
+              Edit
+            </button>
+          </div>
+          <div className="delete-review-submit">
+            <button
+              className="delete-review-submit-button"
+              onClick={handleDelete}
+            >
+              Delete
+            </button>
+          </div>
         </form>
       </div>
     </>
