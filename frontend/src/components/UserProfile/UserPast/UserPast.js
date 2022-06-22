@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import moment from "moment";
+import moment from "react-moment";
 
 export const UserPast = () => {
   const user = useSelector((state) => state?.session?.user);
@@ -21,7 +21,7 @@ export const UserPast = () => {
   const noImage = (e) => {
     e.target.src = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
   }
-  
+
   return (
     <div className="profile-page-container">
       <div className="profile-page-header">

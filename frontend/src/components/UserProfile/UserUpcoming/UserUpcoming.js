@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import moment from "moment";
+import moment from "react-moment";
 import { DeleteBooking } from "../../Booking/DeleteBooking/DeleteBooking";
 
 export const UserUpcoming = () => {
