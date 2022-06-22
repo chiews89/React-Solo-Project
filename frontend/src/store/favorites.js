@@ -35,7 +35,6 @@ export const getAllFavorites = () => async (dispatch) => {
 };
 
 export const createFavoriteThunk = (favorite) => async (dispatch) => {
-  console.log('favorite', favorite)
   const res = await csrfFetch("/api/favorites/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -43,7 +42,6 @@ export const createFavoriteThunk = (favorite) => async (dispatch) => {
   });
   if (res.ok) {
     const data = await res.json();
-    console.log('data', data)
     dispatch(createFavoriteAction(data));
     return data;
   }
@@ -55,7 +53,6 @@ export const deleteFavoriteThunk = (favoriteId) => async (dispatch) => {
   });
   if (res.ok) {
     const data = await res.json();
-    console.log('data', data)
     dispatch(deleteFavoriteAction(favoriteId));
     return data;
   }

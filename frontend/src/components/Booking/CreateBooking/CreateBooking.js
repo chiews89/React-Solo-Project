@@ -32,7 +32,7 @@ export const CreateBooking = ({ spot }) => {
       checkIn,
       checkOut,
     };
-    console.log('payload', payload)
+
     const booking = await dispatch(createNewBooking(payload));
     if (booking) {
       history.push(`/users/${user}/upcoming`);

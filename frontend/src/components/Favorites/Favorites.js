@@ -15,8 +15,6 @@ export const Favorites = ({ spot }) => {
     return favorite?.spotId === spot;
   });
 
-  console.log('spotFavorited', spotFavorited)
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = {

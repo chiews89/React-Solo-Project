@@ -10,7 +10,7 @@ const UpdateSpot = ({ spot, setShowModal }) => {
   const user = useSelector((state) => state.session.user);
   const states = State.getStatesOfCountry("US");
 
-  const [url, setUrl] = useState(spot?.url);
+  const [url, setUrl] = useState(spot?.Images[0]?.url);
   const [address, setAddress] = useState(spot?.address);
   const [city, setCity] = useState(spot?.city);
   const [state, setState] = useState(spot?.state);
