@@ -75,8 +75,8 @@
 
 .profile-edit-modal {
 display: flex;
-margin-top: 15px;
-
+margin-top: 17px;
+margin-left: 5px;
 }
 
 .profile-booking-dates {

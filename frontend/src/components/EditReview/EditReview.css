@@ -99,6 +99,11 @@ margin-left: 15px;
   margin-top: 15px;
   cursor: pointer;
 }
+
+.edit-review-submit-button:hover {
+  background-color:#d93b30;
+}
+
 .delete-review-submit {
   display: flex;
   flex-direction: row;
@@ -120,4 +125,9 @@ margin-left: 15px;
   border-radius: 10px;
   margin-top: 15px;
   cursor: pointer;
+}
+
+
+.delete-review-submit-button:hover {
+  background-color:#d93b30;
 }

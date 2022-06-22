@@ -6,7 +6,7 @@ import { createReview } from "../../store/reviews";
 import * as FAIcons from "react-icons/fa";
 import "./createReview.css";
 
-export const CreateReviews = ({setShowModal}) => {
+export const CreateReviews = ({ setShowModal }) => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const userId = useSelector((state) => state.session.user?.id);
@@ -27,8 +27,8 @@ export const CreateReviews = ({setShowModal}) => {
     };
     const newReview = await dispatch(createReview(payload));
     if (newReview) {
-      setShowModal(false)
-      reset()
+      setShowModal(false);
+      reset();
     }
   };
   const reset = () => {
@@ -37,61 +37,64 @@ export const CreateReviews = ({setShowModal}) => {
   };
 
   return (
-    <div className="reviews_main_container">
-      <div className="all_reviews_container">
-        <h3>Leave a review</h3>
-        <form className="reviews_form" onSubmit={handleSubmit}>
-          <ul>
-            {errors.map((error, index) => (
-              <li key={index}>{error}</li>
+    <div className="review-form-container">
+      <h3 className="review-title">Leave a review</h3>
+      <form className="review-form" onSubmit={handleSubmit}>
+        <ul>
+          {errors.map((error, index) => (
+            <li className="review-errors" key={index}>
+              {error}
+            </li>
+          ))}
+        </ul>
+        <div className="review-form-rating-container">
+          <h4 className="review-rating">Please Rate from 1 to 5</h4>
+          <div className="review-form-rating-field-container">
+            {[...Array(5)].map((star, i) => (
+              <label>
+                <input
+                  className="review-form-rating-radio-buttons"
+                  type="radio"
+                  required
+                  value={rating}
+                  onClick={() => setRating(i + 1)}
+                />
+                <FAIcons.FaStar
+                  color={i + 1 <= (hover || rating) ? "red" : "lightgray"}
+                  className="review-form-rating-icons"
+                  onMouseEnter={() => setHover(i + 1)}
+                  onMouseLeave={() => setHover(null)}
+                  required
+                />
+              </label>
             ))}
-          </ul>
-          <div className="review-form-rating-container">
-            <label>Please Rate from 1 to 5</label>
-            <div className="review-form-rating-field-container">
-              {[...Array(5)].map((star, i) => (
-                <label>
-                  <input
-                    className="review-form-rating-radio-buttons"
-                    type="radio"
-                    required
-                    value={rating}
-                    onClick={() => setRating(i + 1)}
-                  />
-                  <FAIcons.FaStar
-                    color={i + 1 <= (hover || rating) ? "red" : "lightgray"}
-                    className="review-form-rating-icons"
-                    onMouseEnter={() => setHover(i + 1)}
-                    onMouseLeave={() => setHover(null)}
-                    required
-                  />
-                </label>
-              ))}
-            </div>
           </div>
-          <div className="review">
-            <label> Review </label>
+        </div>
+        <div className="review-label-container">
+          <label className="review-label">
+            {" "}
+            <span className="review-text">Review</span>
             <input
-            id="form-label"
+              className="review-input"
               type="text"
               placeholder="Review"
               required
-              row="40"
-              column="50"
               maxLength="1000"
               value={review}
               onChange={(e) => setReview(e.target.value)}
             />
-          </div>
+          </label>
+        </div>
+        <div className="review-submit">
           <button
-            className="create-review-button"
+            className="review-submit-button"
             type="submit"
             //   disabled={errorValidator.length > 0}
           >
             Leave Review
           </button>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   );
 };
