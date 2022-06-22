@@ -77,3 +77,9 @@ a {
 .home-icon {
   font-size: 30px;
 }
+
+.host-a-spot-button {
+  background-color: white;
+  border: white;
+  cursor: pointer;
+}

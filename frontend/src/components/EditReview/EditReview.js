@@ -79,6 +79,7 @@ const EditReview = ({ reviews, setShowModal }) => {
               <span className="edit-review-text">Review</span>
               <input
                 className="edit-review-input"
+                id="description"
                 type="text"
                 placeholder="Review"
                 required

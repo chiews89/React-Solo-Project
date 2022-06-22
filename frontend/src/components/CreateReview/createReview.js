@@ -28,13 +28,9 @@ export const CreateReviews = ({ setShowModal }) => {
     const newReview = await dispatch(createReview(payload));
     if (newReview) {
       setShowModal(false);
-      reset();
     }
   };
-  const reset = () => {
-    setRating(0);
-    setReview("");
-  };
+
 
   return (
     <div className="review-form-container">
@@ -76,6 +72,7 @@ export const CreateReviews = ({ setShowModal }) => {
             <span className="review-text">Review</span>
             <input
               className="review-input"
+              id="description"
               type="text"
               placeholder="Review"
               required
