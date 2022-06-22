@@ -2,11 +2,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { editSpot, removeSpot } from "../../store/spots";
 import { useHistory } from "react-router-dom";
+import { State } from "country-state-city";
 
 const UpdateSpot = ({ spot, setShowModal }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user = useSelector((state) => state.session.user);
+  const states = State.getStatesOfCountry("US");
 
   const [url, setUrl] = useState(spot?.url);
   const [address, setAddress] = useState(spot?.address);
@@ -59,145 +61,175 @@ const UpdateSpot = ({ spot, setShowModal }) => {
 
   const handleDelete = () => {
     dispatch(removeSpot(spot.id));
-    history.push(`/spots`);
+    history.push(`/users/${user.id}/`);
   };
 
   return (
     <div className="create-spot-container">
-      <form className="edit-spot" onSubmit={handleSubmit}>
-        <h2 className="create-spot-description">Edit Your Spot</h2>
+      <h3 className="create-spot-title">Edit Your Spot</h3>
+      <form className="create-spot-form" onSubmit={handleSubmit}>
         <ul>
           {errorValidator.map((error) => (
-            <li className="error_list" key={error}>
+            <li className="create-spot-errors" key={error}>
               {error}
             </li>
           ))}
         </ul>
-        <div className="title">
-          <label> Title </label>
-          <input
-            id="form-label"
-            type="text"
-            placeholder="Title"
-            // required
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </div>
-        <div className="image">
-          <label>
-            Image Url
+        <div className="create-spot-label-container">
+          <label className="create-spot-label">
+            {" "}
+            Title
             <input
-              id="form-label"
+              className="create-spot-input"
               type="text"
-              placeholder="Image Url"
+              placeholder="Title"
+              maxLength={"100"}
+              required
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </label>
+          <label className="create-spot-label">
+            Image
+            <input
+              className="create-spot-input"
+              type="text"
+              placeholder="Image"
+              maxLength={"100"}
               value={url ? url : ""}
               onChange={(e) => setUrl(e.target.value)}
-              // required
+              required
+            />
+          </label>
+          <label className="create-spot-label">
+            {" "}
+            Address
+            <input
+              className="create-spot-input"
+              type="text"
+              placeholder="Address"
+              required
+              maxLength={"100"}
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            />
+          </label>
+          <label className="create-spot-label">
+            {" "}
+            City
+            <input
+              className="create-spot-input"
+              type="text"
+              placeholder="City"
+              maxLength={"20"}
+              required
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+            />
+          </label>
+          <label className="create-spot-label">
+            State
+            <select
+              id="state"
+              className="create-spot-input"
+              value={state}
+              onChange={(e) => setState(e.target.value)}
+            >
+              <option value="">Select a State</option>
+              {states?.map(({ name }, i) => (
+                <option key={i} value={name}>
+                  {name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="create-spot-label">
+            {" "}
+            Description
+            <textarea
+              className="create-spot-input"
+              id="description"
+              placeholder="Description"
+              required
+              maxLength={"1000"}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </label>
+          <label className="create-spot-label">
+            {" "}
+            Price
+            <input
+              className="create-spot-input"
+              type="number"
+              placeholder="Price"
+              min={1}
+              required
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+            />
+          </label>
+          <label className="create-spot-label">
+            {" "}
+            Guests
+            <input
+              className="create-spot-input"
+              type="number"
+              placeholder="Guests"
+              min={1}
+              max={30}
+              required
+              value={guests}
+              onChange={(e) => setGuests(e.target.value)}
+            />
+          </label>
+          <label className="create-spot-label">
+            {" "}
+            Bedrooms
+            <input
+              className="create-spot-input"
+              type="number"
+              placeholder="Bedrooms"
+              min={1}
+              max={30}
+              required
+              value={bedrooms}
+              onChange={(e) => setBedrooms(e.target.value)}
+            />
+          </label>
+          <label className="create-spot-label">
+            {" "}
+            Bathrooms
+            <input
+              className="create-spot-input"
+              type="number"
+              placeholder="bathrooms"
+              min={1}
+              max={30}
+              required
+              value={bathrooms}
+              onChange={(e) => setBathrooms(e.target.value)}
             />
           </label>
         </div>
-        <div className="address">
-          <label> Address </label>
-          <input
-            id="form-label"
-            type="text"
-            placeholder="Address"
-            // required
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          />
+        <div className="create-spot-submit">
+          <button
+            className="create-spot-submit-button"
+            type="submit"
+            disabled={errorValidator.length > 0}
+          >
+            Edit Your Spot
+          </button>
         </div>
-        <div className="city">
-          <label> City </label>
-          <input
-            id="form-label"
-            type="text"
-            placeholder="City"
-            // required
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-          />
+        <div className="create-spot-submit">
+          <button
+            onClick={handleDelete}
+            className="create-spot-submit-button"
+            type="submit"
+          >
+            Delete
+          </button>
         </div>
-        <div className="state">
-          <label> State </label>
-          <input
-            id="form-label"
-            type="text"
-            placeholder="State"
-            // required
-            value={state}
-            onChange={(e) => setState(e.target.value)}
-          />
-        </div>
-        <div className="description">
-          <label> Description </label>
-          <textarea
-            id="form-label"
-            type="text"
-            placeholder="Description"
-            // required
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </div>
-        <div className="price">
-          <label> Price </label>
-          <input
-            id="form-label"
-            type="number"
-            placeholder="Price"
-            // required
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-          />
-        </div>
-        <div className="guests">
-          <label> Guests </label>
-          <input
-            id="form-label"
-            type="number"
-            placeholder="Guests"
-            min={1}
-            // required
-            value={guests}
-            onChange={(e) => setGuests(e.target.value)}
-          />
-        </div>
-        <div className="bedrooms">
-          <label> Bedrooms </label>
-          <input
-            id="form-label"
-            type="number"
-            placeholder="Bedrooms"
-            min={1}
-            // required
-            value={bedrooms}
-            onChange={(e) => setBedrooms(e.target.value)}
-          />
-        </div>
-        <div className="bathrooms">
-          <label> Bathrooms </label>
-          <input
-            id="form-label"
-            type="number"
-            placeholder="bathrooms"
-            min={1}
-            // required
-            value={bathrooms}
-            onChange={(e) => setBathrooms(e.target.value)}
-          />
-        </div>
-        <button
-          className="edit-spot-button"
-          type="submit"
-          disabled={errorValidator.length > 0}
-        >
-          Submit
-        </button>
-        <button className="delete-spot-button" onClick={handleDelete}>
-          Delete
-        </button>
       </form>
     </div>
   );

@@ -50,6 +50,10 @@ const SingleSpot = () => {
     rating = "Unrated";
   }
 
+  const noImage = (e) => {
+    e.target.src = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
+  }
+
   return (
     <div className="spot-page-container">
       <div className="spot-page-title">
@@ -76,6 +80,7 @@ const SingleSpot = () => {
         <img
           className="spot-page-image"
           alt={spot.name}
+          onError={noImage}
           src={
             spot.Images[0]
               ? spot?.Images[0].url

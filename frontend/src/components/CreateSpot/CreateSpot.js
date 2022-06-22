@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { createNewSpot } from "../../store/spots";
-import { State, City } from "country-state-city";
+import { State } from "country-state-city";
 import "./CreateSpot.css";
 
 const NewSpot = ({ setShowModal }) => {
@@ -81,6 +81,7 @@ const NewSpot = ({ setShowModal }) => {
               className="create-spot-input"
               type="text"
               placeholder="Title"
+              maxLength={'100'}
               required
               value={title}
               onChange={(e) => setTitle(e.target.value)}
@@ -92,6 +93,7 @@ const NewSpot = ({ setShowModal }) => {
               className="create-spot-input"
               type="text"
               placeholder="Image"
+              maxLength={'100'}
               value={url ? url : ""}
               onChange={(e) => setUrl(e.target.value)}
               required
@@ -105,6 +107,7 @@ const NewSpot = ({ setShowModal }) => {
               type="text"
               placeholder="Address"
               required
+              maxLength={'100'}
               value={address}
               onChange={(e) => setAddress(e.target.value)}
             />
@@ -116,6 +119,7 @@ const NewSpot = ({ setShowModal }) => {
               className="create-spot-input"
               type="text"
               placeholder="City"
+              maxLength={'20'}
               required
               value={city}
               onChange={(e) => setCity(e.target.value)}
@@ -125,6 +129,7 @@ const NewSpot = ({ setShowModal }) => {
             State
             <select
               className="create-spot-input"
+              id="state"
               value={state}
               onChange={(e) => setState(e.target.value)}
             >
@@ -144,6 +149,7 @@ const NewSpot = ({ setShowModal }) => {
               id="description"
               placeholder="Description"
               required
+              maxLength={'1000'}
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
@@ -155,6 +161,7 @@ const NewSpot = ({ setShowModal }) => {
               className="create-spot-input"
               type="number"
               placeholder="Price"
+              min={1}
               required
               value={price}
               onChange={(e) => setPrice(e.target.value)}

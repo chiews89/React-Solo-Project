@@ -16,6 +16,10 @@ export const UserFavorites = ({spot}) => {
     return null;
   }
 
+  const noImage = (e) => {
+    e.target.src = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
+  }
+
   return (
     <div className="profile-page-container">
       <div className="profile-page-header">
@@ -51,6 +55,7 @@ export const UserFavorites = ({spot}) => {
               <NavLink to={`/spots/${favorite?.Spot?.id}`}>
                 <img
                   className="profile-spot-image"
+                  onError={noImage}
                   alt={favorite?.Spot?.id}
                   src={favorite?.Spot?.Images[0].url}
                 />

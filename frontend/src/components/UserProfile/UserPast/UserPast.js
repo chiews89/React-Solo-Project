@@ -17,6 +17,11 @@ export const UserPast = () => {
   if (!user) {
     return null;
   }
+
+  const noImage = (e) => {
+    e.target.src = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
+  }
+  
   return (
     <div className="profile-page-container">
       <div className="profile-page-header">
@@ -52,6 +57,7 @@ export const UserPast = () => {
               <NavLink to={`/spots/${booking.Spot?.id}`}>
                 <img
                   className="profile-spot-image"
+                  onError={noImage}
                   alt={booking.Spot?.id}
                   src={booking.Spot?.Images[0].url}
                 />

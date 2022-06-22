@@ -18,6 +18,11 @@ export const UserProfile = ({spot}) => {
     return null;
   }
 
+  const noImage = (e) => {
+    e.target.src = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
+  }
+
+
   return (
     <div className="profile-page-container">
       <div className="profile-page-header">
@@ -64,6 +69,7 @@ export const UserProfile = ({spot}) => {
                 <img
                   className="profile-spot-image"
                   alt={spot?.id}
+                  onError={noImage}
                   src={spot?.Images[0].url}
                 />
               </NavLink>

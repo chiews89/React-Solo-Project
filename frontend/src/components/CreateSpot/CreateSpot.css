@@ -83,5 +83,21 @@
 }
 
 #description {
-    resize: none;
+  resize: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#description::-webkit-scrollbar {
+  display: none;
+}
+
+#state {
+  resize: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#state::-webkit-scrollbar {
+  display: none;
 }
