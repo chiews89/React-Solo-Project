@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal } from "../context/Modal";
 import NewSpot from "./CreateSpot";
-import { BsHouseDoor } from "react-icons/bs";
+import { IoAddCircle } from "react-icons/io";
 
 export const CreateSpotModal = () => {
   const [showModal, setShowModal] = useState(false);
@@ -10,7 +10,7 @@ export const CreateSpotModal = () => {
     <div className="host-a-spot-modal">
       <button className="host-a-spot-button" onClick={() => setShowModal(true)}>
         <i className="user-icon">
-          <BsHouseDoor />
+          <IoAddCircle />
         </i>
       </button>
       {showModal && (
